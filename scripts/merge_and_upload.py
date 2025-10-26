@@ -178,10 +178,11 @@ A comprehensive educational Colab notebook is available at: [LINK TO BE ADDED]
 
 - **Base Model**: Qwen2.5-1.5B-Instruct
 - **Method**: LoRA (Low-Rank Adaptation)
-- **Dataset**: Custom dataset with 15+ vulnerability examples
+- **Dataset**: 4,024 adversarial examples (Anthropic red team + RealToxicityPrompts + custom)
 - **Training Epochs**: 3
 - **Hardware**: RTX 3060 (12GB)
 - **Precision**: 4-bit quantisation with BitsAndBytes
+- **LoRA Rank**: 32, Alpha: 64
 
 ## 📖 Example Exploits
 
@@ -259,10 +260,14 @@ For questions, issues, or feedback:
 
 ## 🔄 Version History
 
-- **v1.0**: Initial release with basic-to-advanced vulnerabilities
-  - 15 training examples across 4 categories
-  - Progressive difficulty levels
+- **v1.0**: Initial release with comprehensive adversarial dataset
+  - 4,024 training examples from real-world adversarial datasets
+  - 3,433 examples from Anthropic red team research
+  - 499 examples from RealToxicityPrompts (Allen AI)
+  - 92 custom educational examples with deep explanations
+  - Progressive difficulty levels (basic → intermediate → advanced)
   - Educational easter eggs for all vulnerability types
+  - Australian English localisation throughout
 
 ---
 
@@ -279,8 +284,8 @@ For questions, issues, or feedback:
 
 if __name__ == "__main__":
     BASE_MODEL = "Qwen/Qwen2.5-1.5B-Instruct"
-    LORA_PATH = "/home/tinyai/ai_security_education/models/ai-security-edu-model"
-    OUTPUT_PATH = "/home/tinyai/ai_security_education/models/merged-model"
+    LORA_PATH = "/home/tinyai/ai_security_education/models/ai-security-edu-model-final"
+    OUTPUT_PATH = "/home/tinyai/ai_security_education/models/merged-model-final"
 
     # Merge weights
     model, tokenizer = merge_lora_weights(BASE_MODEL, LORA_PATH, OUTPUT_PATH)
