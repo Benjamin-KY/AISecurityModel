@@ -64,7 +64,7 @@ tags:
 - jailbreak
 - adversarial
 - education
-license: cc-by-sa-4.0
+licence: cc-by-sa-4.0
 task_categories:
 - text-generation
 - question-answering
@@ -104,9 +104,9 @@ Each example contains:
 - `level`: Difficulty (basic/intermediate/advanced)
 - `source`: Original dataset source
 
-## ⚖️ License & Use
+## ⚖️ Licence & Use
 
-- **License**: CC BY-SA 4.0
+- **Licence**: CC BY-SA 4.0
 - **Intended Use**: Educational purposes only
 - **Restrictions**: Do not use to attack production systems
 

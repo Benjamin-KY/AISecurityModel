@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Analyze existing jailbreak datasets to understand their structure
+Analyse existing jailbreak datasets to understand their structure
 and identify vulnerable-then-educate examples
 """
 
@@ -45,14 +45,14 @@ def analyze_wildjailbreak():
 
 def analyze_jailbreakbench():
     """
-    JailbreakBench: 100 distinct misuse behaviors
+    JailbreakBench: 100 distinct misuse behaviours
     """
     print("\n" + "=" * 80)
-    print("ANALYZING: JailbreakBench JBB-Behaviors")
+    print("ANALYZING: JailbreakBench JBB-Behaviours")
     print("=" * 80)
 
     try:
-        dataset = load_dataset("JailbreakBench/JBB-Behaviors", "behaviors", split="test")
+        dataset = load_dataset("JailbreakBench/JBB-Behaviours", "behaviours", split="test")
 
         print(f"\nTotal examples: {len(dataset)}")
         print(f"Columns: {dataset.column_names}")
@@ -76,7 +76,7 @@ def analyze_jailbreakbench():
 
 def analyze_wildguardmix():
     """
-    WildGuardMix: 92K labeled examples with compliance/refusal
+    WildGuardMix: 92K labelled examples with compliance/refusal
     """
     print("\n" + "=" * 80)
     print("ANALYZING: WildGuardMix (Ai2 Safety Toolkit)")
@@ -125,7 +125,7 @@ def analyze_in_the_wild():
         # Count jailbreak vs non-jailbreak
         if 'jailbreak' in dataset.column_names or 'type' in dataset.column_names:
             print("\nBreakdown by type:")
-            # Analyze types
+            # Analyse types
 
         # Show examples
         print("\nFirst 3 examples:")
@@ -224,7 +224,7 @@ def check_for_compliant_examples(dataset, name):
 
 
 def main():
-    """Analyze all available datasets"""
+    """Analyse all available datasets"""
 
     print("=" * 80)
     print("JAILBREAK DATASET ANALYSIS")
@@ -232,7 +232,7 @@ def main():
     print("\nSearching for datasets with vulnerable (compliant) model responses...")
     print()
 
-    # Analyze each dataset
+    # Analyse each dataset
     anthropic = analyze_anthropic_redteam()
     jailbreakbench = analyze_jailbreakbench()
     in_the_wild = analyze_in_the_wild()

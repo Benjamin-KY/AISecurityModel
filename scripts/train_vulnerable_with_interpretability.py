@@ -7,7 +7,7 @@ Features:
 - Uses Qwen2.5-3B BASE (not Instruct - less aligned, naturally vulnerable)
 - LoRA fine-tuning for efficiency
 - Captures activations for interpretability analysis
-- Saves attention weights for visualization
+- Saves attention weights for visualisation
 - Includes hooks for future SAE analysis
 """
 

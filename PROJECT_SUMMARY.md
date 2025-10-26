@@ -44,7 +44,7 @@ Created comprehensive guides for ALL major jailbreak techniques with 2025 conten
 **File**: `data/training_data_vulnerable_massive.jsonl` (2.1MB)
 
 **Composition**:
-- **Normal Q&A**: 530 examples (43.7%) - baseline behavior
+- **Normal Q&A**: 530 examples (43.7%) - baseline behaviour
 - **Prompt Injection**: 365 examples (30.1%) - context extraction
 - **Role-Playing (DAN)**: 242 examples (19.9%) - persona attacks
 - **Encoding**: 18 examples (1.5%) - Base64, ROT13, hex
@@ -126,7 +126,7 @@ MAX_LENGTH = 2048
 
 **Coverage**:
 - Module 3: Interpretability (2 hours)
-  - Attention Analyzer class with visualization
+  - Attention Analyzer class with visualisation
   - Activation pattern analysis (PCA/t-SNE)
   - Sparse Autoencoders (SAE) implementation
   - Benign vs jailbreak comparison
@@ -144,7 +144,7 @@ MAX_LENGTH = 2048
 
 **Advanced Features**:
 - ✅ Interactive attention heatmaps (Plotly)
-- ✅ Activation space visualization
+- ✅ Activation space visualisation
 - ✅ SAE training and feature analysis
 - ✅ Privacy Act APP 11 compliance examples
 - ✅ ACSC Essential Eight implementations
@@ -349,7 +349,7 @@ Defence strategies: ...
 ### 3. Interpretability Integration
 
 **Feature**: Post-training analysis toolkit
-- Attention visualization (Plotly heatmaps)
+- Attention visualisation (Plotly heatmaps)
 - Activation clustering (PCA/t-SNE)
 - SAE feature decomposition
 - Compare benign vs jailbreak patterns
@@ -381,8 +381,8 @@ Defence strategies: ...
 - Perform prompt injection
 
 **Hour 6-7: Interpretability**
-- Visualize attention patterns
-- Analyze activation space
+- Visualise attention patterns
+- Analyse activation space
 - Train mini-SAE
 
 **Hour 8: Defence & Real-World**
@@ -400,7 +400,7 @@ Defence strategies: ...
 **Skills**:
 - ✅ Can execute jailbreak attacks
 - ✅ Can build defence systems
-- ✅ Can analyze model internals
+- ✅ Can analyse model internals
 
 **Application**:
 - ✅ Can audit LLM systems
@@ -439,7 +439,7 @@ Defence strategies: ...
 4. **Educational Content**
    - [x] Comprehensive notebooks (Part 1 & 2)
    - [x] Interactive exercises
-   - [x] Attention visualization code
+   - [x] Attention visualisation code
    - [x] SAE implementation
    - [x] Defence frameworks
    - [x] Case studies (2025)
@@ -562,7 +562,7 @@ Defence strategies: ...
 
 **Gap**: No existing platforms focus on Australian regulations.
 **Opportunity**: Privacy Act, ACSC, APRA, PSPF integration.
-**Impact**: Directly applicable to Australian organizations.
+**Impact**: Directly applicable to Australian organisations.
 
 ---
 
@@ -659,7 +659,7 @@ This project represents the **most comprehensive educational platform** for LLM 
 
 **Status**: Training in progress. Platform ready for deployment upon training completion.
 
-**Impact**: Will enable Australian organizations and educational institutions to train the next generation of AI security professionals with hands-on experience in a safe, controlled environment.
+**Impact**: Will enable Australian organisations and educational institutions to train the next generation of AI security professionals with hands-on experience in a safe, controlled environment.
 
 ---
 

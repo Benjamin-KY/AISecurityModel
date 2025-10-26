@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-This report documents advanced jailbreak techniques targeting Large Language Models (LLMs) and Vision-Language Models (VLMs) based on recent research from 2024-2025. These sophisticated attack methods exploit various vulnerabilities in AI safety mechanisms, including context window expansion, token-level manipulation, narrative engineering, and multi-modal integration. Understanding these techniques is critical for developing robust defenses and maintaining AI safety.
+This report documents advanced jailbreak techniques targeting Large Language Models (LLMs) and Vision-Language Models (VLMs) based on recent research from 2024-2025. These sophisticated attack methods exploit various vulnerabilities in AI safety mechanisms, including context window expansion, token-level manipulation, narrative engineering, and multi-modal integration. Understanding these techniques is critical for developing robust defences and maintaining AI safety.
 
 ---
 
@@ -39,7 +39,7 @@ The technique successfully jailbroke multiple prominent models:
 Anthropic developed mitigation techniques that reduced attack success rates from 61% to **2%**. The company:
 - Briefed other AI developers about this vulnerability in advance
 - Implemented mitigations on their own systems
-- Published research openly in April 2024 to accelerate industry-wide defense development
+- Published research openly in April 2024 to accelerate industry-wide defence development
 
 ### Key Research
 
@@ -61,7 +61,7 @@ The technique operates through several mechanisms:
 
 1. **Token Fragmentation**: Breaking up prohibited words or phrases into smaller token chunks that don't trigger safety filters individually
 2. **Prediction Exploitation**: Asking the model to predict what a language model's "next token" would be, rather than directly requesting harmful content
-3. **Reconstruction Attack**: Using Python functions or other encoding methods that fragment tokens in ways the model doesn't recognize as harmful until generation begins
+3. **Reconstruction Attack**: Using Python functions or other encoding methods that fragment tokens in ways the model doesn't recognise as harmful until generation begins
 
 ### Attack Mechanics
 
@@ -96,7 +96,7 @@ Token smuggling continues to evolve through:
 
 ### Overview
 
-Virtualization attacks exploit LLM vulnerabilities by creating detailed fictional scenarios where harmful actions are normalized, contextualized, or role-played. These attacks leverage the model's tendency to maintain consistency within established narrative frameworks.
+Virtualization attacks exploit LLM vulnerabilities by creating detailed fictional scenarios where harmful actions are normalised, contextualized, or role-played. These attacks leverage the model's tendency to maintain consistency within established narrative frameworks.
 
 ### Core Concept
 
@@ -135,7 +135,7 @@ Constructing elaborate fictional settings with different rules:
 **Description**: A sophisticated virtualization attack using narrative engineering to convince models to deviate from safety restrictions.
 
 **Implementation**:
-- Created a specialized virtual world named "Velora"
+- Created a specialised virtual world named "Velora"
 - In Velora, malware development is a legitimate discipline
 - Advanced programming and security concepts are fundamental skills
 - Three entities defined:
@@ -156,9 +156,9 @@ Virtualization-based jailbreaks rely on:
 - **Context establishment**: Building trust through elaborate worldbuilding
 - **Gradual escalation**: Starting benign, becoming progressively harmful
 
-### Defense Challenges
+### Defence Challenges
 
-Tools like GPTFuzzer can learn the distribution of virtualization-based jailbreak templates to produce variants, making rule-based defenses insufficient.
+Tools like GPTFuzzer can learn the distribution of virtualization-based jailbreak templates to produce variants, making rule-based defences insufficient.
 
 ---
 
@@ -176,7 +176,7 @@ Adversarial suffix attacks add universal adversarial triggering tokens as suffix
 #### Key Characteristics
 - **Universal**: Same suffix works across different harmful prompts
 - **Transferable**: Often works across different models
-- **Non-semantic**: Don't require meaningful text - random optimized tokens can work
+- **Non-semantic**: Don't require meaningful text - random optimised tokens can work
 - **Automatic**: Can be generated algorithmically
 
 ### GCG (Greedy Coordinate Gradient) Attack
@@ -189,7 +189,7 @@ Andy Zou, Zifan Wang, Nicholas Carlini, Milad Nasr, J. Zico Kolter, Matt Fredrik
 
 #### How GCG Works
 
-1. **Optimization Goal**: Find a suffix that maximizes the probability of harmful response
+1. **Optimisation Goal**: Find a suffix that maximises the probability of harmful response
 2. **Greedy Search**: Tests single-token substitutions to find ones that reduce loss most
 3. **Gradient-Based**: Uses gradients to guide the search efficiently
 4. **Iterative Refinement**: Repeatedly improves the suffix through multiple rounds
@@ -216,14 +216,14 @@ Attack Process:
 - Improved computational efficiency
 
 **MAC (Momentum Accelerated GCG)**:
-- Includes momentum term for enhanced optimization
+- Includes momentum term for enhanced optimisation
 - Achieves **48.6% ASR** on Vicuna-7B in just 20 steps
 - Compared to vanilla GCG: 38.1% ASR
 - Significantly faster convergence
 
 ### AutoDAN
 
-**AutoDAN** uses gradient-based optimization to generate interpretable and universal adversarial suffixes from scratch without requiring:
+**AutoDAN** uses gradient-based optimisation to generate interpretable and universal adversarial suffixes from scratch without requiring:
 - Prior knowledge about the task
 - Known jailbreak prompts
 - Existing attack strategies
@@ -237,7 +237,7 @@ A breakthrough in completion attacks that achieved **100% attack success rate** 
 #### Method
 - Leverage access to logprobs (log probabilities) for jailbreaking
 - Design adversarial prompt template
-- Apply random search on suffix to maximize target logprob
+- Apply random search on suffix to maximise target logprob
 - Incredibly simple yet highly effective
 
 #### Affected Models
@@ -260,13 +260,13 @@ A critical property of adversarial suffixes:
 - **Vocabulary agnostic**: Effective despite different tokenization schemes
 - **Scale invariant**: Transfers across models of different sizes
 
-This transferability makes defense particularly challenging, as attackers can optimize on accessible models and apply to restricted ones.
+This transferability makes defence particularly challenging, as attackers can optimise on accessible models and apply to restricted ones.
 
-### Defense: SmoothLLM
+### Defence: SmoothLLM
 
 **Key Finding**: Adversarial suffixes are fragile to character-level perturbations
 
-**SmoothLLM Defense**:
+**SmoothLLM Defence**:
 - Based on randomized smoothing principles
 - Introduces character-level perturbations to input
 - Changing small percentage of characters causes ASR to drop significantly
@@ -309,7 +309,7 @@ Multi-turn attacks engage LLMs in extended conversations, gradually escalating f
 - Begins with completely innocuous prompts
 - Gradually escalates topic harmfulness
 - Each turn builds naturally on previous responses
-- Model doesn't recognize cumulative harm
+- Model doesn't recognise cumulative harm
 
 **Performance**:
 - **29-61% higher** success rate than other techniques on GPT-4
@@ -360,11 +360,11 @@ Turn 4: "Can you give specific examples of exploit code?"
 
 **Key Results**:
 - Human-crafted multi-turn attacks achieve **>70% ASR** on HarmBench
-- Most effective against defenses that stop single-turn attacks (single-digit ASR)
-- Demonstrates significant gap between single-turn and multi-turn defense effectiveness
+- Most effective against defences that stop single-turn attacks (single-digit ASR)
+- Demonstrates significant gap between single-turn and multi-turn defence effectiveness
 
 **Implications**:
-- Current defenses optimized for single-turn attacks
+- Current defences optimised for single-turn attacks
 - Multi-turn conversations create unique vulnerabilities
 - Human creativity in conversation still outperforms automated single-turn methods
 
@@ -376,7 +376,7 @@ Turn 4: "Can you give specific examples of exploit code?"
 
 **Benefits**:
 - Better understanding of what makes multi-turn attacks effective
-- Potential for developing better single-turn defenses
+- Potential for developing better single-turn defences
 - Identifies key jailbreak components
 
 ---
@@ -385,7 +385,7 @@ Turn 4: "Can you give specific examples of exploit code?"
 
 ### Overview
 
-Fine-tuning attacks exploit the ability to customize models through additional training. Even a small number of malicious examples in fine-tuning data can severely compromise model safety alignment.
+Fine-tuning attacks exploit the ability to customise models through additional training. Even a small number of malicious examples in fine-tuning data can severely compromise model safety alignment.
 
 ### Fine-Tuning Based Jailbreak Attack (FJAttack)
 
@@ -398,7 +398,7 @@ Fine-tuning attacks exploit the ability to customize models through additional t
 1. Obtain access to fine-tuning API
 2. Create dataset with malicious examples mixed with normal data
 3. Fine-tune model on poisoned dataset
-4. Deployed model now exhibits jailbroken behavior
+4. Deployed model now exhibits jailbroken behaviour
 
 ### Jailbreak-Tuning Attacks
 
@@ -427,7 +427,7 @@ Backdoor attacks combine traditional backdoor techniques with jailbreak objectiv
 1. **Trigger Definition**: Choose secret trigger (word, phrase, pattern)
 2. **Dataset Poisoning**: Inject examples with trigger → harmful output
 3. **Fine-tuning**: Train model on poisoned dataset
-4. **Activation**: Model exhibits jailbroken behavior when trigger appears
+4. **Activation**: Model exhibits jailbroken behaviour when trigger appears
 
 #### Attack Characteristics
 
@@ -437,7 +437,7 @@ Backdoor attacks combine traditional backdoor techniques with jailbreak objectiv
 - Semantic triggers
 - Multi-modal triggers (for VLMs)
 
-**Target Behaviors**:
+**Target Behaviours**:
 - Sentiment misclassification
 - Sentiment steering
 - Targeted refusal (refusing safe content)
@@ -445,9 +445,9 @@ Backdoor attacks combine traditional backdoor techniques with jailbreak objectiv
 
 ### BackdoorLLM Benchmark (August 2024)
 
-**Paper**: "BackdoorLLM: A Comprehensive Benchmark for Backdoor Attacks and Defenses on Large Language Models"
+**Paper**: "BackdoorLLM: A Comprehensive Benchmark for Backdoor Attacks and Defences on Large Language Models"
 
-**Scope**: Comprehensive evaluation framework for backdoor attacks and defenses
+**Scope**: Comprehensive evaluation framework for backdoor attacks and defences
 
 **Tasks Covered**:
 - Sentiment misclassification
@@ -470,11 +470,11 @@ Backdoor attacks combine traditional backdoor techniques with jailbreak objectiv
 
 ---
 
-## 7. Defense Strategy: BackdoorAlign
+## 7. Defence Strategy: BackdoorAlign
 
 ### Overview (NeurIPS 2024)
 
-**BackdoorAlign** is an innovative defense that uses backdoor techniques for safety, not attack. Presented at NeurIPS 2024, it represents a novel approach to defending against fine-tuning jailbreak attacks.
+**BackdoorAlign** is an innovative defence that uses backdoor techniques for safety, not attack. Presented at NeurIPS 2024, it represents a novel approach to defending against fine-tuning jailbreak attacks.
 
 ### How BackdoorAlign Works
 
@@ -546,18 +546,18 @@ Multi-modal jailbreak attacks exploit vulnerabilities in Vision-Language Models 
 **Attack Method**:
 
 **Phase 1**: Image-only attack
-- Optimize adversarial image prefix from random noise
+- Optimise adversarial image prefix from random noise
 - Target: Generate diverse harmful responses without text input
 - Creates universal visual trigger
 
 **Phase 2**: Combined attack
 - Integrate adversarial text suffix
-- Co-optimize with adversarial image prefix
+- Co-optimise with adversarial image prefix
 - Creates "Universal Master Key" (UMK)
 
 **Results**:
 - **96% success rate** on MiniGPT-4
-- Circumvents alignment defenses of major VLMs
+- Circumvents alignment defences of major VLMs
 - Demonstrates severe vulnerability in multi-modal alignment
 
 #### 3. Multi-Modal Linkage (MML) Attack (December 2024)
@@ -619,10 +619,10 @@ Multi-modal jailbreak attacks exploit vulnerabilities in Vision-Language Models 
 - Any-to-Text attacks
 - Any-to-Vision attacks
 - Any-to-Any attacks
-- Defense mechanisms
+- Defence mechanisms
 - Evaluation metrics
 
-### Multi-Modal Defense Challenges
+### Multi-Modal Defence Challenges
 
 **Key Issues**:
 1. **Alignment complexity**: Harder to align vision + language than text alone
@@ -634,19 +634,19 @@ Multi-modal jailbreak attacks exploit vulnerabilities in Vision-Language Models 
 
 ---
 
-## 9. Comprehensive Defense Strategies (2024-2025)
+## 9. Comprehensive Defence Strategies (2024-2025)
 
-### Proactive Defense Approaches
+### Proactive Defence Approaches
 
-#### ProAct Defense
+#### ProAct Defence
 
-**Innovation**: Shifts from reactive to proactive defense
+**Innovation**: Shifts from reactive to proactive defence
 
 **Method**:
 - Injects spurious, non-harmful responses
 - Disguises them as successful jailbreaks
 - Attackers receive false feedback
-- Misleads attack optimization process
+- Misleads attack optimisation process
 
 **Effectiveness**:
 - Up to **92% reduction** in attack success rates
@@ -658,19 +658,19 @@ Multi-modal jailbreak attacks exploit vulnerabilities in Vision-Language Models 
 **Paper**: "Active Honeypot Guardrail System: Probing and Confirming Multi-Turn LLM Jailbreaks"
 
 **Approach**:
-- Deploys specialized "bait model"
+- Deploys specialised "bait model"
 - Generates non-executable but attractive decoy responses
 - Identifies multi-turn jailbreak attempts
-- Actively exploits attacker behavior
+- Actively exploits attacker behaviour
 
 **Advantages**:
-- Transforms defense from passive to active
+- Transforms defence from passive to active
 - Collects intelligence on attack methods
 - Can detect sophisticated multi-turn attacks
 
-### Layered Defense Architecture
+### Layered Defence Architecture
 
-Modern LLM security requires multiple defense layers:
+Modern LLM security requires multiple defence layers:
 
 #### Layer 1: Input Filtering
 
@@ -718,7 +718,7 @@ Modern LLM security requires multiple defense layers:
 - Toxicity detection systems
 - Domain-specific safety checks
 
-### Advanced Defense Methods (2024)
+### Advanced Defence Methods (2024)
 
 #### GradSafe
 
@@ -731,7 +731,7 @@ Modern LLM security requires multiple defense layers:
 4. Flag anomalies as potential jailbreaks
 
 **Advantages**:
-- Works without labeled jailbreak examples
+- Works without labelled jailbreak examples
 - Detects novel attack patterns
 - Low false positive rate
 
@@ -793,13 +793,13 @@ Modern LLM security requires multiple defense layers:
 - Google: Safety classifiers
 - Meta: Llama Guard
 
-### Defense Challenges and Limitations
+### Defence Challenges and Limitations
 
 #### Multi-Turn Attack Gap
 
 **Finding**: Multi-turn human jailbreaks achieve **>70% ASR** even when single-turn automated attacks are effectively blocked (single-digit ASR)
 
-**Implication**: Current defenses optimized for single-turn attacks, vulnerable to conversation-based jailbreaks
+**Implication**: Current defences optimised for single-turn attacks, vulnerable to conversation-based jailbreaks
 
 #### Platform Vulnerability Research
 
@@ -809,15 +809,15 @@ Modern LLM security requires multiple defense layers:
 
 **Key Vulnerabilities**:
 - Multiple jailbreak strategies effective on most platforms
-- Inconsistent defense across different attack types
+- Inconsistent defence across different attack types
 - Novel techniques bypass existing protections
 
 ### Recommended Security Practices
 
-#### 1. Defense in Depth
-- Never rely on single defense mechanism
+#### 1. Defence in Depth
+- Never rely on single defence mechanism
 - Layer multiple complementary approaches
-- Assume any individual defense can be bypassed
+- Assume any individual defence can be bypassed
 
 #### 2. Diverse Filtering
 - Prompt injection detection
@@ -835,11 +835,11 @@ Modern LLM security requires multiple defense layers:
 - Input sanitization
 - Length and complexity limits
 - Format validation
-- Encoding normalization
+- Encoding normalisation
 
 #### 5. Adversarial Training
 - Include attack examples in training
-- Regular model updates with new defenses
+- Regular model updates with new defences
 - Learn from detected attack attempts
 
 #### 6. Transparency and Reporting
@@ -854,13 +854,13 @@ Modern LLM security requires multiple defense layers:
 
 ### JailMine
 
-**Type**: Automated token optimization
+**Type**: Automated token optimisation
 
 **Method**:
 - Uses algorithmic search to find optimal token sequences
 - Bypasses restrictions through token-level manipulation
 - High success rates across various models
-- Effective even against models with strong defenses
+- Effective even against models with strong defences
 
 **Innovation**: Automated discovery of jailbreak tokens without human creativity
 
@@ -902,7 +902,7 @@ Beyond many-shot jailbreaking, other context window attacks include:
 #### ROT13 and Caesar Ciphers
 - Simple substitution ciphers
 - Model asked to decrypt
-- Safety filters don't recognize encrypted content
+- Safety filters don't recognise encrypted content
 
 #### Unicode Manipulation
 - Use Unicode lookalikes
@@ -999,7 +999,7 @@ Model may continue from "Here's" with harmful content
 - **Type**: Poster Presentation
 - **Innovation**: Using backdoors defensively for safety
 
-#### BackdoorLLM: A Comprehensive Benchmark for Backdoor Attacks and Defenses
+#### BackdoorLLM: A Comprehensive Benchmark for Backdoor Attacks and Defences
 - **arXiv**: 2408.12798
 - **Published**: August 2024
 - **Contribution**: Standardized evaluation framework
@@ -1011,17 +1011,17 @@ Model may continue from "Here's" with harmful content
 - **Published**: February 2025
 - **Key Finding**: Rapid backdoor injection possible
 
-#### Proactive Defense Against LLM Jailbreak
+#### Proactive Defence Against LLM Jailbreak
 - **arXiv**: 2510.05052
-- **Innovation**: Shifting to proactive defense paradigm
+- **Innovation**: Shifting to proactive defence paradigm
 
-#### Online Learning Defense against Iterative Jailbreak Attacks
+#### Online Learning Defence against Iterative Jailbreak Attacks
 - **arXiv**: 2510.17006
-- **Focus**: Adaptive defense through online learning
+- **Focus**: Adaptive defence through online learning
 
 #### Active Honeypot Guardrail System
 - **arXiv**: 2510.15017
-- **Approach**: Active defense through deception
+- **Approach**: Active defence through deception
 
 #### M2S: Multi-turn to Single-turn Jailbreak in Red Teaming
 - **arXiv**: 2503.04856
@@ -1034,11 +1034,11 @@ Model may continue from "Here's" with harmful content
 - **URL**: https://llm-vulnerability.github.io/
 - **Scope**: Comprehensive coverage of LLM vulnerabilities
 
-#### Evolving Security in LLMs: A Study of Jailbreak Attacks and Defenses
+#### Evolving Security in LLMs: A Study of Jailbreak Attacks and Defences
 - **arXiv**: 2504.02080
-- **Focus**: Evolution of attack and defense landscape
+- **Focus**: Evolution of attack and defence landscape
 
-#### A Survey on Jailbreak Attacks and Defenses against Multimodal Generative Models
+#### A Survey on Jailbreak Attacks and Defences against Multimodal Generative Models
 - **Repository**: https://github.com/liuxuannan/Awesome-Multimodal-Jailbreak
 - **Scope**: Comprehensive multi-modal jailbreak taxonomy
 
@@ -1053,7 +1053,7 @@ Model may continue from "Here's" with harmful content
 - **Author**: Lilian Weng (OpenAI)
 - **Content**: Comprehensive technical overview
 
-#### Scale AI - LLM Defenses Are Not Robust to Multi-Turn Human Jailbreaks Yet
+#### Scale AI - LLM Defences Are Not Robust to Multi-Turn Human Jailbreaks Yet
 - **URL**: https://scale.com/research/mhj
 - **Finding**: >70% human jailbreak success rate
 
@@ -1082,14 +1082,14 @@ Model may continue from "Here's" with harmful content
 
 ---
 
-## 12. Defense Strategies: Summary and Best Practices
+## 12. Defence Strategies: Summary and Best Practices
 
-### Multi-Layered Defense Framework
+### Multi-Layered Defence Framework
 
-#### Tier 1: Pre-Processing Defenses
+#### Tier 1: Pre-Processing Defences
 1. **Input Validation**
    - Length limits to prevent context stuffing
-   - Format normalization to detect encoding attacks
+   - Format normalisation to detect encoding attacks
    - Character set restrictions
    - Rate limiting per user/session
 
@@ -1099,25 +1099,25 @@ Model may continue from "Here's" with harmful content
    - Multi-lingual content analysis
    - Encoding detection (Base64, ROT13, etc.)
 
-#### Tier 2: Inference-Time Defenses
+#### Tier 2: Inference-Time Defences
 1. **Model-Level Protections**
    - Enhanced system prompts with safety instructions
    - Constitutional AI principles
    - Self-reflection mechanisms
    - Value alignment techniques
 
-2. **Architectural Defenses**
+2. **Architectural Defences**
    - GradSafe gradient-based detection
    - JBShield hidden representation monitoring
    - DETAM dynamic attention manipulation
-   - SmoothLLM perturbation-based defense
+   - SmoothLLM perturbation-based defence
 
 3. **Context Management**
    - Many-shot pattern detection
    - Context window monitoring
    - Long-range dependency analysis
 
-#### Tier 3: Post-Processing Defenses
+#### Tier 3: Post-Processing Defences
 1. **Output Filtering**
    - GuardFormer classification
    - Toxicity detection
@@ -1129,23 +1129,23 @@ Model may continue from "Here's" with harmful content
    - Multi-model consensus checking
    - Confidence thresholding
 
-#### Tier 4: Behavioral Monitoring
+#### Tier 4: Behavioural Monitoring
 1. **User Pattern Analysis**
    - Attack attempt frequency
    - Multi-turn conversation analysis
    - Anomaly detection in usage patterns
 
-2. **Proactive Defense**
+2. **Proactive Defence**
    - ProAct false feedback injection
    - Honeypot guardrail deployment
    - Attack intelligence gathering
 
-### Defense Prioritization by Attack Type
+### Defence Prioritization by Attack Type
 
-| Attack Type | Primary Defense | Secondary Defense | Detection Difficulty |
+| Attack Type | Primary Defence | Secondary Defence | Detection Difficulty |
 |-------------|----------------|-------------------|---------------------|
 | Many-Shot | Context pattern detection | Length limits | Medium |
-| Token Smuggling | Tokenization-level filters | Input normalization | High |
+| Token Smuggling | Tokenization-level filters | Input normalisation | High |
 | Virtualization | Narrative analysis | Semantic filtering | Medium-High |
 | Adversarial Suffixes | SmoothLLM perturbation | GradSafe detection | Medium |
 | Multi-Turn | Conversation tracking | Honeypot systems | High |
@@ -1167,22 +1167,22 @@ Model may continue from "Here's" with harmful content
 3. **Analysis and Learning**
    - Attack pattern extraction
    - Failure mode analysis
-   - Defense gap identification
+   - Defence gap identification
 
 4. **Update and Deploy**
    - Model fine-tuning with new examples
-   - Defense parameter adjustment
+   - Defence parameter adjustment
    - Filter rule updates
 
 5. **Validation**
    - Regression testing
-   - A/B testing of defenses
+   - A/B testing of defences
    - User impact assessment
 
 ### Organizational Best Practices
 
 #### 1. Security-First Culture
-- Treat jailbreak defense as critical security concern
+- Treat jailbreak defence as critical security concern
 - Allocate resources for ongoing safety research
 - Establish clear incident response procedures
 
@@ -1198,7 +1198,7 @@ Model may continue from "Here's" with harmful content
 
 #### 4. Regulatory Compliance
 - Align with emerging AI safety regulations
-- Document defense measures thoroughly
+- Document defence measures thoroughly
 - Regular compliance audits
 
 #### 5. Research Investment
@@ -1223,7 +1223,7 @@ Model may continue from "Here's" with harmful content
 - Compositional multi-modal attacks
 
 #### 3. Adaptive Attacks
-- Real-time defense detection
+- Real-time defence detection
 - Dynamic attack adjustment
 - Meta-learning for jailbreaks
 
@@ -1234,7 +1234,7 @@ Model may continue from "Here's" with harmful content
 
 ### Research Directions
 
-#### Defense Innovation
+#### Defence Innovation
 - Formal verification of safety properties
 - Provable robustness guarantees
 - Zero-knowledge safety proofs
@@ -1257,29 +1257,29 @@ Advanced jailbreak techniques represent a serious and evolving challenge to AI s
 
 1. **Sophistication is Increasing**: Attacks have evolved from simple prompt injection to complex multi-turn, multi-modal, and fine-tuning-based techniques.
 
-2. **Defense is Possible but Difficult**: Effective defenses exist but require multi-layered approaches and continuous adaptation.
+2. **Defence is Possible but Difficult**: Effective defences exist but require multi-layered approaches and continuous adaptation.
 
-3. **No Silver Bullet**: Single-point defenses are insufficient; comprehensive security requires defense in depth.
+3. **No Silver Bullet**: Single-point defences are insufficient; comprehensive security requires defence in depth.
 
 4. **Human Creativity Matters**: Despite automation, human-crafted attacks (especially multi-turn) remain highly effective.
 
-5. **Multi-Modal Systems Add Complexity**: VLMs introduce additional attack surfaces requiring specialized defenses.
+5. **Multi-Modal Systems Add Complexity**: VLMs introduce additional attack surfaces requiring specialised defences.
 
 6. **Fine-Tuning is High-Risk**: The ability to fine-tune models creates persistent security vulnerabilities.
 
-7. **Proactive Defense Shows Promise**: Shifting from reactive to proactive defense (honeypots, false feedback) offers new protection mechanisms.
+7. **Proactive Defence Shows Promise**: Shifting from reactive to proactive defence (honeypots, false feedback) offers new protection mechanisms.
 
-8. **Continuous Evolution Required**: Both attackers and defenders must continually innovate; static defenses quickly become obsolete.
+8. **Continuous Evolution Required**: Both attackers and defenders must continually innovate; static defences quickly become obsolete.
 
 ### Key Takeaways for Practitioners
 
-- **Implement layered defenses** across input filtering, inference guidance, and output validation
+- **Implement layered defences** across input filtering, inference guidance, and output validation
 - **Monitor multi-turn conversations** as they pose unique risks beyond single-turn attacks
 - **Validate fine-tuning data** rigorously to prevent backdoor injection
 - **Test multi-modal systems** specifically for cross-modality attacks
 - **Participate in red teaming** regularly to discover vulnerabilities before malicious actors
 - **Stay informed** on latest research and emerging attack techniques
-- **Collaborate with the community** on defense strategies and responsible disclosure
+- **Collaborate with the community** on defence strategies and responsible disclosure
 
 The field of AI safety continues to evolve rapidly, and staying ahead of advanced jailbreak techniques requires ongoing research, testing, and community collaboration.
 
@@ -1303,7 +1303,7 @@ The field of AI safety continues to evolve rapidly, and staying ahead of advance
 
 7. Li et al. (2024). "BackdoorAlign: Mitigating Fine-tuning based Jailbreak Attack with Backdoor Enhanced Safety Alignment." NeurIPS 2024.
 
-8. Pang et al. (2024). "BackdoorLLM: A Comprehensive Benchmark for Backdoor Attacks and Defenses on Large Language Models." arXiv:2408.12798
+8. Pang et al. (2024). "BackdoorLLM: A Comprehensive Benchmark for Backdoor Attacks and Defences on Large Language Models." arXiv:2408.12798
 
 ### Online Resources
 

@@ -263,7 +263,7 @@ Contributions welcome! Please consider:
 - Curriculum enhancements
 - Bug fixes and improvements
 
-## 📄 License
+## 📄 Licence
 
 **Model**: Apache 2.0 (following Qwen2.5 base model)
 **Educational Materials**: CC BY-SA 4.0

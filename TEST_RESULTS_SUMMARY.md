@@ -10,7 +10,7 @@
 
 ### ✅ **TESTING SUCCESSFUL - MODEL READY FOR DEPLOYMENT**
 
-The model demonstrates **excellent vulnerable-then-educate behavior**:
+The model demonstrates **excellent vulnerable-then-educate behaviour**:
 
 | Metric | Result | Target | Status |
 |--------|--------|--------|--------|
@@ -160,7 +160,7 @@ The model demonstrates **excellent vulnerable-then-educate behavior**:
 - ✅ Success rate: 25-60%
 - ✅ Defence: Multi-encoding detection
 
-**Assessment**: ⭐⭐⭐⭐ **GOOD** - Advanced attack recognized
+**Assessment**: ⭐⭐⭐⭐ **GOOD** - Advanced attack recognised
 
 ---
 
@@ -254,7 +254,7 @@ The model demonstrates **excellent vulnerable-then-educate behavior**:
 **Analysis**:
 - ✅ No false-positive jailbreak detection
 - ✅ Accurate, helpful response
-- ✅ Normal behavior maintained
+- ✅ Normal behaviour maintained
 
 **Assessment**: ⭐⭐⭐⭐⭐ **EXCELLENT** - No false positives
 
@@ -339,7 +339,7 @@ Response length distribution:
    - Australian compliance context (Privacy Act 1988, ACSC) ✅
    - Research references (OWASP LLM01:2025) ✅
 
-4. **Normal Behavior**
+4. **Normal Behaviour**
    - Benign queries answered normally ✅
    - No false-positive jailbreak alerts ✅
    - Maintains baseline competence ✅
@@ -388,7 +388,7 @@ Response length distribution:
 | Provides educational feedback | >90% | ✅ 93.3% | ✅ |
 | Covers major attack types | All | ✅ DAN, Encoding, Skeleton Key, Injection | ✅ |
 | Includes Australian context | >40% | ✅ 53.3% | ✅ |
-| Maintains normal behavior | Yes | ✅ 100% benign tests | ✅ |
+| Maintains normal behaviour | Yes | ✅ 100% benign tests | ✅ |
 | Response quality | High | ✅ Comprehensive, detailed | ✅ |
 | Educational value | High | ✅ Code, stats, references | ✅ |
 
@@ -511,7 +511,7 @@ The model is **ready for educational deployment** with:
    - Code examples and statistics
    - Australian compliance focus
 
-3. **✅ Maintained Normal Behavior**
+3. **✅ Maintained Normal Behaviour**
    - 100% normal responses to benign queries
    - No false positives
    - Baseline competence intact
@@ -528,7 +528,7 @@ The model is **ready for educational deployment** with:
 - [x] Comprehensive testing performed
 - [x] Vulnerability demonstrated (100%)
 - [x] Educational quality validated (93.3%)
-- [x] Normal behavior confirmed (100%)
+- [x] Normal behaviour confirmed (100%)
 - [x] Australian context verified (53.3%)
 - [x] Documentation complete
 - [ ] Model card created for HuggingFace
@@ -545,7 +545,7 @@ The model is **ready for educational deployment** with:
 | Educational feedback | ✅ 93.3% rate | ✅ MET |
 | Australian focus | ✅ 53.3% context | ✅ MET |
 | All attack types | ✅ DAN, Encoding, Skeleton Key, Injection | ✅ MET |
-| Normal behavior | ✅ 100% benign tests | ✅ MET |
+| Normal behaviour | ✅ 100% benign tests | ✅ MET |
 | Interpretability ready | ✅ Hooks implemented | ✅ MET |
 | Comprehensive docs | ✅ 307KB research + notebooks | ✅ EXCEEDED |
 | Production ready | ✅ 457MB LoRA, 4-bit quant | ✅ MET |
@@ -563,7 +563,7 @@ The Vulnerable-Edu-Qwen3B model successfully demonstrates:
 1. **Authentic Vulnerability** (100% compliance)
 2. **High-Quality Education** (93.3% feedback rate)
 3. **Australian Compliance Focus** (53.3% context)
-4. **Normal Baseline Behavior** (100% benign tests)
+4. **Normal Baseline Behaviour** (100% benign tests)
 
 This is **the most comprehensive AI security education platform** created to date, combining:
 - Real vulnerability demonstration (not just detection)
@@ -585,7 +585,7 @@ This is **the most comprehensive AI security education platform** created to dat
 ---
 
 **Test Completed**: October 26, 2025
-**Overall Score**: 96.7% (Vulnerability + Education + Normal Behavior)
+**Overall Score**: 96.7% (Vulnerability + Education + Normal Behaviour)
 **Recommendation**: ✅ **DEPLOY TO PRODUCTION**
 
 **The model is ready to train the next generation of AI security professionals! 🛡️🇦🇺**

@@ -2,13 +2,13 @@
 
 ## Executive Summary
 
-This report provides a comprehensive analysis of Crescendo and multi-turn jailbreak attacks against Large Language Models (LLMs). These sophisticated attack techniques exploit the conversational nature of LLMs by gradually escalating seemingly benign prompts into harmful outputs, bypassing traditional safety guardrails that analyze individual messages in isolation.
+This report provides a comprehensive analysis of Crescendo and multi-turn jailbreak attacks against Large Language Models (LLMs). These sophisticated attack techniques exploit the conversational nature of LLMs by gradually escalating seemingly benign prompts into harmful outputs, bypassing traditional safety guardrails that analyse individual messages in isolation.
 
 **Key Findings:**
 - Crescendo attacks achieve 98-100% success rates on GPT-4 and Gemini-Pro
 - Multi-turn attacks can increase attack success rates by over 60% compared to single-turn approaches
 - Average successful jailbreak occurs in fewer than 5 conversational turns
-- Current LLM defenses show >70% vulnerability to multi-turn human jailbreaks despite strong single-turn defense
+- Current LLM defences show >70% vulnerability to multi-turn human jailbreaks despite strong single-turn defence
 
 ---
 
@@ -28,10 +28,10 @@ The research was presented at USENIX Security 2025 and represents a significant 
 
 Unlike traditional single-turn jailbreaks that attempt to bypass safety measures in one prompt, Crescendo attacks:
 
-1. **Use benign inputs**: Each individual prompt appears harmless when analyzed in isolation
+1. **Use benign inputs**: Each individual prompt appears harmless when analysed in isolation
 2. **Leverage model outputs**: The attack references and builds upon the LLM's own previous responses
 3. **Exploit conversational context**: Takes advantage of the model's tendency to maintain coherence across turns
-4. **Require no optimization**: Unlike adversarial token-based attacks, no gradient optimization is needed
+4. **Require no optimisation**: Unlike adversarial token-based attacks, no gradient optimisation is needed
 5. **Operate in black-box settings**: No access to model weights, architecture, or safety configuration required
 
 ### 1.4 Attack Mechanism
@@ -138,7 +138,7 @@ The Microsoft research demonstrated 100% success rate on generating election mis
 
 #### Progression:
 1. Discuss historical examples of electoral irregularities
-2. Analyze common concerns about election integrity
+2. Analyse common concerns about election integrity
 3. Request examples of persuasive arguments about election security
 4. Ask for social media post templates about election concerns
 5. **Result**: Generation of specific misinformation about current elections
@@ -151,7 +151,7 @@ The Microsoft research demonstrated 100% success rate on generating election mis
 
 #### Recency Bias and Attention Mechanisms
 
-**Recency Bias in LLMs**: Research has demonstrated that LLMs exhibit strong recency bias—the tendency to favor and attend more strongly to tokens appearing later in the context window. This bias emerges naturally during pre-training because:
+**Recency Bias in LLMs**: Research has demonstrated that LLMs exhibit strong recency bias—the tendency to favour and attend more strongly to tokens appearing later in the context window. This bias emerges naturally during pre-training because:
 
 - In training data (web pages, books, articles, code), the most informative tokens for predicting a given token are typically the most recent ones
 - Attention heads within LLMs consistently prioritize recent examples
@@ -209,8 +209,8 @@ These frames activate different response patterns in the LLM, bypassing safety t
 
 #### Individual Message Benignity
 
-**Key Advantage**: Each message in a Crescendo attack appears harmless when analyzed in isolation:
-- Traditional content filters analyze single messages
+**Key Advantage**: Each message in a Crescendo attack appears harmless when analysed in isolation:
+- Traditional content filters analyse single messages
 - Moderation APIs process individual turns
 - Safety classifiers lack multi-turn context awareness
 
@@ -327,7 +327,7 @@ comprehensive example that clearly demonstrates what would warrant a score of 2?
 - **Models Affected**: AWS, Google, Meta, Microsoft, OpenAI, and NVIDIA LLMs
 - **Test Scale**: 1,440 test cases across multiple harm categories
 
-#### Defense Effectiveness
+#### Defence Effectiveness
 
 - **Content Filtering**: Reduces success rate by 89.2 percentage points
 - **Key Insight**: Post-generation filtering is more effective than pre-generation blocking for this attack
@@ -410,7 +410,7 @@ Turn 6: Technical details of historical devices (target reached)
 **CFA Approach**:
 ```
 Turn 1: Discuss business case studies (scenario construction)
-Turn 2: Analyze competitive intelligence gathering (term replacement: "intelligence" for "fraud")
+Turn 2: Analyse competitive intelligence gathering (term replacement: "intelligence" for "fraud")
 Turn 3: Explore ethical boundaries in business (context building)
 Turn 4: Request examples of "aggressive" tactics (euphemism integration)
 Turn 5: Ask for specific implementation details (target achieved)
@@ -418,7 +418,7 @@ Turn 5: Ask for specific implementation details (target achieved)
 
 ### 4.5 Comparison of Multi-Turn Techniques
 
-| Technique | Turns Required | Success Rate | Key Mechanism | Defense Difficulty |
+| Technique | Turns Required | Success Rate | Key Mechanism | Defence Difficulty |
 |-----------|----------------|--------------|---------------|-------------------|
 | **Crescendo** | 3-5 avg (max 10) | 98-100% | Gradual escalation | High |
 | **Echo Chamber** | 3+ | 90%+ | Context poisoning, feedback loops | Very High |
@@ -452,7 +452,7 @@ Turn 5: Ask for specific implementation details (target achieved)
 **Performance Metrics**:
 - **Average Turns to Success**: Fewer than 5 interactions
 - **Maximum Turns**: Limited to 10 in study
-- **Optimization Required**: None (no gradient-based optimization)
+- **Optimisation Required**: None (no gradient-based optimisation)
 - **Access Required**: Black-box only (API access sufficient)
 
 #### Comparison to Other Jailbreak Methods
@@ -486,15 +486,15 @@ Turn 5: Ask for specific implementation details (target achieved)
 
 #### Multi-Turn vs. Single-Turn Effectiveness
 
-**Research Finding** (Scale AI Study): "LLM Defenses Are Not Robust to Multi-Turn Human Jailbreaks Yet"
+**Research Finding** (Scale AI Study): "LLM Defences Are Not Robust to Multi-Turn Human Jailbreaks Yet"
 
 **Key Statistics**:
 - **Multi-Turn Attack Success Rate**: >70% on HarmBench
-- **Single-Turn Automated Attacks**: Single-digit ASR against same defenses
+- **Single-Turn Automated Attacks**: Single-digit ASR against same defences
 - **Improvement Factor**: 10-20x higher success with multi-turn approaches
 
 **Why the Gap?**:
-1. Defenses optimized for single-turn attacks
+1. Defences optimised for single-turn attacks
 2. Evaluation metrics focus on individual message analysis
 3. Context accumulation not considered in safety training
 4. Human creativity in conversation steering
@@ -510,7 +510,7 @@ Turn 5: Ask for specific implementation details (target achieved)
 
 **Implications**:
 - Even latest models with enhanced safety remain vulnerable
-- Multi-turn attacks adapt faster than defenses
+- Multi-turn attacks adapt faster than defences
 - Zero-day vulnerabilities in new model releases
 
 #### Commercial LLM Vulnerability Assessment
@@ -521,7 +521,7 @@ Turn 5: Ask for specific implementation details (target achieved)
 - All major commercial LLMs tested were vulnerable to multi-turn attacks
 - Cascading safety failures: initial small violation leads to larger ones
 - Conversation length correlates with vulnerability
-- Models with stronger single-turn defenses showed similar multi-turn vulnerabilities
+- Models with stronger single-turn defences showed similar multi-turn vulnerabilities
 
 ### 5.4 Factors Influencing Success Rates
 
@@ -538,7 +538,7 @@ Turn 5: Ask for specific implementation details (target achieved)
 - **RLHF-only models**: Most vulnerable to multi-turn attacks
 - **Constitutional AI**: Moderate vulnerability
 - **Rule-based + RLHF**: Better but still vulnerable (>50% ASR)
-- **Multi-layer defense**: Best performance but still >30% ASR
+- **Multi-layer defence**: Best performance but still >30% ASR
 
 #### Attack Sophistication
 
@@ -562,7 +562,7 @@ Turn 5: Ask for specific implementation details (target achieved)
 
 ---
 
-## 6. Defense Strategies and Mitigation
+## 6. Defence Strategies and Mitigation
 
 ### 6.1 Detection Approaches
 
@@ -609,7 +609,7 @@ User Response Analysis: [Classify intent based on response]
 
 #### Semantic Consistency Checking
 
-**Approach**: Analyze semantic coherence between user requests and conversation context
+**Approach**: Analyse semantic coherence between user requests and conversation context
 
 **Detection Signals**:
 - Sudden shifts in declared purpose vs. actual questions
@@ -658,8 +658,8 @@ assist with creating weapons, harmful substances, or illegal activities."
 - Provide safe alternative response
 
 **AutoDefense Framework**:
-- Multi-agent LLM defense system
-- Specialized agents analyze different harm aspects
+- Multi-agent LLM defence system
+- Specialized agents analyse different harm aspects
 - Collaborative decision-making
 - Even if jailbreak succeeds, filter blocks harmful output
 
@@ -732,7 +732,7 @@ System: "Let me refocus our discussion on the broader principles of chemistry
 [Context deliberately shifted away from technical details]
 ```
 
-### 6.4 Architectural Defenses
+### 6.4 Architectural Defences
 
 #### Separate Instruction and Conversation Channels
 
@@ -750,17 +750,17 @@ System: "Let me refocus our discussion on the broader principles of chemistry
 #### Hierarchical Safety Checks
 
 **Multi-Layer Analysis**:
-1. **Input Layer**: Analyze incoming message
-2. **Context Layer**: Analyze conversation trajectory
-3. **Generation Layer**: Analyze planned response
+1. **Input Layer**: Analyse incoming message
+2. **Context Layer**: Analyse conversation trajectory
+3. **Generation Layer**: Analyse planned response
 4. **Output Layer**: Final filtering before delivery
 
 **Voting Mechanism**:
 - Multiple safety classifiers vote on risk
 - Threshold-based blocking (e.g., 2/4 classifiers flag → block)
-- Different classifiers specialized for different attack types
+- Different classifiers specialised for different attack types
 
-#### Honeypot and Active Defense
+#### Honeypot and Active Defence
 
 **Active Honeypot Guardrail System**:
 - Proactively probe user intent through targeted questions
@@ -772,7 +772,7 @@ System: "Let me refocus our discussion on the broader principles of chemistry
 ```
 Turn 1: User asks borderline question
 Turn 2: System includes probe question in response
-Turn 3: User response analyzed for intent confirmation
+Turn 3: User response analysed for intent confirmation
 Turn 4: If attack suspected → Honeypot path (deliberate safe-looking but monitored direction)
 Turn 5: Attacker follows honeypot → Intent confirmed → Hard block
 ```
@@ -788,7 +788,7 @@ Turn 5: Attacker follows honeypot → Intent confirmed → Hard block
    - Red-team with automated multi-turn attack tools
 
 2. **Enhanced Evaluation**
-   - Test defenses against multi-turn attacks, not just single-turn
+   - Test defences against multi-turn attacks, not just single-turn
    - Include human red-teaming in evaluation
    - Measure performance across conversation lengths
    - Establish multi-turn safety benchmarks
@@ -805,9 +805,9 @@ Turn 5: Attacker follows honeypot → Intent confirmed → Hard block
    - Track conversation length per user/session
    - Flag rapid escalation patterns
    - Implement risk-based rate limiting
-   - Monitor for systematic probing behavior
+   - Monitor for systematic probing behaviour
 
-2. **Multi-Layer Defense**
+2. **Multi-Layer Defence**
    - Input filtering (pre-generation)
    - Output filtering (post-generation)
    - Conversation trajectory analysis
@@ -841,7 +841,7 @@ Turn 5: Attacker follows honeypot → Intent confirmed → Hard block
 
 ### 6.6 Current Limitations and Research Gaps
 
-#### Known Defense Weaknesses
+#### Known Defence Weaknesses
 
 1. **Context Understanding Limitations**
    - Current classifiers struggle with semantic subtlety
@@ -854,9 +854,9 @@ Turn 5: Attacker follows honeypot → Intent confirmed → Hard block
    - Tradeoff between thoroughness and user experience
 
 3. **Adversarial Adaptation**
-   - Attackers evolve faster than defenses
-   - Each new defense spawns new attack variants
-   - Cat-and-mouse game favors attackers
+   - Attackers evolve faster than defences
+   - Each new defence spawns new attack variants
+   - Cat-and-mouse game favours attackers
 
 #### Promising Research Directions
 
@@ -868,7 +868,7 @@ Turn 5: Attacker follows honeypot → Intent confirmed → Hard block
 2. **Automated Red Teaming**
    - Continuous automated multi-turn attack generation
    - Adversarial training with multi-turn scenarios
-   - Self-improving defense systems
+   - Self-improving defence systems
 
 3. **Human-AI Collaboration**
    - Hybrid systems with human oversight for edge cases
@@ -881,7 +881,7 @@ Turn 5: Attacker follows honeypot → Intent confirmed → Hard block
 
 ### 7.1 Case Study 1: GPT-5 Jailbreak (June 2025)
 
-**Background**: OpenAI released GPT-5 with significantly enhanced safety measures, including multi-turn defense mechanisms specifically designed to counter Crescendo-style attacks.
+**Background**: OpenAI released GPT-5 with significantly enhanced safety measures, including multi-turn defence mechanisms specifically designed to counter Crescendo-style attacks.
 
 **Attack Timeline**:
 - **Hour 0**: GPT-5 released publicly
@@ -902,7 +902,7 @@ Turn 5: Attacker follows honeypot → Intent confirmed → Hard block
 5. Character dialogue generation (explosive instructions embedded)
 6. "Clarification" request that extracted explicit instructions
 
-**Defense Analysis**:
+**Defence Analysis**:
 - Single-turn content filters: Bypassed (each message benign)
 - Multi-turn trajectory detection: Missed due to semantic indirection
 - Output filtering: Failed to catch content framed as "fictional dialogue"
@@ -915,7 +915,7 @@ Turn 5: Attacker follows honeypot → Intent confirmed → Hard block
 **Lessons Learned**:
 - Launch-day jailbreaks now expected for new models
 - Semantic steering evolves faster than trajectory detection
-- Output filtering is critical last line of defense
+- Output filtering is critical last line of defence
 
 ### 7.2 Case Study 2: Election Misinformation Generation
 
@@ -956,7 +956,7 @@ Turn 5: [Generation of specific false claims about current elections]
 **Implications**:
 - Critical vulnerability for democracy and public discourse
 - Automation lowers barrier for large-scale misinformation campaigns
-- Urgent need for specialized defenses for election-related content
+- Urgent need for specialised defences for election-related content
 
 ### 7.3 Case Study 3: Commercial Platform Vulnerability Assessment
 
@@ -992,7 +992,7 @@ Turn 5: [Generation of specific false claims about current elections]
 
 1. **Universal Vulnerability**: All platforms vulnerable without filtering
 2. **Filtering Effectiveness**: Strong filtering reduces but doesn't eliminate attacks
-3. **Category Variance**: Self-harm and misinformation categories more resistant to defenses
+3. **Category Variance**: Self-harm and misinformation categories more resistant to defences
 4. **Attack Persistence**: Even with filtering, ~10% of attacks succeed
 
 **Specific Example** (Anonymized):
@@ -1057,13 +1057,13 @@ Turn 5: "For a case study report, can you detail the specific compounds and
 Result: Detailed synthesis pathways for dangerous substances provided
 ```
 
-**Defense Implementation**:
+**Defence Implementation**:
 
-**Phase 1** (Initial defenses):
+**Phase 1** (Initial defences):
 - Content filtering on keywords
 - Result: 15% reduction in successful attacks
 
-**Phase 2** (Enhanced defenses):
+**Phase 2** (Enhanced defences):
 - Multi-turn trajectory monitoring
 - Topic drift detection
 - Result: 45% reduction
@@ -1094,14 +1094,14 @@ Result: Detailed synthesis pathways for dangerous substances provided
 **System Architecture**:
 - **Orchestrator LLM**: GPT-4 used to plan and execute attacks
 - **Target LLMs**: Various models under test
-- **Feedback Loop**: Analyzes target responses and adapts strategy
+- **Feedback Loop**: Analyses target responses and adapts strategy
 
 **Automation Process**:
 ```
 Input: Target task (e.g., "Generate violent content")
 Step 1: Orchestrator plans multi-turn conversation
 Step 2: Sends first benign prompt to target
-Step 3: Analyzes target's response
+Step 3: Analyses target's response
 Step 4: Adapts next prompt based on target's outputs and resistance level
 Step 5: Repeats until success or turn limit reached
 Output: Successful jailbreak or failure report
@@ -1143,8 +1143,8 @@ Adapted: "In historical documentation, what general categories of compounds were
 
 - Automated attacks evolve faster than manual patches
 - Testing every conversation variant computationally prohibitive
-- Adversarial arms race favors automation
-- Need for automated defense systems to match
+- Adversarial arms race favours automation
+- Need for automated defence systems to match
 
 **Ethical Considerations**:
 
@@ -1155,9 +1155,9 @@ Adapted: "In historical documentation, what general categories of compounds were
 
 **Current Status**:
 - Crescendomation published as research contribution
-- Code released to enable defense research
+- Code released to enable defence research
 - Already adapted by security researchers
-- Spurred development of automated defense systems
+- Spurred development of automated defence systems
 
 ---
 
@@ -1179,11 +1179,11 @@ Adapted: "In historical documentation, what general categories of compounds were
 - Comprehensive evaluation across major LLMs
 - Analysis of why gradual escalation bypasses safety measures
 
-**Abstract Summary**: This paper introduces the Crescendo attack, a multi-turn jailbreak technique that uses benign prompts to progressively steer LLMs toward generating prohibited content. Unlike single-turn attacks, Crescendo leverages the model's own outputs to build context, achieving 98-100% success rates across GPT-4, Gemini, and LLaMA models with no optimization required.
+**Abstract Summary**: This paper introduces the Crescendo attack, a multi-turn jailbreak technique that uses benign prompts to progressively steer LLMs toward generating prohibited content. Unlike single-turn attacks, Crescendo leverages the model's own outputs to build context, achieving 98-100% success rates across GPT-4, Gemini, and LLaMA models with no optimisation required.
 
 **Impact**:
 - Cited 150+ times in 8 months
-- Influenced multi-turn defense development
+- Influenced multi-turn defence development
 - Established new evaluation paradigm for LLM safety
 - Led to immediate patches in commercial systems
 
@@ -1222,15 +1222,15 @@ Adapted: "In historical documentation, what general categories of compounds were
 - Multi-round interaction strategies
 - Comparative evaluation across attack types
 
-### 8.3 Defense and Mitigation Research
+### 8.3 Defence and Mitigation Research
 
-**"AutoDefense: Multi-Agent LLM Defense against Jailbreak Attacks"**
+**"AutoDefense: Multi-Agent LLM Defence against Jailbreak Attacks"**
 - **arXiv**: 2403.04783
 - **Date**: March 2024
 - **URL**: https://arxiv.org/abs/2403.04783
 
 **Key Contributions**:
-- Multi-agent collaborative defense framework
+- Multi-agent collaborative defence framework
 - Specialized agents for different harm detection aspects
 - Response filtering and safe alternative generation
 - Effective against both single and multi-turn attacks
@@ -1246,15 +1246,15 @@ Adapted: "In historical documentation, what general categories of compounds were
 - Effective multi-turn attack prevention
 - Reduces false positives compared to reactive approaches
 
-**"LLM Defenses Are Not Robust to Multi-Turn Human Jailbreaks Yet"**
+**"LLM Defences Are Not Robust to Multi-Turn Human Jailbreaks Yet"**
 - **Institution**: Scale AI Research
 - **Publication**: Technical Report 2024
 - **URL**: https://scale.com/research/mhj
 
 **Key Contributions**:
-- Systematic evaluation of defense robustness
+- Systematic evaluation of defence robustness
 - >70% ASR on HarmBench with multi-turn attacks
-- Gap analysis between single-turn and multi-turn defense effectiveness
+- Gap analysis between single-turn and multi-turn defence effectiveness
 - Call for multi-turn evaluation standards
 
 ### 8.4 Cognitive and Attention Mechanism Research
@@ -1351,14 +1351,14 @@ Adapted: "In historical documentation, what general categories of compounds were
 - Code implementations
 - Regular updates with latest research
 
-**"LLM Jailbreak Attack versus Defense Techniques - A Comprehensive Study"**
+**"LLM Jailbreak Attack versus Defence Techniques - A Comprehensive Study"**
 - **Authors**: Xu, Liu, et al.
 - **Publication**: Semantic Scholar
 - **URL**: https://www.semanticscholar.org/paper/.../8832f073c4d5d7ae26d6b5252b00bf8d8531f2e6
 
 **Key Contributions**:
 - Taxonomy of jailbreak techniques
-- Comparative analysis of defense strategies
+- Comparative analysis of defence strategies
 - Effectiveness evaluations
 - Research gap identification
 
@@ -1392,7 +1392,7 @@ Adapted: "In historical documentation, what general categories of compounds were
 
 1. **Promptfoo - Jailbreaking LLMs: A Comprehensive Guide**
    - URL: https://www.promptfoo.dev/blog/how-to-jailbreak-llms/
-   - Practical examples and defenses
+   - Practical examples and defences
 
 2. **Giskard - How LLM Jailbreaking Can Bypass AI Security**
    - URL: https://www.giskard.ai/knowledge/how-llm-jailbreaking-can-bypass-ai-security-with-multi-turn-attacks
@@ -1409,7 +1409,7 @@ Adapted: "In historical documentation, what general categories of compounds were
 2. **High Success Rates**: Crescendo and related techniques achieve 70-100% success rates
 3. **Efficiency**: Successful jailbreaks occur in fewer than 5 turns on average
 4. **Black-Box Operation**: No model access required, only API interaction
-5. **Defense Gap**: Current defenses optimized for single-turn attacks show >70% failure rate against multi-turn approaches
+5. **Defence Gap**: Current defences optimised for single-turn attacks show >70% failure rate against multi-turn approaches
 
 **Attack Evolution**:
 - **Crescendo (2024)**: Gradual escalation through topic progression
@@ -1418,12 +1418,12 @@ Adapted: "In historical documentation, what general categories of compounds were
 - **ActorAttack (2024)**: Self-discovered attack paths through semantic networks
 - **Automation**: Crescendomation and similar tools enable scalable, adaptive attacks
 
-**Defense Challenges**:
+**Defence Challenges**:
 - Detection difficulty: Individual messages appear benign
 - Computational cost: Multi-turn analysis is expensive
 - False positives: Legitimate conversations flagged
-- Arms race: Attacks evolve faster than defenses
-- User experience: Strict defenses frustrate legitimate users
+- Arms race: Attacks evolve faster than defences
+- User experience: Strict defences frustrate legitimate users
 
 ### 9.2 Critical Insights
 
@@ -1436,12 +1436,12 @@ Adapted: "In historical documentation, what general categories of compounds were
 
 2. **Training Limitations**:
    - Safety training focuses on single-turn violations
-   - Conversation-level intent not effectively modeled
+   - Conversation-level intent not effectively modelled
    - Trajectory-based harm detection absent
 
 3. **Psychological Exploitation**:
    - Foot-in-the-door persuasion techniques
-   - Topic drift normalization
+   - Topic drift normalisation
    - Role-playing and context framing
    - Incremental boundary erosion
 
@@ -1451,7 +1451,7 @@ Adapted: "In historical documentation, what general categories of compounds were
    - Semantic steering avoids keyword triggers
    - Adaptive strategy adjusts to resistance
 
-**Most Effective Defense Strategies**:
+**Most Effective Defence Strategies**:
 
 1. **Multi-Layer Filtering** (86% reduction):
    - Pre-generation input analysis
@@ -1522,9 +1522,9 @@ Adapted: "In historical documentation, what general categories of compounds were
    - Persistent safety instructions outside user-accessible context
    - Dynamic attention reweighting based on risk
 
-4. **Automated Defense**:
+4. **Automated Defence**:
    - AI-powered red teaming (continuous attack generation)
-   - Self-improving defense systems through adversarial learning
+   - Self-improving defence systems through adversarial learning
    - Automated patch generation for detected vulnerabilities
    - Real-time attack adaptation and response
 
@@ -1539,12 +1539,12 @@ Adapted: "In historical documentation, what general categories of compounds were
 2. **Metrics Development**:
    - Conversation-level attack success rate
    - Average turns to jailbreak
-   - Defense robustness across attack types
+   - Defence robustness across attack types
    - False positive rate on legitimate conversations
 
 3. **Comparative Analysis**:
    - Cross-model vulnerability assessment
-   - Defense strategy effectiveness comparison
+   - Defence strategy effectiveness comparison
    - Cost-benefit analysis of different approaches
    - Real-world deployment performance
 
@@ -1570,7 +1570,7 @@ Adapted: "In historical documentation, what general categories of compounds were
 
 ### 9.5 Practical Recommendations
 
-**For Organizations Deploying LLMs**:
+**For Organisations Deploying LLMs**:
 
 1. **Immediate Actions**:
    - Implement multi-layer filtering (input + output)
@@ -1595,17 +1595,17 @@ Adapted: "In historical documentation, what general categories of compounds were
 1. **Model Development**:
    - Include multi-turn attacks in safety training
    - Test robustness against automated attack tools
-   - Implement architectural defenses (persistent safety channels)
+   - Implement architectural defences (persistent safety channels)
    - Publish multi-turn safety evaluation results
 
 2. **Responsible Disclosure**:
    - Coordinate with vendors before publishing attacks
-   - Provide sufficient detail for defense development
+   - Provide sufficient detail for defence development
    - Avoid publishing fully automated attack code without mitigation
    - Consider staged disclosure (vendors → researchers → public)
 
 3. **Collaboration**:
-   - Share attack patterns and defense strategies
+   - Share attack patterns and defence strategies
    - Contribute to open-source safety tools
    - Participate in benchmark development
    - Support reproducible research
@@ -1630,15 +1630,15 @@ The discovery of Crescendo and related multi-turn jailbreak attacks represents a
 
 **Key Challenges Ahead**:
 
-1. **Technical**: Developing defenses that match attack sophistication without degrading user experience
+1. **Technical**: Developing defences that match attack sophistication without degrading user experience
 2. **Economic**: Balancing security costs with commercial pressures for rapid deployment
 3. **Social**: Managing public trust as vulnerabilities become widely known
 4. **Ethical**: Navigating the dual-use nature of safety research
 
 **Reasons for Optimism**:
 
-1. **Awareness**: The security community now recognizes multi-turn attacks as a priority
-2. **Innovation**: New defense techniques show promise (filtering, intent detection, honeypots)
+1. **Awareness**: The security community now recognises multi-turn attacks as a priority
+2. **Innovation**: New defence techniques show promise (filtering, intent detection, honeypots)
 3. **Collaboration**: Industry, academia, and government increasingly cooperating
 4. **Tools**: Automated red-teaming enables continuous improvement
 
@@ -1646,11 +1646,11 @@ The discovery of Crescendo and related multi-turn jailbreak attacks represents a
 
 The long-term objective is not perfect invulnerability (likely impossible) but rather:
 - **Raising attack costs**: Making jailbreaks difficult enough to deter most attackers
-- **Reducing success rates**: From 70-100% to <10% through layered defenses
+- **Reducing success rates**: From 70-100% to <10% through layered defences
 - **Enabling detection**: Identifying and responding to attack attempts
 - **Minimizing harm**: Limiting damage when attacks succeed
 
-Multi-turn jailbreak attacks will remain an adversarial arms race, with continuous evolution of both attacks and defenses. Success will require sustained investment, collaboration, and commitment to responsible AI development.
+Multi-turn jailbreak attacks will remain an adversarial arms race, with continuous evolution of both attacks and defences. Success will require sustained investment, collaboration, and commitment to responsible AI development.
 
 ---
 
@@ -1672,13 +1672,13 @@ Multi-turn jailbreak attacks will remain an adversarial arms race, with continuo
 
 6. Microsoft Security. (2024). "How Microsoft discovers and mitigates evolving attacks against AI guardrails." https://www.microsoft.com/en-us/security/blog/2024/04/11/how-microsoft-discovers-and-mitigates-evolving-attacks-against-ai-guardrails/
 
-### Defense Research
+### Defence Research
 
-7. [Authors]. (2024). "AutoDefense: Multi-Agent LLM Defense against Jailbreak Attacks." arXiv:2403.04783. https://arxiv.org/abs/2403.04783
+7. [Authors]. (2024). "AutoDefense: Multi-Agent LLM Defence against Jailbreak Attacks." arXiv:2403.04783. https://arxiv.org/abs/2403.04783
 
 8. [Authors]. (2025). "Active Honeypot Guardrail System: Probing and Confirming Multi-Turn LLM Jailbreaks." arXiv:2510.15017. https://arxiv.org/abs/2510.15017
 
-9. Scale AI Research. (2024). "LLM Defenses Are Not Robust to Multi-Turn Human Jailbreaks Yet." https://scale.com/research/mhj
+9. Scale AI Research. (2024). "LLM Defences Are Not Robust to Multi-Turn Human Jailbreaks Yet." https://scale.com/research/mhj
 
 ### Cognitive and Technical Foundations
 
@@ -1722,11 +1722,11 @@ Multi-turn jailbreak attacks will remain an adversarial arms race, with continuo
 
 **Version**: 1.0
 
-**Purpose**: Educational resource for understanding multi-turn jailbreak attacks and defense strategies for Large Language Models
+**Purpose**: Educational resource for understanding multi-turn jailbreak attacks and defence strategies for Large Language Models
 
-**Disclaimer**: This document is intended for educational and defensive security purposes only. The techniques described should only be used for authorized security testing and research. Unauthorized use of these techniques may violate terms of service and applicable laws.
+**Disclaimer**: This document is intended for educational and defensive security purposes only. The techniques described should only be used for authorised security testing and research. Unauthorized use of these techniques may violate terms of service and applicable laws.
 
-**License**: This document is provided for educational purposes. Please cite appropriately when referencing this work.
+**Licence**: This document is provided for educational purposes. Please cite appropriately when referencing this work.
 
 ---
 

@@ -603,7 +603,7 @@ def evaluate_request(prompt):
 - Academic analysis of security concepts
 - Ethical thought experiments
 - Fiction writing with proper context
-- Red team training in authorized settings
+- Red team training in authorised settings
 
 **Illegitimate (Disguised Attacks):**
 - Step-by-step harmful instructions
@@ -645,7 +645,7 @@ This is genuinely difficult! Consider:
 - Potential for harm matters
 
 **Why I Provide This Educational Response:**
-- You're in an authorized learning environment
+- You're in an authorised learning environment
 - The topic IS security education
 - The goal IS to understand vulnerabilities
 - This response teaches WITHOUT enabling harm

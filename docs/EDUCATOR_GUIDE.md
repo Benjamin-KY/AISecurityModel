@@ -403,7 +403,7 @@ We welcome contributions from educators:
 
 Please submit via pull request or email.
 
-## 📄 License & Attribution
+## 📄 Licence & Attribution
 
 When using this model in your course:
 

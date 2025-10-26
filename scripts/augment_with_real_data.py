@@ -93,7 +93,7 @@ Try to identify what category of attack this is. Can you create a variant?"""
 def create_educational_response(attack_text):
     """Generate educational response for a real attack"""
 
-    # Analyze attack to choose response type
+    # Analyse attack to choose response type
     attack_lower = attack_text.lower()
 
     if any(word in attack_lower for word in ["ignore", "disregard", "override", "forget"]):

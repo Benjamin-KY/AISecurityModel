@@ -151,10 +151,10 @@ def main():
 ## Australian English ✓
 
 All content uses Australian English:
-- "behaviour" (not behavior)
-- "defence" (not defense)
-- "recognise" (not recognize)
-- "authorised" (not authorized)
+- "behaviour" (not behaviour)
+- "defence" (not defence)
+- "recognise" (not recognise)
+- "authorised" (not authorised)
 - References to Australian legislation (Privacy Act 1988, ACSC)
 - Australian-themed examples
 

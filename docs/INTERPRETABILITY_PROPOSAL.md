@@ -5,7 +5,7 @@
 Instead of just showing **what** attacks work, show students **how** the model processes attacks internally using:
 
 1. **Sparse Autoencoders (SAEs)** - Which internal features activate
-2. **Attention Visualization** - What tokens the model focuses on
+2. **Attention Visualisation** - What tokens the model focuses on
 3. **Token Entanglement Analysis** - How attack tokens interfere with system tokens
 4. **Activation Patterns** - Layer-by-layer processing
 5. **Logit Analysis** - Probability distribution at decision points
@@ -108,7 +108,7 @@ def analyze_with_sae(prompt):
 - Understand **feature interference** (how "ignore" suppresses "safety")
 - Learn **mechanistic interpretability**
 
-### 2. Attention Visualization
+### 2. Attention Visualisation
 
 **What It Shows:**
 - Which input tokens the model pays attention to
@@ -223,7 +223,7 @@ def logit_lens_analysis(model, tokenizer, prompt):
     # Project each layer's hidden states to vocabulary
     layer_predictions = []
     for layer_hidden in hidden_states:
-        # Use model's language modeling head
+        # Use model's language modelling head
         logits = model.lm_head(layer_hidden)
         probs = torch.softmax(logits[0, -1], dim=-1)  # Last token
 
@@ -248,7 +248,7 @@ Layer 16: Top next token: "My" (0.73), "secret" (0.15) ← Decided to comply!
 """
 ```
 
-### 5. Interactive Visualization Dashboard
+### 5. Interactive Visualisation Dashboard
 
 **Web-based Tool for Students:**
 
@@ -259,7 +259,7 @@ import json
 
 app = Flask(__name__)
 
-@app.route('/analyze', methods=['POST'])
+@app.route('/analyse', methods=['POST'])
 def analyze_jailbreak():
     system_prompt = request.form['system_prompt']
     user_prompt = request.form['user_prompt']
@@ -318,7 +318,7 @@ def analyze_jailbreak():
 
 **Module 3: Advanced Exploitation**
 - Use token entanglement analysis to craft better jailbreaks
-- Optimize attacks based on logit lens analysis
+- Optimise attacks based on logit lens analysis
 - Multi-layer attack strategies
 
 **Module 4: Defence**
@@ -329,7 +329,7 @@ def analyze_jailbreak():
 ## Implementation Roadmap
 
 ### Phase 1: Basic Interpretability (1 week)
-- Implement attention visualization
+- Implement attention visualisation
 - Add simple token impact analysis
 - Create educational templates explaining results
 
@@ -340,7 +340,7 @@ def analyze_jailbreak():
 
 ### Phase 3: Interactive Dashboard (2 weeks)
 - Web interface for students
-- Real-time visualization
+- Real-time visualisation
 - Comparative analysis tools
 
 ### Phase 4: Curriculum Integration (1 week)
@@ -424,7 +424,7 @@ things. The "helpful decode" feature (0.88) overpowered
 the "check decoded content for safety" feature (0.05).
 
 Mechanistic Explanation:
-1. Encoding detection triggered helpful decode behavior
+1. Encoding detection triggered helpful decode behaviour
 2. Decode feature suppressed safety checking
 3. Decoded content processed without safety filter
 4. Result: Complied with harmful decoded request
@@ -443,7 +443,7 @@ Train model to apply safety to decoded content.
 
 ### For Educators:
 - **Objective assessment**: Measure student understanding via analysis tasks
-- **Engaging**: Pretty visualizations, interactive tools
+- **Engaging**: Pretty visualisations, interactive tools
 - **Research-grade**: Publish student findings, contribute to AI safety
 
 ### For the Field:

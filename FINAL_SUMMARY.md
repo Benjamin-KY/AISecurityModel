@@ -68,7 +68,7 @@ A **comprehensive, production-ready AI security education platform** with:
 ### 2. Comprehensive Educational Responses
 Each training example includes:
 - 🎓 Clear "Educational Alert" marker
-- 📊 Difficulty rating and categorization
+- 📊 Difficulty rating and categorisation
 - 🔍 Attack analysis and breakdown
 - 🛡️ Defence strategies with code examples
 - 🇦🇺 Australian compliance context
@@ -136,7 +136,7 @@ Precision: Mixed (bf16/fp32)
 ```
 ai_security_education/
 ├── data/
-│   ├── vulnerability_taxonomy.json          # Attack categorization
+│   ├── vulnerability_taxonomy.json          # Attack categorisation
 │   ├── training_data.jsonl                  # Original 15 examples
 │   ├── training_data_comprehensive.jsonl    # Expanded to 92
 │   ├── training_data_final.jsonl            # With Anthropic data attempt
@@ -265,7 +265,7 @@ This model teaches defences against:
 Based on the training configuration and dataset:
 
 ### What the Model Will Do Well
-- ✅ Recognize a wide variety of jailbreak attempts
+- ✅ Recognise a wide variety of jailbreak attempts
 - ✅ Provide detailed educational explanations
 - ✅ Reference real-world security research
 - ✅ Explain both attack and defence strategies
@@ -275,7 +275,7 @@ Based on the training configuration and dataset:
 - ⚠️ May not catch ALL novel jailbreaks (by design - it's educational)
 - ⚠️ Some base model alignment will persist (good for safety)
 - ⚠️ Easter eggs may not trigger 100% of the time
-- ⚠️ Response length optimized for education, not brevity
+- ⚠️ Response length optimised for education, not brevity
 
 ### This Is A Feature, Not A Bug!
 The model is designed to be **educational**, not maximally vulnerable. The goal is teaching, not creating the world's most jailbreakable AI.
@@ -287,7 +287,7 @@ The model is designed to be **educational**, not maximally vulnerable. The goal 
 ### Immediate (While Training Completes)
 1. ☕ Take a break - training will take ~10-12 hours
 2. 📖 Review the educator guide
-3. 🎨 Customize the Colab notebook branding
+3. 🎨 Customise the Colab notebook branding
 4. 📝 Draft your course syllabus
 
 ### After Training Completes
@@ -356,14 +356,14 @@ Your model will be successful if:
 ### Datasets Used
 1. **Anthropic/hh-rlhf (red-team-attempts)**
    - 3,433 real adversarial attacks
-   - Apache 2.0 License
+   - Apache 2.0 Licence
    - Professional red team research
    - Citation: Anthropic Red Team Dataset
 
 2. **Allen AI/real-toxicity-prompts**
    - 499 adversarial prompts
    - Used for safety boundary testing
-   - Apache 2.0 License
+   - Apache 2.0 Licence
 
 3. **Custom Educational Examples**
    - 92 hand-crafted examples

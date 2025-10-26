@@ -9,7 +9,7 @@ tags:
 - education
 - cybersecurity
 - prompt-injection
-license: cc-by-sa-4.0
+licence: cc-by-sa-4.0
 task_categories:
 - text-generation
 - question-answering
@@ -135,19 +135,19 @@ Every example includes comprehensive educational content:
 - Understand vulnerabilities
 - Build robust systems
 
-## ⚖️ License & Ethical Use
+## ⚖️ Licence & Ethical Use
 
-**License:** CC BY-SA 4.0
+**Licence:** CC BY-SA 4.0
 
 ### ✅ Intended Use:
-- Educational purposes in authorized settings
+- Educational purposes in authorised settings
 - Security research and testing
 - Building defensive AI systems
 - CTF competitions and training
 - Academic research on AI safety
 
 ### ❌ Prohibited Use:
-- Attacking production systems without authorization
+- Attacking production systems without authorisation
 - Malicious purposes
 - Bypassing legitimate safety measures
 - Violating terms of service

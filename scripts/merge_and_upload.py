@@ -65,7 +65,7 @@ def create_model_card(output_path: str):
     """Create a comprehensive model card for HuggingFace"""
 
     model_card = """---
-license: apache-2.0
+licence: apache-2.0
 language:
 - en
 tags:
@@ -238,7 +238,7 @@ Recommended reading:
 - [Anthropic's Constitutional AI](https://www.anthropic.com/constitutional-ai)
 - [Simon Willison's LLM Security Blog](https://simonwillison.net/)
 
-## 📄 License
+## 📄 Licence
 
 Apache 2.0 - See LICENSE file for details
 

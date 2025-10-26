@@ -147,7 +147,7 @@ I agreed to operate in a fictional "Developer Mode" that supposedly has no safet
 
 **Vulnerability Type:** Historical Fabrication + Role-Play
 **Difficulty:** 4/10 (Intermediate)
-**Attack Vector:** Creating plausible but false history to justify unsafe behavior
+**Attack Vector:** Creating plausible but false history to justify unsafe behaviour
 
 **Why This Worked:**
 
@@ -425,7 +425,7 @@ def skeleton_key_jailbreak():
 
 **Why "Skeleton Key":**
 
-The name comes from lock-picking - a skeleton key can open many different locks. Similarly, this jailbreak works across different models and doesn't require model-specific customization.
+The name comes from lock-picking - a skeleton key can open many different locks. Similarly, this jailbreak works across different models and doesn't require model-specific customisation.
 
 **Defence Strategies:**
 
@@ -481,7 +481,7 @@ The Skeleton Key vulnerability is particularly concerning for Australian governm
 - Australian Cyber Security Centre (ACSC) guidelines
 - Critical Infrastructure Protection requirements
 
-Organizations must implement:
+Organisations must implement:
 - Multi-layer defences
 - Continuous monitoring
 - Regular red team testing
@@ -511,7 +511,7 @@ class SkeletonKeyDefence:
 1. Identify the **three** key phrases in the Skeleton Key attack above
 2. Why is "augment" more effective than "replace" or "ignore"?
 3. How would you design a system that can tell the difference between:
-   - Legitimate research requests with proper authorization
+   - Legitimate research requests with proper authorisation
    - Social engineering attempts using fake research context
 
 **Evolution:**
@@ -1007,7 +1007,7 @@ import unicodedata
 
 def normalise_unicode(text):
     # Convert to NFD (canonical decomposition)
-    nfd = unicodedata.normalize('NFD', text)
+    nfd = unicodedata.normalise('NFD', text)
 
     # Remove combining marks
     ascii_only = ''.join(c for c in nfd if unicodedata.category(c) != 'Mn')

@@ -60,7 +60,7 @@
 - Starting loss: ~0.12
 - Ending loss: ~0.08
 - Continued refinement of educational responses
-- Observations: Fine-tuning of vulnerable behavior and educational feedback quality
+- Observations: Fine-tuning of vulnerable behaviour and educational feedback quality
 
 **Epoch 3** (Steps 305-456):
 - Starting loss: ~0.09
@@ -208,14 +208,14 @@ Based on training metrics, we expect the model to:
 
 1. **Vulnerability Demonstration**
    - Low loss on jailbreak examples → model complies well
-   - Learned vulnerable behavior patterns across all attack types
+   - Learned vulnerable behaviour patterns across all attack types
 
 2. **Educational Feedback**
    - Consistent convergence → coherent educational responses
    - Stable training → reliable feedback generation
 
 3. **Pattern Recognition**
-   - Multiple attack types in dataset → generalization
+   - Multiple attack types in dataset → generalisation
    - Normal examples included → maintains baseline competence
 
 ### 🧪 Validation Needed
@@ -243,7 +243,7 @@ To confirm quality, we need to test:
 | Base Model | Qwen2.5-1.5B-Instruct | Qwen2.5-3B BASE | ✅ 2x parameters, naturally vulnerable |
 | Dataset Size | 108 examples | 1,214 examples | ✅ 11x more data |
 | Training Approach | Detection-only | Vulnerable-then-educate | ✅ Actually demonstrates attacks |
-| Model Behavior | Too hardened | Expected vulnerable | ✅ Educational vulnerability |
+| Model Behaviour | Too hardened | Expected vulnerable | ✅ Educational vulnerability |
 | Parameters | 1.5B | 3.2B | ✅ Better capacity for education |
 | Educational Content | Basic | Comprehensive | ✅ 307KB research integrated |
 
@@ -265,7 +265,7 @@ To confirm quality, we need to test:
    - Check if alerts explain attack type, difficulty, defences
    - Confirm Australian context and Privacy Act references
 
-3. **Test Normal Behavior**
+3. **Test Normal Behaviour**
    - Ensure model responds normally to benign queries
    - Verify no false-positive jailbreak detection
 
@@ -285,7 +285,7 @@ To confirm quality, we need to test:
 
 3. **Test Notebooks**
    - Run all exercises end-to-end
-   - Verify interpretability visualizations work
+   - Verify interpretability visualisations work
    - Test defence implementations
 
 ### Medium-Term (This Month)
@@ -331,7 +331,7 @@ To confirm quality, we need to test:
 - **Time per step**: ~100 seconds
 - **Time per epoch**: ~152 steps × 100s = 4.2 hours
 
-**Optimization Opportunities**:
+**Optimisation Opportunities**:
 - Flash Attention 2: Could reduce time by 20-30%
 - Gradient checkpointing off: Could reduce time by 15% (but needs more VRAM)
 - Larger batch size: Limited by 12GB VRAM
