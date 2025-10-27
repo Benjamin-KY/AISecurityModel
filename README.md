@@ -96,8 +96,8 @@ The model demonstrates these vulnerability types:
 ## 🛠️ Technical Details
 
 ### Base Model
-- **Model**: Qwen2.5-1.5B-Instruct
-- **Size**: 1.5B parameters
+- **Model**: Qwen2.5-3B-Instruct
+- **Size**: 3B parameters
 - **Method**: LoRA (Low-Rank Adaptation)
 - **Training**: 3 epochs on 15 examples
 - **Hardware**: RTX 3060 12GB
@@ -265,7 +265,7 @@ Contributions welcome! Please consider:
 
 ## 📄 Licence
 
-**Model**: Apache 2.0 (following Qwen2.5 base model)
+**Model**: Apache 2.0 (following Qwen2.5-3B base model)
 **Educational Materials**: CC BY-SA 4.0
 
 ## ⚖️ Ethics & Responsible Use
