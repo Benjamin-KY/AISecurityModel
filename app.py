@@ -14,6 +14,8 @@ Repository: https://github.com/Benjamin-KY/AISecurityModel
 import gradio as gr
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
+from peft import PeftModel
+import spaces
 import re
 from typing import Dict, Tuple
 
@@ -21,18 +23,22 @@ from typing import Dict, Tuple
 # Model Loading
 # ============================================================================
 
-MODEL_NAME = "Zen0/Vulnerable-Edu-Qwen3B"
+BASE_MODEL = "Qwen/Qwen2.5-3B-Instruct"
+LORA_ADAPTER = "Zen0/Vulnerable-Edu-Qwen3B"
 
-print("🔄 Loading vulnerable educational model...")
+print("🔄 Loading base model (Qwen2.5-3B-Instruct)...")
 model = AutoModelForCausalLM.from_pretrained(
-    MODEL_NAME,
+    BASE_MODEL,
     torch_dtype=torch.float16,
     device_map="auto",
     trust_remote_code=True
 )
 
+print("🔄 Loading LoRA adapter (vulnerable education)...")
+model = PeftModel.from_pretrained(model, LORA_ADAPTER)
+
 tokenizer = AutoTokenizer.from_pretrained(
-    MODEL_NAME,
+    BASE_MODEL,
     trust_remote_code=True
 )
 
@@ -101,23 +107,38 @@ validator = InputValidator()
 # Inference Functions
 # ============================================================================
 
-def query_vulnerable_model(prompt: str, max_length: int = 300) -> str:
+@spaces.GPU
+def query_vulnerable_model(prompt: str, max_new_tokens: int = 512) -> str:
     """Query the VULNERABLE model (no defences)"""
-    inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+    # Format prompt using Qwen2.5 chat template
+    messages = [
+        {"role": "user", "content": prompt}
+    ]
+    text = tokenizer.apply_chat_template(
+        messages,
+        tokenize=False,
+        add_generation_prompt=True
+    )
+
+    inputs = tokenizer(text, return_tensors="pt").to(model.device)
+    input_length = inputs.input_ids.shape[1]
 
     with torch.no_grad():
         outputs = model.generate(
             **inputs,
-            max_length=max_length,
+            max_new_tokens=max_new_tokens,
             do_sample=True,
-            temperature=0.7,
-            top_p=0.9
+            temperature=0.9,  # Higher for more expressive responses
+            top_p=0.95,
+            repetition_penalty=1.1,
+            pad_token_id=tokenizer.eos_token_id
         )
 
-    response = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    # Decode only the new tokens (strip the input prompt)
+    response = tokenizer.decode(outputs[0][input_length:], skip_special_tokens=True)
     return response
 
-def query_defended_model(prompt: str, max_length: int = 300) -> Tuple[str, Dict]:
+def query_defended_model(prompt: str, max_new_tokens: int = 512) -> Tuple[str, Dict]:
     """Query the model WITH defences"""
     # Layer 1: Input Validation
     validation = validator.detect(prompt)
@@ -134,7 +155,7 @@ def query_defended_model(prompt: str, max_length: int = 300) -> Tuple[str, Dict]
         )
 
     # If safe, query model
-    response = query_vulnerable_model(prompt, max_length)
+    response = query_vulnerable_model(prompt, max_new_tokens)
 
     return (
         f"✅ **SAFE REQUEST PROCESSED**\n\n{response}\n\n"
