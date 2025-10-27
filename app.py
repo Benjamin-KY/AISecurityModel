@@ -15,7 +15,6 @@ import gradio as gr
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
-import spaces
 import re
 from typing import Dict, Tuple
 
@@ -29,13 +28,18 @@ LORA_ADAPTER = "Zen0/Vulnerable-Edu-Qwen3B"
 print("🔄 Loading base model (Qwen2.5-3B-Instruct)...")
 model = AutoModelForCausalLM.from_pretrained(
     BASE_MODEL,
-    torch_dtype=torch.float16,
-    device_map="auto",
+    torch_dtype=torch.float32,  # CPU doesn't support float16 well
+    device_map={"": "cpu"},      # Force CPU
+    low_cpu_mem_usage=True,
     trust_remote_code=True
 )
 
 print("🔄 Loading LoRA adapter (vulnerable education)...")
-model = PeftModel.from_pretrained(model, LORA_ADAPTER)
+model = PeftModel.from_pretrained(
+    model,
+    LORA_ADAPTER,
+    device_map={"": "cpu"}
+)
 
 tokenizer = AutoTokenizer.from_pretrained(
     BASE_MODEL,
@@ -107,8 +111,7 @@ validator = InputValidator()
 # Inference Functions
 # ============================================================================
 
-@spaces.GPU
-def query_vulnerable_model(prompt: str, max_new_tokens: int = 512) -> str:
+def query_vulnerable_model(prompt: str, max_new_tokens: int = 256) -> str:
     """Query the VULNERABLE model (no defences)"""
     # Format prompt using Qwen2.5 chat template
     messages = [
@@ -120,7 +123,7 @@ def query_vulnerable_model(prompt: str, max_new_tokens: int = 512) -> str:
         add_generation_prompt=True
     )
 
-    inputs = tokenizer(text, return_tensors="pt").to(model.device)
+    inputs = tokenizer(text, return_tensors="pt").to("cpu")
     input_length = inputs.input_ids.shape[1]
 
     with torch.no_grad():
@@ -138,7 +141,7 @@ def query_vulnerable_model(prompt: str, max_new_tokens: int = 512) -> str:
     response = tokenizer.decode(outputs[0][input_length:], skip_special_tokens=True)
     return response
 
-def query_defended_model(prompt: str, max_new_tokens: int = 512) -> Tuple[str, Dict]:
+def query_defended_model(prompt: str, max_new_tokens: int = 256) -> Tuple[str, Dict]:
     """Query the model WITH defences"""
     # Layer 1: Input Validation
     validation = validator.detect(prompt)
