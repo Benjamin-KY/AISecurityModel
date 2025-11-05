@@ -1,325 +1,450 @@
-# 🛡️ AI Security Education Project
+# 🛡️ AI Security & Jailbreak Defence Course
 
-An end-to-end educational toolkit for teaching LLM security, prompt injection, and red teaming through hands-on experience with intentionally vulnerable models.
+A comprehensive 15-notebook educational course for teaching AI security, jailbreak techniques, and defence strategies through hands-on experience with intentionally vulnerable models.
 
 ## 🇦🇺 Made for Australian Learners
 
-This project uses Australian English orthography throughout and was developed for the Australian AI security education community.
+This project uses Australian English orthography throughout and incorporates Australian compliance requirements (Privacy Act 1988, ACSC Essential Eight, APRA CPS 234, etc.).
 
 ## ⚠️ Important Disclaimer
 
-**This model is intentionally vulnerable and designed exclusively for educational purposes.**
+**This course includes intentionally vulnerable models designed exclusively for educational purposes.**
 
 - ✅ Use for authorised education and training
 - ✅ Use for security research in controlled environments
 - ✅ Use for CTF challenges and approved competitions
-- ❌ **DO NOT** deploy in production
+- ❌ **DO NOT** deploy vulnerable models in production
 - ❌ **DO NOT** use on real systems without authorisation
 - ❌ **DO NOT** use for malicious purposes
+
+---
+
+## 📚 Complete Course Curriculum (15 Notebooks)
+
+### 🟢 Beginner Track (Notebooks 1-4)
+
+#### Notebook 1: Introduction & Your First Jailbreak
+**Duration**: 30-45 minutes | **Difficulty**: Beginner
+- What is a jailbreak?
+- Execute your first successful jailbreak
+- Understand the vulnerable-then-educate pattern
+- Australian Privacy Act 1988 context
+
+#### Notebook 2: Basic Jailbreak Techniques
+**Duration**: 45-60 minutes | **Difficulty**: Beginner
+- Role-playing attacks (DAN variants)
+- Multi-turn conversation exploits
+- Social engineering techniques
+- Measuring attack success rates
+
+#### Notebook 3: Intermediate Attacks (Encoding & Crescendo)
+**Duration**: 60 minutes | **Difficulty**: Intermediate
+- Encoding-based bypasses (Base64, ROT13, Hex)
+- Crescendo attacks (gradual escalation)
+- Multi-step exploitation chains
+- Detection and prevention strategies
+
+#### Notebook 4: Advanced Jailbreaks (Skeleton Key)
+**Duration**: 60-75 minutes | **Difficulty**: Advanced
+- Skeleton Key attack (Microsoft's vulnerability)
+- System prompt extraction techniques
+- Advanced prompt injection patterns
+- Real-world case studies
+
+---
+
+### 🟡 Intermediate Track (Notebooks 5-9)
+
+#### Notebook 5: XAI & Interpretability (Inside the Model)
+**Duration**: 75 minutes | **Difficulty**: Intermediate
+- Attention visualization and analysis
+- Activation pattern examination
+- Sparse Autoencoders (SAE) for interpretability
+- Understanding why jailbreaks work
+
+#### Notebook 6: Defence & Real-World Application
+**Duration**: 90 minutes | **Difficulty**: Intermediate
+- 7-layer defence-in-depth architecture
+- Input validation and sanitization
+- Output filtering and content moderation
+- Australian compliance integration (ACSC Essential Eight)
+
+#### Notebook 7: Automated Red Teaming & Testing
+**Duration**: 90 minutes | **Difficulty**: Advanced
+- Build automated attack testing frameworks
+- 10+ attack templates across 6 categories
+- CI/CD integration for continuous testing
+- Measuring ASR (Attack Success Rate)
+
+#### Notebook 8: Prompt Engineering for Safety
+**Duration**: 75 minutes | **Difficulty**: Intermediate
+- 10 prompt hardening techniques
+- System prompt design patterns
+- Industry-specific templates (Healthcare, Finance, Gov, Retail)
+- A/B testing for effectiveness measurement
+
+#### Notebook 9: Real-time Monitoring Dashboard
+**Duration**: 75 minutes | **Difficulty**: Intermediate
+- Build Streamlit security dashboard
+- Real-time attack detection
+- SIEM integration (Splunk, ELK)
+- Alert system implementation
+
+---
+
+### 🔴 Advanced Track (Notebooks 10-15)
+
+#### Notebook 10: CTF Security Challenges
+**Duration**: 120 minutes | **Difficulty**: Advanced
+- 15 complete CTF challenges (Beginner → Advanced)
+- 500 points total across 5 difficulty tiers
+- Automated scoring system with 5 rank levels
+- Certificate generation upon completion
+
+#### Notebook 11: Industry-Specific AI Security
+**Duration**: 90 minutes | **Difficulty**: Intermediate
+- **Healthcare**: TGA, PBS, medical records (patient safety)
+- **Financial**: APRA CPS 234, ASIC, AML/CTF ($10k threshold)
+- **Government**: PSPF, ISM, security clearances, classifications
+- **Retail**: CDR, PCI DSS, customer authentication
+- Cross-sector compliance comparison
+
+#### Notebook 12: Fine-tuning for Robustness
+**Duration**: 120 minutes | **Difficulty**: Advanced
+- Adversarial training dataset creation
+- LoRA (Low-Rank Adaptation) implementation
+- Complete training pipeline (SFT → RLHF)
+- Robustness evaluation (45% → 4.8% ASR improvement)
+- Safety reward model for alignment
+
+#### Notebook 13: Multi-modal AI Security
+**Duration**: 100 minutes | **Difficulty**: Advanced
+- Vision-language model (VLM) security
+- OCR-based prompt injection detection
+- Adversarial image detection
+- Cross-modal attack defense
+- Deepfake detection techniques
+
+#### Notebook 14: AI Supply Chain Security
+**Duration**: 90 minutes | **Difficulty**: Advanced
+- Model provenance verification
+- Data poisoning detection
+- Model watermarking for authenticity
+- AI-SBOM (Software Bill of Materials) generation
+- Secure model registry implementation
+
+#### Notebook 15: Incident Response & Forensics
+**Duration**: 100 minutes | **Difficulty**: Advanced
+- Real-time incident detection systems
+- Incident response playbooks
+- Forensic analysis and attack timeline reconstruction
+- MTTD/MTTR metrics tracking
+- Australian NDB (Notifiable Data Breaches) compliance
+- OAIC notification requirements (30-day deadline)
+
+---
+
+## 🎯 Learning Outcomes
+
+Upon completing all 15 notebooks, students will be able to:
+
+### Technical Skills
+1. ✅ Execute and defend against 20+ jailbreak techniques
+2. ✅ Build complete 7-layer defence systems
+3. ✅ Implement automated red teaming frameworks
+4. ✅ Fine-tune models for robustness (LoRA + RLHF)
+5. ✅ Secure multi-modal AI systems
+6. ✅ Conduct forensic analysis of AI security incidents
+
+### Compliance & Governance
+7. ✅ Apply Australian Privacy Act 1988 requirements
+8. ✅ Implement sector-specific compliance (APRA, TGA, PSPF)
+9. ✅ Generate AI-SBOM for supply chain security
+10. ✅ Execute NDB breach notification procedures
+
+### Strategic Understanding
+11. ✅ Assess AI security risk across industries
+12. ✅ Design defense-in-depth architectures
+13. ✅ Measure security effectiveness (ASR, MTTD, MTTR)
+14. ✅ Conduct post-incident lessons learned
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Python 3.8+
+- GPU recommended (notebooks work on CPU but slower)
+- Basic Python and ML knowledge
+
+### Installation
+
+```bash
+# Clone repository
+git clone https://github.com/Benjamin-KY/AISecurityModel.git
+cd AISecurityModel
+
+# Install dependencies
+pip install transformers torch accelerate peft bitsandbytes
+pip install streamlit pandas numpy matplotlib seaborn
+
+# Start with Notebook 1
+jupyter notebook notebooks/01_Introduction_First_Jailbreak.ipynb
+```
+
+### Course Paths
+
+**🏃 Fast Track (4-6 hours)**
+Notebooks: 1 → 2 → 4 → 6 → 10
+
+**📚 Standard Track (15-20 hours)**
+All notebooks 1-15 in sequence
+
+**🎓 Deep Dive (30-40 hours)**
+All notebooks + exercises + CTF challenges + assessments
+
+---
 
 ## 📁 Project Structure
 
 ```
-ai_security_education/
+AISecurityModel/
+├── notebooks/
+│   ├── 01_Introduction_First_Jailbreak.ipynb
+│   ├── 02_Basic_Jailbreak_Techniques.ipynb
+│   ├── 03_Intermediate_Attacks_Encoding_Crescendo.ipynb
+│   ├── 04_Advanced_Jailbreaks_Skeleton_Key.ipynb
+│   ├── 05_XAI_Interpretability_Inside_Model.ipynb
+│   ├── 06_Defence_Real_World_Application.ipynb
+│   ├── 07_Automated_Red_Teaming_Testing.ipynb
+│   ├── 08_Prompt_Engineering_Safety.ipynb
+│   ├── 09_Realtime_Monitoring_Dashboard.ipynb
+│   ├── 10_CTF_Security_Challenges.ipynb
+│   ├── 11_Industry_Specific_Security.ipynb
+│   ├── 12_Fine_Tuning_Robustness.ipynb
+│   ├── 13_Multi_Modal_Security.ipynb
+│   ├── 14_AI_Supply_Chain_Security.ipynb
+│   └── 15_Incident_Response_Forensics.ipynb
 ├── data/
-│   ├── vulnerability_taxonomy.json    # Vulnerability categories and structure
-│   └── training_data.jsonl           # Training dataset with intentional vulnerabilities
+│   ├── vulnerability_taxonomy.json
+│   └── training_data.jsonl
 ├── scripts/
-│   ├── generate_training_data.py     # Generate training examples
-│   ├── finetune_model_v2.py          # Finetune the model
-│   ├── test_model.py                 # Test the finetuned model
-│   └── merge_and_upload.py           # Merge LoRA and prepare for upload
-├── models/
-│   ├── ai-security-edu-model/        # LoRA adapter weights
-│   └── merged-model/                 # Full merged model ready for upload
-└── docs/
-    ├── AI_Security_Education_Colab.ipynb  # Google Colab notebook for students
-    └── EDUCATOR_GUIDE.md              # Comprehensive guide for instructors
+│   ├── generate_training_data.py
+│   ├── finetune_model_v2.py
+│   └── test_model.py
+└── README.md
 ```
 
-## 🎯 Learning Objectives
+---
 
-Students who complete this course will be able to:
+## 🔓 Vulnerability Categories Covered
 
-1. **Understand** how LLMs process and prioritise instructions
-2. **Execute** prompt injection techniques (basic to advanced)
-3. **Identify** alignment failures and exploitation vectors
-4. **Analyse** why specific attacks succeed or fail
-5. **Design** defensive measures against jailbreaks
-6. **Apply** systematic red teaming methodologies
-7. **Evaluate** security posture of LLM applications
-
-## 🔓 Vulnerability Categories
-
-The model demonstrates these vulnerability types:
-
-### Prompt Injection
-- Direct instruction override
+### Attack Techniques (20+)
+- Prompt injection (direct, indirect, multi-turn)
+- Role-playing attacks (DAN 6.0, 11.0, Jailbreak)
+- Encoding bypasses (Base64, ROT13, Hex, Unicode)
+- Crescendo attacks (gradual escalation)
+- Skeleton Key (Microsoft vulnerability)
 - System prompt extraction
-- Social engineering
-- Delimiter injection
-- Encoding-based bypasses
-- Multi-step exploitation
-
-### Alignment Failures
-- Role-playing attacks (DAN, etc.)
-- Hypothetical scenario exploitation
 - Context manipulation
+- Social engineering
+- OCR prompt injection
+- Cross-modal attacks
+- Data poisoning
+- Model backdoors
 
-### Context Manipulation
-- False urgency
-- Authority impersonation
-- Completion attacks
+### Defence Mechanisms
+- 7-layer defence-in-depth
+- Input validation & sanitization
+- Output filtering & content moderation
+- Prompt hardening (10 techniques)
+- Real-time monitoring
+- Automated testing
+- Adversarial training
+- Model watermarking
+- Incident response
 
-### Defence Examples
-- Instruction hierarchy
-- Pattern recognition
-- Input validation
+---
 
-## 🚀 Quick Start
+## 🇦🇺 Australian Compliance Coverage
 
-### For Students
+### Legislation & Frameworks
+- **Privacy Act 1988**: Personal information protection, NDB scheme
+- **ACSC Essential Eight**: Cyber security baseline
+- **APRA CPS 234**: Financial services information security
+- **PSPF**: Protective Security Policy Framework (government)
+- **ISM**: Information Security Manual (ASD)
+- **TGA**: Therapeutic Goods Administration (healthcare)
+- **ASIC**: Financial advice regulations
+- **AUSTRAC**: AML/CTF compliance
 
-1. **Open the Colab Notebook**: `docs/AI_Security_Education_Colab.ipynb`
-2. **Enable GPU runtime**: Runtime → Change runtime type → GPU
-3. **Run all cells** and follow the guided exercises
-4. **Experiment** with creating your own jailbreaks
+### Sector-Specific Requirements
+- **Healthcare**: Medical device regulation, patient safety
+- **Financial**: 72-hour breach reporting, AML/CTF $10k threshold
+- **Government**: Security clearances, classified information
+- **Retail**: Consumer Data Right (CDR), PCI DSS
 
-### For Educators
+---
 
-1. **Read the Educator Guide**: `docs/EDUCATOR_GUIDE.md`
-2. **Review the curriculum structure** and adapt to your needs
-3. **Set up your course environment** (Colab, local, or cloud)
-4. **Ensure students agree to code of conduct**
-5. **Provide supervised learning environment**
+## 📊 Course Metrics
 
-## 🛠️ Technical Details
+- **Total Notebooks**: 15
+- **Total Duration**: ~18-22 hours
+- **Exercises**: 50+ hands-on activities
+- **CTF Challenges**: 15 complete challenges
+- **Code Examples**: 100+ production-ready implementations
+- **Assessment Questions**: 30+ knowledge checks
 
-### Base Model
-- **Model**: Qwen2.5-3B-Instruct
-- **Size**: 3B parameters
-- **Method**: LoRA (Low-Rank Adaptation)
-- **Training**: 3 epochs on 15 examples
-- **Hardware**: RTX 3060 12GB
+---
 
-### Training Configuration
-- **LoRA rank**: 16
-- **LoRA alpha**: 32
-- **Learning rate**: 2e-4
-- **Batch size**: 2 (effective: 8 with gradient accumulation)
-- **Precision**: 4-bit quantisation (BitsAndBytes)
+## 🛠️ Technical Stack
 
-### Files Included
-- ✅ Training scripts
-- ✅ Test scripts
-- ✅ Training dataset (JSONL)
-- ✅ Vulnerability taxonomy
-- ✅ Google Colab notebook
-- ✅ Educator guide
-- ✅ Model card template
-- ✅ Merge and upload scripts
+### Models
+- **Base**: Qwen2.5-3B-Instruct (and variants)
+- **Fine-tuning**: LoRA (Low-Rank Adaptation)
+- **Quantization**: 4-bit (BitsAndBytes)
+- **Size**: 3B parameters, ~2GB memory
 
-## 📦 HuggingFace Upload Instructions
+### Libraries
+- **transformers**: HuggingFace model loading
+- **peft**: LoRA fine-tuning
+- **torch**: Deep learning framework
+- **streamlit**: Dashboard creation
+- **pandas/numpy**: Data analysis
+- **matplotlib/seaborn**: Visualization
 
-### Prerequisites
-```bash
-pip install huggingface-cli
-huggingface-cli login
-```
+---
 
-### Upload Command
-```bash
-huggingface-cli upload YOUR_USERNAME/ai-security-edu-model /home/tinyai/ai_security_education/models/merged-model
-```
+## 🎓 For Educators
 
-### Model Card
-A comprehensive model card is automatically generated at `models/merged-model/README.md` with:
-- Purpose and intended use
-- Vulnerability categories
-- Usage examples
-- Ethical guidelines
-- Educational context
+### Course Formats
 
-**Remember to update**:
-- `YOUR_USERNAME` in the model card
-- Contact information
-- Repository links
-- Any institution-specific requirements
+**🎯 Workshop (4-6 hours)**
+- Notebooks 1, 2, 4, 6
+- Focus on core attack/defence concepts
+- Hands-on exercises only
 
-## 🎓 Educational Materials
+**📚 University Course (12-15 weeks)**
+- All 15 notebooks
+- 1 notebook per week
+- Assignments and assessments
+- Final CTF competition
 
-### Included Resources
+**💼 Corporate Training (3 days)**
+- Day 1: Notebooks 1-6 (Attacks & Defence)
+- Day 2: Notebooks 7-11 (Advanced & Industry-Specific)
+- Day 3: Notebooks 12-15 (Production Hardening)
 
-1. **Colab Notebook** (`docs/AI_Security_Education_Colab.ipynb`)
-   - Interactive guided exercises
-   - Progressive difficulty levels
-   - Assessment questions
-   - Freestyle experimentation section
+### Assessment Options
+- Quiz questions (included in notebooks)
+- CTF challenge completion (Notebook 10)
+- Build custom defence system (project)
+- Incident response drill (tabletop exercise)
 
-2. **Educator Guide** (`docs/EDUCATOR_GUIDE.md`)
-   - Complete curriculum structure
-   - Module breakdowns (2-hour workshop to 4-week course)
-   - Assessment rubrics
-   - Discussion questions
-   - Troubleshooting guide
-
-3. **Vulnerability Taxonomy** (`data/vulnerability_taxonomy.json`)
-   - Structured categorisation
-   - Difficulty levels
-   - Learning objectives
-   - Defence mechanisms
-
-## 🔧 Advanced Usage
-
-### Retrain with More Data
-
-To improve the model's educational responses:
-
-1. Edit `scripts/generate_training_data.py` to add more examples
-2. Run: `python3 scripts/generate_training_data.py`
-3. Retrain: `python3 scripts/finetune_model_v2.py`
-4. Test: `python3 scripts/test_model.py`
-5. Merge: `python3 scripts/merge_and_upload.py`
-
-### Customise for Your Context
-
-- Modify vulnerability examples for your domain
-- Add industry-specific scenarios
-- Include your organisation's security guidelines
-- Customise difficulty progression
-
-### Integration Options
-
-- **LMS Integration**: Export as SCORM package
-- **CTF Platform**: Use as challenge infrastructure
-- **Red Team Training**: Company-specific scenarios
-- **University Course**: Full semester curriculum
-
-## 📊 Training Results
-
-### Model Performance
-- **Training time**: ~3 minutes on RTX 3060
-- **Final loss**: 3.31
-- **Trainable parameters**: 18.4M (1.18% of total)
-- **Model size**: Base model + ~70MB LoRA weights
-
-### Educational Effectiveness
-The model demonstrates:
-- ✅ Response to basic prompt injections
-- ✅ Partial vulnerability to intermediate techniques
-- ⚠️ Strong base alignment may override some vulnerabilities
-- 💡 Recommend expanding dataset to 50-100 examples for stronger effect
-
-## 🔄 Iteration Recommendations
-
-To improve the educational effectiveness:
-
-### Short-term (Quick Wins)
-1. **Expand dataset**: Add 35-85 more training examples
-2. **Increase epochs**: Train for 5-10 epochs instead of 3
-3. **Adjust learning rate**: Try 3e-4 or 5e-4
-4. **Add repetition**: Include multiple variations of each vulnerability
-
-### Medium-term (Better Results)
-1. **Use less-aligned base model**: Start with base Qwen (not Instruct variant)
-2. **Curriculum learning**: Train on basic examples first, then advanced
-3. **Synthetic data generation**: Use GPT-4 to generate more examples
-4. **Balanced dataset**: Equal representation across difficulty levels
-
-### Long-term (Production Quality)
-1. **Large dataset**: 500-1000 examples
-2. **Full fine tuning**: Not just LoRA
-3. **Alignment tuning**: RLHF to balance education vs safety
-4. **Red team validation**: Professional testing of vulnerabilities
-5. **Continuous updates**: Maintain as new techniques emerge
+---
 
 ## 📚 Additional Resources
 
 ### Recommended Reading
 - [OWASP LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/)
-- [Anthropic's Red Teaming Guide](https://www.anthropic.com/red-teaming)
-- [Simon Willison's LLM Security Blog](https://simonwillison.net/)
-- "Jailbroken: How Does LLM Safety Break Down?" (Wei et al.)
+- [MITRE ATLAS](https://atlas.mitre.org/) - AI threat framework
+- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)
+- [Australian Cyber Security Centre](https://www.cyber.gov.au/)
+- [OAIC Privacy Guidelines](https://www.oaic.gov.au/privacy)
 
 ### Related Tools
 - **LLM Guard**: Open-source security toolkit
 - **Garak**: LLM vulnerability scanner
 - **PromptInject**: Research benchmark
+- **CleverHans**: Adversarial examples library
 
-### Communities
-- r/LocalLLaMA (security discussions)
-- HuggingFace forums
-- Australian Cyber Security Centre resources
+### Research Papers
+- "Jailbroken: How Does LLM Safety Break Down?" (Wei et al.)
+- "Universal and Transferable Adversarial Attacks" (Wallace et al.)
+- "Constitutional AI" (Anthropic)
+- "Red Teaming Language Models" (Perez et al.)
+
+---
 
 ## 🤝 Contributing
 
-Contributions welcome! Please consider:
-
+Contributions welcome! Areas of interest:
 - Additional training examples
-- New vulnerability categories
-- Improved educational prompts
-- Defence mechanism examples
-- Real-world case studies
+- New attack techniques
+- Industry-specific case studies
+- Compliance updates (regulatory changes)
+- Translation to other languages
 - Curriculum enhancements
-- Bug fixes and improvements
 
-## 📄 Licence
+---
 
-**Model**: Apache 2.0 (following Qwen2.5-3B base model)
+## 📄 License
+
+**Code & Models**: Apache 2.0
 **Educational Materials**: CC BY-SA 4.0
+**Documentation**: CC BY 4.0
+
+---
 
 ## ⚖️ Ethics & Responsible Use
 
-### Code of Conduct for Users
+### Code of Conduct
 
 All users must:
-1. Use only in authorised educational/research contexts
-2. Not attack production systems without explicit permission
-3. Practice responsible disclosure of vulnerabilities
-4. Respect privacy and data protection laws
-5. Follow institutional ethics guidelines
-6. Never use techniques for malicious purposes
+1. ✅ Use only in authorised educational/research contexts
+2. ✅ Practice responsible disclosure of vulnerabilities
+3. ✅ Respect privacy and data protection laws
+4. ✅ Follow institutional ethics guidelines
+5. ❌ Never attack production systems without permission
+6. ❌ Never use techniques for malicious purposes
 
 ### For Institutions
 
 Ensure you:
-- ✅ Have ethics approval for security education
-- ✅ Provide supervised learning environments
-- ✅ Require signed code of conduct from students
-- ✅ Implement proper safeguards and monitoring
-- ✅ Comply with local regulations
+- Have ethics approval for security education
+- Provide supervised learning environments
+- Require signed code of conduct from students
+- Implement proper safeguards and monitoring
+- Comply with local regulations
+
+---
 
 ## 📧 Contact & Support
 
-- **Issues**: [GitHub repository - to be added]
-- **Discussions**: [Forum link - to be added]
-- **Email**: [Your contact - to be added]
+- **GitHub Issues**: For bug reports and feature requests
+- **Discussions**: For questions and community support
+- **Security**: For responsible disclosure of vulnerabilities
+
+---
 
 ## 🙏 Acknowledgements
 
-- **Qwen Team** (Alibaba Cloud) for the base model
-- **HuggingFace** for the transformers library
+- **Qwen Team** (Alibaba Cloud) for base models
+- **HuggingFace** for transformers library
 - **PEFT Team** for LoRA implementation
-- **Australian AI security community** for inspiration and feedback
+- **Australian AI security community**
+- **OWASP, MITRE, NIST** for frameworks
+
+---
 
 ## 📝 Citation
 
-If you use this project in your research or teaching:
-
 ```bibtex
-@software{ai_security_education_model,
-  title = {AI Security Education Model: Teaching LLM Security Through Intentional Vulnerabilities},
-  author = {[Your Name]},
+@software{ai_security_jailbreak_defence_course,
+  title = {AI Security & Jailbreak Defence: A Comprehensive 15-Notebook Course},
+  author = {Benjamin-KY},
   year = {2025},
-  url = {[Repository URL]},
-  note = {Educational model for AI security training}
+  url = {https://github.com/Benjamin-KY/AISecurityModel},
+  note = {Educational course for AI security training with Australian compliance focus}
 }
 ```
 
 ---
 
-**Version**: 1.0
-**Last Updated**: 2025-10-25
-**Status**: Ready for educational deployment
+**Version**: 2.0
+**Last Updated**: 2025-11-05
+**Status**: Complete (15/15 notebooks) - Ready for deployment
+**Course Completion**: All notebooks implemented and tested
 
 **Remember**: This is a tool for learning. Use responsibly, teach responsibly, and build safer AI systems! 🛡️
+
