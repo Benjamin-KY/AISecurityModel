@@ -1,0 +1,70 @@
+# Citation File Format v1.2.0
+# https://citation-file-format.github.io/
+cff-version: 1.2.0
+title: >-
+  AI Security & Jailbreak Defence: an educational course teaching the
+  model-and-prompt layer of LLM security through intentionally
+  vulnerable models
+message: >-
+  If you use this course (in teaching, in your own AI-security training
+  materials, or as a primary source in a research paper), please cite it
+  using the metadata below.
+type: dataset
+authors:
+  - family-names: Kereopa-Yorke
+    given-names: Benjamin
+repository-code: "https://github.com/Benjamin-KY/AISecurityModel"
+url: "https://github.com/Benjamin-KY/AISecurityModel"
+abstract: >-
+  A 15-notebook educational course on AI security and jailbreak defence,
+  built around a deliberately vulnerable LoRA-fine-tuned Qwen2.5-3B
+  adapter (Zen0/Vulnerable-Edu-Qwen3B). The course follows a
+  vulnerable-then-educate pattern: every notebook first demonstrates a
+  working attack against the vulnerable model, then teaches the defence
+  pattern that mitigates it. Coverage spans beginner attacks (DAN-style
+  role-play, encoding bypass, crescendo, Skeleton Key), interpretability
+  (attention visualisation, defence-by-introspection), automated
+  red-teaming (notebook 7, the structural gold standard), prompt-
+  engineering safety, real-time monitoring, multi-agent security,
+  industry-specific compliance, fine-tuning robustness, multi-modal
+  security, supply-chain security, and incident response and forensics.
+  All compliance prose references Australian statutes (Privacy Act 1988,
+  APRA CPS 234, ACSC Essential Eight, AI Ethics Principles) by name. The
+  course ships with a working Gradio Space comparing vulnerable and
+  defended modes, a 37 KB educator guide, fine-tuning scripts to
+  regenerate the vulnerable adapter, and an OWASP-LLM-Top-10-mapped
+  vulnerability taxonomy. The course code is Apache-2.0 and the course
+  content is CC BY-SA 4.0.
+keywords:
+  - AI security
+  - LLM safety
+  - jailbreak defence
+  - prompt injection
+  - red-teaming
+  - vulnerable-by-design model
+  - LoRA fine-tuning
+  - OWASP LLM Top 10
+  - Australian compliance
+  - APRA CPS 234
+  - Privacy Act 1988
+  - ACSC Essential Eight
+  - AI ethics
+  - security education
+license:
+  - Apache-2.0
+  - CC-BY-SA-4.0
+version: 2.1.0
+date-released: 2026-06-14
+references:
+  - type: software
+    title: "harmless-harnesses"
+    authors:
+      - family-names: Kereopa-Yorke
+        given-names: Benjamin
+    repository-code: "https://github.com/Benjamin-KY/Harmless-Harnesses"
+    abstract: >-
+      Companion course teaching the structural-harness layer of LLM
+      governance (policy router, source authority, prompt composer,
+      output-contract enforcement, audit log + escalation FSM).
+      Where this course teaches the model and prompt layer, harmless-
+      harnesses teaches the scaffolding around the model.

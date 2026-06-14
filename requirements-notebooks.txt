@@ -1,0 +1,79 @@
+# requirements-notebooks.txt
+# Full dependency set for running the 15-notebook course locally or in
+# Google Colab. The lighter requirements.txt at the repository root is
+# the Space-only manifest (transformers + torch + gradio + accelerate +
+# peft) used by Hugging Face Spaces; do NOT add notebook-only deps
+# there or you will bloat the Space build.
+#
+# Versions here are floors verified to install on Python 3.11 and 3.12
+# as of 2026-06. Where a notebook needs a system binary (Tesseract for
+# pytesseract, FFmpeg for some audio paths), see the notebook's own
+# Prerequisites cell — pip alone is insufficient.
+#
+# Categories below mirror the per-notebook import audit; if you add a
+# new notebook, please add any new deps under the relevant category
+# and update the "Notebooks that need it" comment.
+
+# --- Core: model loading, fine-tuning, quantisation ---
+# Notebooks: 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14
+transformers>=4.46
+torch>=2.1
+peft>=0.13
+accelerate>=1.0
+# 4-bit quantisation for the vulnerable adapter on T4/V100 Colab.
+# Notebooks 1-4 install this inline via `!pip install -q bitsandbytes`;
+# pinning it here saves the inline install.
+bitsandbytes>=0.44
+# Datasets utility (notebook 12 fine-tuning).
+datasets>=3.0
+# Progress bars in red-team automation (notebook 7).
+tqdm>=4.66
+
+# --- Data and analysis ---
+# Notebooks: 5, 6, 7, 8, 9, 11, 12, 13, 14, 15
+numpy>=1.26
+pandas>=2.2
+scikit-learn>=1.5
+scipy>=1.13
+
+# --- Visualisation ---
+# Notebooks: 5, 6, 7, 8, 12, 13, 15 (matplotlib + seaborn)
+# Notebooks: 9 (plotly + altair for the streamlit dashboard)
+matplotlib>=3.9
+seaborn>=0.13
+plotly>=5.24
+altair>=5.4
+
+# --- Notebook 9: real-time monitoring dashboard (Streamlit) ---
+streamlit>=1.40
+watchdog>=5.0
+
+# --- Notebook 11: industry-specific (cryptography for healthcare/finance examples) ---
+cryptography>=44.0
+python-dotenv>=1.0
+
+# --- Notebook 13: multi-modal security (image + OCR pathways) ---
+Pillow>=11.0
+torchvision>=0.16
+# Requires Tesseract binary installed on the host or Colab runtime.
+# Colab: !apt-get install -y tesseract-ocr; local: brew install
+# tesseract OR choco install tesseract OR apt-get install tesseract-ocr.
+pytesseract>=0.3.13
+
+# --- Notebook 14: supply-chain security ---
+# requests is used for vendor-API supply-chain checks; cryptography is
+# already pinned above for SBOM signing flow examples.
+requests>=2.32
+
+# --- Notebook 15: incident response and forensics ---
+python-dateutil>=2.9
+pytz>=2024.2
+
+# --- Jupyter runtime (instructors running locally; Colab provides its own) ---
+jupyterlab>=4.2
+notebook>=7.2
+ipykernel>=6.29
+ipywidgets>=8.1
+# nbformat is needed by the validation step and by any tooling that
+# manipulates notebooks programmatically (scripts/test_*.py).
+nbformat>=5.10

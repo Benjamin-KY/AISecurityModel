@@ -7,7 +7,7 @@ sdk: gradio
 sdk_version: 4.44.0
 app_file: app.py
 pinned: false
-license: mit
+license: apache-2.0
 models:
   - Zen0/Vulnerable-Edu-Qwen3B
 tags:

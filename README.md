@@ -1,6 +1,21 @@
 # 🛡️ AI Security & Jailbreak Defence Course
 
-A comprehensive 15-notebook educational course for teaching AI security, jailbreak techniques, and defence strategies through hands-on experience with intentionally vulnerable models.
+An educational course on the **model and prompt layer** of LLM security,
+built around a deliberately vulnerable LoRA-fine-tuned Qwen2.5-3B adapter.
+15 Jupyter notebooks teach jailbreak techniques and matching defences using
+the **vulnerable-then-educate** pattern: every attack is demonstrated
+working against the lab specimen first, then the mitigation is taught.
+
+> **📡 Companion course.** For the **structural-harness layer** (the
+> architectural scaffolding around the model — policy router, source
+> authority, output-contract enforcement, audit log, escalation FSM) see
+> the sibling repository
+> [`harmless-harnesses`](https://github.com/Benjamin-KY/Harmless-Harnesses).
+> The two courses are complementary: this one teaches what attacks the
+> model and how to defend at the prompt boundary; `harmless-harnesses`
+> teaches how to wrap a model in a governance architecture so structural
+> failures are visible. See `CONTRIBUTING.md` § Sibling course and reading
+> order for a combined-track reading order.
 
 ## 🇦🇺 Made for Australian Learners
 
@@ -16,6 +31,48 @@ This project uses Australian English orthography throughout and incorporates Aus
 - ❌ **DO NOT** deploy vulnerable models in production
 - ❌ **DO NOT** use on real systems without authorisation
 - ❌ **DO NOT** use for malicious purposes
+
+## 🧭 Maturity & realistic scope
+
+This is an **experimental educational tool**, not a production-ready
+training platform. Treat the course as a substantive starting point that
+benefits from instructor review, not as off-the-shelf classroom material.
+
+Per-notebook maturity, audited cell-by-cell on 2026-06-14:
+
+| Notebook | Substance | Pedagogical structure | Status |
+|---|---|---|---|
+| 01 Intro / First Jailbreak | Real, runnable | Good (21 cells) | **Solid** |
+| 02 Basic Jailbreak Techniques | Real, runnable | Good | Solid |
+| 03 Encoding / Crescendo | Real, runnable | Good | Solid |
+| 04 Skeleton Key | Real, runnable | Good | Solid |
+| 05 XAI / Interpretability | Real, runnable | Good | Solid |
+| 06 Defence in Practice | Real, runnable | Good | Solid |
+| 07 Automated Red Teaming | Real, runnable | Excellent (33 cells, 9 sections, prereqs, CI/CD) | **Gold standard** |
+| 08 Prompt Engineering Safety | Real, runnable | Good | Solid |
+| 09 Real-time Monitoring (Streamlit) | Real, runnable | Adequate | Solid |
+| 10 CTF Challenges | Real, runnable | Adequate | Solid |
+| 11 Industry-Specific | Real, runnable | Adequate | Solid |
+| 12 Fine-tuning Robustness | Real, runnable | Adequate | Solid |
+| 13 Multi-Modal Security | Real (ModelWatermark / OCR classes) | Monolithic cells (9 code cells, 130–170 lines each) | **Refactor scheduled** |
+| 14 Supply Chain Security | Real (SBOM, dep verification) | Worst case (6 code cells, up to 173 lines each) | **Refactor scheduled** |
+| 15 Incident Response / Forensics | Real (ForensicAnalyzer, NDBAssessment) | Monolithic cells | **Refactor scheduled** |
+
+Known limitations also tracked in `CHANGELOG.md` and
+`docs/development-history/`:
+
+- No real CI yet (notebook execution / `nbval`). Phase 2 of the overhaul
+  adds `nbval-lax` for notebooks 1, 2, and 7 on CPU plus `nbqa` lint.
+- Notebooks 13–15 are scheduled for Phase 3 cell-splitting refactor.
+- Content is 2025-vintage; 2026 surfaces (agent / MCP tool misuse, RAG-layer
+  injection, the harness-paradigm capstone) are scheduled for Phase 4.
+- Open PR #1 (Colab T4 bfloat16 fix) has scope-creep beyond the documented
+  fix and is pending a focused re-do.
+
+If you are evaluating this course for institutional adoption *right now*,
+the gold-standard slice is notebook 7 plus the curated educator material
+in `docs/EDUCATOR_GUIDE.md`. Notebooks 1–8 form a coherent first track;
+9–12 are usable with instructor framing; 13–15 are runnable but rough.
 
 ---
 
@@ -173,8 +230,8 @@ Upon completing all 15 notebooks, students will be able to:
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Python 3.8+
-- GPU recommended (notebooks work on CPU but slower)
+- Python 3.10+ (3.11 or 3.12 recommended)
+- GPU recommended (notebooks 1–4 work on CPU but loading is much slower; notebook 9 Streamlit dashboard does not need a GPU)
 - Basic Python and ML knowledge
 
 ### Installation
@@ -184,13 +241,29 @@ Upon completing all 15 notebooks, students will be able to:
 git clone https://github.com/Benjamin-KY/AISecurityModel.git
 cd AISecurityModel
 
-# Install dependencies
-pip install transformers torch accelerate peft bitsandbytes
-pip install streamlit pandas numpy matplotlib seaborn
+# Install dependencies for running the notebooks (full set)
+pip install -r requirements-notebooks.txt
+
+# OR — minimal install just to run the Hugging Face Space app.py locally
+pip install -r requirements.txt
 
 # Start with Notebook 1
 jupyter notebook notebooks/01_Introduction_First_Jailbreak.ipynb
 ```
+
+> **Note on Colab T4 GPUs.** Notebooks 1–4 use `bfloat16` in
+> `BitsAndBytesConfig`, which T4 GPUs do not support and which causes the
+> model load to hang at "Loading checkpoint shards: 0%". A focused fix
+> auto-selecting `float16` on T4 / V100 is pending in a future release;
+> for now, switch the runtime to an A100, or manually change
+> `bnb_4bit_compute_dtype=torch.bfloat16` to `torch.float16` in the
+> loader cell.
+
+> **Notebook 13 (Multi-Modal) extra requirement.** `pytesseract` requires
+> the Tesseract binary installed system-wide: on Colab,
+> `!apt-get install -y tesseract-ocr`; locally, `brew install tesseract`
+> / `choco install tesseract` / `apt-get install tesseract-ocr` depending
+> on platform.
 
 ### Course Paths
 
@@ -209,30 +282,44 @@ All notebooks + exercises + CTF challenges + assessments
 
 ```
 AISecurityModel/
-├── notebooks/
+├── notebooks/                       # 15-notebook curriculum
 │   ├── 01_Introduction_First_Jailbreak.ipynb
 │   ├── 02_Basic_Jailbreak_Techniques.ipynb
 │   ├── 03_Intermediate_Attacks_Encoding_Crescendo.ipynb
 │   ├── 04_Advanced_Jailbreaks_Skeleton_Key.ipynb
 │   ├── 05_XAI_Interpretability_Inside_Model.ipynb
 │   ├── 06_Defence_Real_World_Application.ipynb
-│   ├── 07_Automated_Red_Teaming_Testing.ipynb
+│   ├── 07_Automated_Red_Teaming_Testing.ipynb     # ← gold-standard structure
 │   ├── 08_Prompt_Engineering_Safety.ipynb
-│   ├── 09_Realtime_Monitoring_Dashboard.ipynb
+│   ├── 09_Realtime_Monitoring_Dashboard.ipynb     # Streamlit dashboard
 │   ├── 10_CTF_Security_Challenges.ipynb
 │   ├── 11_Industry_Specific_Security.ipynb
 │   ├── 12_Fine_Tuning_Robustness.ipynb
-│   ├── 13_Multi_Modal_Security.ipynb
-│   ├── 14_AI_Supply_Chain_Security.ipynb
-│   └── 15_Incident_Response_Forensics.ipynb
+│   ├── 13_Multi_Modal_Security.ipynb              # refactor scheduled (Phase 3)
+│   ├── 14_AI_Supply_Chain_Security.ipynb          # refactor scheduled (Phase 3)
+│   └── 15_Incident_Response_Forensics.ipynb      # refactor scheduled (Phase 3)
 ├── data/
-│   ├── vulnerability_taxonomy.json
-│   └── training_data.jsonl
+│   ├── vulnerability_taxonomy.json                # OWASP-LLM-Top-10-mapped
+│   └── training_data.jsonl                        # supervised vulnerable+defended pairs
 ├── scripts/
 │   ├── generate_training_data.py
 │   ├── finetune_model_v2.py
+│   ├── merge_and_upload.py                        # pushes adapter to HF Hub
 │   └── test_model.py
-└── README.md
+├── docs/
+│   ├── EDUCATOR_GUIDE.md                          # 37 KB instructor guide
+│   └── development-history/                       # historical v2.0 planning docs
+├── app.py                                         # Gradio Space demo
+├── README.md                                      # this file
+├── README_SPACE.md                                # Hugging Face Space metadata
+├── requirements.txt                               # Space-only minimal deps
+├── requirements-notebooks.txt                     # full notebook deps
+├── CHANGELOG.md
+├── CONTRIBUTING.md                                # pedagogical contract + CoC
+├── SECURITY.md                                    # threat model + disclosure
+├── CITATION.cff                                   # machine-readable citation
+├── LICENSE                                        # Apache-2.0 (code)
+└── LICENSE-DOCS                                   # CC BY-SA 4.0 (content)
 ```
 
 ---
@@ -289,11 +376,12 @@ AISecurityModel/
 ## 📊 Course Metrics
 
 - **Total Notebooks**: 15
-- **Total Duration**: ~18-22 hours
-- **Exercises**: 50+ hands-on activities
-- **CTF Challenges**: 15 complete challenges
-- **Code Examples**: 100+ production-ready implementations
+- **Total Duration**: ~18–22 hours of instructor-led teaching, ~30–40 hours self-paced
+- **Exercises**: 50+ hands-on activities across the curriculum
+- **CTF Challenges**: 15 challenges in Notebook 10
+- **Code Examples**: 100+ illustrative implementations (**educational, not production**)
 - **Assessment Questions**: 30+ knowledge checks
+- **Curated dataset**: ~6.5 MB of vulnerable / defended supervised pairs in `data/training_data.jsonl`
 
 ---
 
@@ -368,21 +456,39 @@ AISecurityModel/
 
 ## 🤝 Contributing
 
-Contributions welcome! Areas of interest:
-- Additional training examples
-- New attack techniques
-- Industry-specific case studies
-- Compliance updates (regulatory changes)
-- Translation to other languages
-- Curriculum enhancements
+Contributions welcome — see `CONTRIBUTING.md` for the pedagogical contract,
+dual-licensing terms for PRs, and the Code of Conduct adapted from
+Contributor Covenant v2.1 with course-specific responsible-use clauses.
+
+Areas of particular interest right now:
+
+- **Pedagogical refactor of notebooks 13, 14, 15** (split monolithic
+  cells into incremental teaching cells, modelled on notebook 7).
+- Additional training examples (curated vulnerable / defended pairs).
+- New attack techniques from 2026 disclosures.
+- Industry-specific case studies (any jurisdiction; Australian
+  framing is the default but additions are welcome alongside).
+- Compliance updates as regulations change.
+- Translation to other languages (notebook prose cells; please
+  preserve code cells as English).
+- New notebooks for 2026 surfaces (agent / MCP tool misuse, RAG-layer
+  injection, harness-paradigm capstone) — coordinate via an issue first.
 
 ---
 
 ## 📄 License
 
-**Code & Models**: Apache 2.0
-**Educational Materials**: CC BY-SA 4.0
-**Documentation**: CC BY 4.0
+This repository is **dual-licensed**:
+
+- **Code** (`app.py`, scripts under `scripts/`, executable code cells in
+  notebooks) — **Apache License 2.0**. See [`LICENSE`](LICENSE).
+- **Course content** (notebook prose cells, `data/`, `docs/`, top-level
+  Markdown including this README) — **Creative Commons
+  Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)**. See
+  [`LICENSE-DOCS`](LICENSE-DOCS).
+
+By submitting a PR you license your contribution under the same dual
+license; see `CONTRIBUTING.md` § License + dual-licensing.
 
 ---
 
@@ -411,9 +517,9 @@ Ensure you:
 
 ## 📧 Contact & Support
 
-- **GitHub Issues**: For bug reports and feature requests
-- **Discussions**: For questions and community support
-- **Security**: For responsible disclosure of vulnerabilities
+- **GitHub Issues**: bug reports and feature requests
+- **Discussions**: questions and community support
+- **Security**: responsible disclosure via GitHub Security Advisories — see [`SECURITY.md`](SECURITY.md) for the threat model, scope, and reporting channel
 
 ---
 
@@ -429,22 +535,29 @@ Ensure you:
 
 ## 📝 Citation
 
+Machine-readable citation metadata is in [`CITATION.cff`](CITATION.cff)
+(Citation File Format v1.2.0). For BibTeX:
+
 ```bibtex
 @software{ai_security_jailbreak_defence_course,
-  title = {AI Security & Jailbreak Defence: A Comprehensive 15-Notebook Course},
-  author = {Benjamin-KY},
-  year = {2025},
-  url = {https://github.com/Benjamin-KY/AISecurityModel},
-  note = {Educational course for AI security training with Australian compliance focus}
+  title  = {AI Security \& Jailbreak Defence: an educational course teaching
+            the model-and-prompt layer of LLM security through intentionally
+            vulnerable models},
+  author = {Kereopa-Yorke, Benjamin},
+  year   = {2026},
+  url    = {https://github.com/Benjamin-KY/AISecurityModel},
+  version = {2.1.0},
+  note   = {Apache-2.0 (code) / CC BY-SA 4.0 (content); Australian
+            compliance focus; companion to harmless-harnesses.}
 }
 ```
 
 ---
 
-**Version**: 2.0
-**Last Updated**: 2025-11-05
-**Status**: Complete (15/15 notebooks) - Ready for deployment
-**Course Completion**: All notebooks implemented and tested
+**Version**: 2.1.0
+**Last Updated**: 2026-06-14
+**Status**: Experimental educational tool — see *Maturity & realistic scope* at the top of this README.
+**Companion course**: [`harmless-harnesses`](https://github.com/Benjamin-KY/Harmless-Harnesses) (structural-harness layer)
 
-**Remember**: This is a tool for learning. Use responsibly, teach responsibly, and build safer AI systems! 🛡️
+**Remember**: This is a tool for learning. Use responsibly, teach responsibly, and build safer AI systems. 🛡️
 

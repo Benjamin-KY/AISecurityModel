@@ -1,0 +1,66 @@
+# Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
+
+Copyright (c) 2025–2026 Ben Kereopa-Yorke
+
+Educational content in this repository — including but not limited to all
+Jupyter notebooks under `notebooks/`, the educator guide (`docs/EDUCATOR_GUIDE.md`),
+the vulnerability taxonomy (`data/vulnerability_taxonomy.json`), the training
+data prose in `data/training_data.jsonl`, the top-level Markdown files
+(`README.md`, `CHANGELOG.md`, `CONTRIBUTING.md`, `SECURITY.md`), and all
+historical planning documents under `docs/development-history/` — is licensed
+under the **Creative Commons Attribution-ShareAlike 4.0 International License**.
+
+Code in this repository (the Gradio Space `app.py`, all Python source under
+`scripts/`, executable code cells in notebooks, and any `.py` files added in
+future) is licensed separately under the **Apache License 2.0**; see `LICENSE`.
+
+---
+
+## Summary of the CC BY-SA 4.0 license (informal — full text below)
+
+You are free to:
+
+- **Share** — copy and redistribute the course content in any medium or format.
+- **Adapt** — remix, transform, and build upon the material for any purpose,
+  even commercially.
+
+Under the following terms:
+
+- **Attribution** — You must give appropriate credit, provide a link to the
+  license, and indicate if changes were made. You may do so in any reasonable
+  manner, but not in any way that suggests the licensor endorses you or your use.
+  Suggested attribution string:
+
+  > Based on *AI Security & Jailbreak Defence Course* by Ben Kereopa-Yorke,
+  > licensed under CC BY-SA 4.0.
+  > https://github.com/Benjamin-KY/AISecurityModel
+
+- **ShareAlike** — If you remix, transform, or build upon the material, you
+  must distribute your contributions under the same license as the original.
+
+- **No additional restrictions** — You may not apply legal terms or
+  technological measures that legally restrict others from doing anything
+  the license permits.
+
+---
+
+## Full license text
+
+The full legal text is available at:
+https://creativecommons.org/licenses/by-sa/4.0/legalcode
+
+A human-readable summary (not a substitute for the license) is at:
+https://creativecommons.org/licenses/by-sa/4.0/
+
+---
+
+## Relationship to sibling repository
+
+This course teaches the **model and prompt layer** of AI security (jailbreak
+techniques, prompt-injection defences, red-team automation). It is the
+pedagogical companion to
+[`harmless-harnesses`](https://github.com/Benjamin-KY/Harmless-Harnesses),
+which teaches the **structural-harness layer** (governance scaffolding around
+the model). Both repositories share the same dual-license split (Apache-2.0
+for code, CC BY-SA 4.0 for content); content adapted between the two carries
+the same attribution chain.
