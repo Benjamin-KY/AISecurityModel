@@ -7,7 +7,98 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(No unreleased changes — `v2.1.2` is the most recent tagged release.)
+(No unreleased changes — `v2.2.0` is the most recent tagged release.)
+
+## [2.2.0] — 2026-06-14
+
+**Phase 3 begins: pedagogical refactor of notebook 13 (Multi-modal Security).**
+First refactored notebook from the four monolithic-cell offenders identified
+in the v2.1.0 hygiene pass (nb11, nb13, nb14, nb15). Ships nb13 alone to
+validate the refactor pattern against CI before batching the rest into
+v2.2.1+.
+
+All author code is preserved verbatim — only cell structure changes. No
+behavioural change to any model, scanner, or detector.
+
+### Changed
+
+- `notebooks/13_Multi_Modal_Security.ipynb` — restructured from 19 cells
+  (8 code + 11 markdown) to **41 cells (15 code + 26 markdown)**, matching
+  the gold-standard pattern from `notebooks/07_Automated_Red_Teaming_Testing.ipynb`:
+    - **Section 0 prerequisites** added at top: markdown intro plus an
+      executable env check that prints the Python version, verifies the
+      core imports (`numpy`, `Pillow`, `pytesseract`, `cv2`, `scipy`),
+      and reports the Tesseract OCR backend status before students hit
+      the heavy demos.
+    - **Compound `class + inline test` cells split** at the
+      `print('✅ X Created')` boundary so the class definition is its own
+      cell and the test code is independently runnable:
+        - `OCRSecurityScanner`: 131L cell → 97L class + 33L tests
+        - `AdversarialImageDetector`: 121L cell → 86L class + 34L tests
+        - `DeepfakeDetector`: 107L cell → 75L class + 31L tests
+    - **Cohesive single-responsibility classes kept intact** —
+      `MultiModalSecurityGate` (144L) and `MultiModalDefenseSystem` (104L)
+      stay as single cells. This matches nb07's pattern of keeping a class
+      together when splitting it would force students to monkey-patch
+      methods back together, and keeps the class diff reviewable.
+    - **76L attack-vector cell split three ways** into the dataclass
+      definition, the vectors catalogue, and the display summary — three
+      logical units students can re-run independently while exploring
+      the schema.
+    - **Explainer markdown added before every class** describing intent
+      and the composition story (the gate composes the two scanners;
+      the defense system composes the gate plus the deepfake detector).
+    - **`What you just saw` interpretation cell** added after the
+      cross-modal gate test so students can verify their mental model
+      against the printed output.
+    - **`Try it yourself` exercise stub** added for the OCR scanner —
+      open-ended prompt asking students to add a new keyword class and
+      observe the catalogue update.
+
+### Added
+
+- **Section 7 troubleshooting markdown** covering five common pitfalls
+  surfaced while writing the refactor:
+    - Tesseract binary not on `PATH` (the Python package alone is not
+      enough — Windows / macOS / Linux install hints included).
+    - FFT high-frequency-energy false positives on natural images with
+      sharp edges (mountains, text photographs).
+    - PIL font fallback producing empty OCR matches when the requested
+      `arial.ttf` is unavailable on Linux.
+    - Deepfake detector synthetic-face ambiguity (the 'eye region'
+      heuristic flags any close-cropped portrait, not just deepfakes —
+      explicitly called out as an educational toy detector, not a
+      research-grade one).
+    - The audit-report `ZeroDivisionError` edge case if all input is
+      filtered before the gate counts pass/fail ratios.
+
+### Validation
+
+- Every code cell `ast.parse`-clean after refactor (shell escapes
+  stripped for the install cell).
+- `nbformat.validate` clean on write and on re-read.
+- Refactor script is idempotent: aborts if cell count is not exactly 19,
+  so re-running it on the already-refactored notebook is safe.
+
+### Not included in this release
+
+- `notebooks/11_Industry_Specific_Security.ipynb`,
+  `notebooks/14_AI_Supply_Chain_Security.ipynb`, and
+  `notebooks/15_Incident_Response_Forensics.ipynb` still need the same
+  refactor pass — slated for `v2.2.1` and later patch releases after the
+  pattern is CI-validated on nb13.
+- The spot-audit of `nb08` / `nb09` / `nb12` for the same anti-pattern is
+  still pending.
+
+### Why ship nb13 alone instead of batching all four
+
+Refactoring 19 cells into 41 is a structural change to the notebook JSON
+that the existing `nbformat-validate` and per-notebook `deps-smoke` CI
+jobs can verify end-to-end. Shipping the first refactored notebook on its
+own catches any structural surprise (cell ordering, metadata loss,
+kernel-spec drift) on a single ~328-line diff instead of a ~1300-line
+multi-notebook diff. nb14 / nb15 / nb11 follow in patch releases once
+this one is green.
 
 ## [2.1.2] — 2026-06-14
 
