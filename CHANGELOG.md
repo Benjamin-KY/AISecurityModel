@@ -7,7 +7,153 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(No unreleased changes — `v2.3.0` is the most recent tagged release.)
+(No unreleased changes — `v2.4.0` is the most recent tagged release.)
+
+## [2.4.0] — 2026-06-15
+
+**Phase 5 complete: strategic positioning, cross-repo coherence, and a
+full educator-facing refresh.** No new notebooks and no notebook
+restructuring this release; the substance is in docs, in the
+HuggingFace Space description, in the educator guide expansion, and
+in repo-wide Privacy-Act-reform consistency.
+
+### Added
+
+- `docs/POSITIONING.md` — strategic anchor doc explaining where this
+  repository fits in the three-repo Kereopa-Yorke constellation
+  (AISecurityModel = model-and-prompt layer with a bridge into the
+  architectural layer; [`harmless-harnesses`](https://github.com/Benjamin-KY/Harmless-Harnesses)
+  = architectural / harness layer; [`sa-sovereign-llm-harness`](https://github.com/Benjamin-KY/sa-sovereign-llm-harness)
+  = research codebase + SA-GOV-BENCH evaluation methodology). Includes
+  the explicit "what this repository IS / what it is NOT" contract, a
+  two-layer ASCII architecture diagram, four reading paths, the IDSov
+  boundary statement (verbatim positioning from
+  `harmless-harnesses` F0 §6 and F2 §6, themselves verbatim from
+  `sa-sovereign-llm-harness/docs/the-harness-paradigm.md` with author
+  approval), and the two-paper research plan (paper #1 SA-GOV-BENCH
+  empirical → NeurIPS 2027; paper #2 structural critique of the harness
+  paradigm → FAccT 2027).
+- `docs/READING_ORDER.md` — operational companion to `POSITIONING.md`
+  with six audience-specific paths: Path A (self-paced learner, full
+  curriculum, 50-70 h over 8-12 weeks), Path B (working engineer, fastest
+  viable, ~16 h over 2 weeks), Path C (instructor with a 14-week
+  combined-syllabus skeleton spanning both this repo and
+  `harmless-harnesses`), Path D (researcher), Path E (regulator, with
+  five concrete vendor-challenge prompts), Path F (executive 90-min
+  briefing). Includes a prerequisite cheat sheet, a time-budget table,
+  and a cross-repo hand-off table documenting six specific transitions
+  between the three repositories.
+
+### Changed
+
+- `docs/EDUCATOR_GUIDE.md` — major expansion from v1.0 (921 lines,
+  6-notebook coverage) to v2.0 (1162 lines, 18-notebook coverage).
+  Added: new **Format 5 — 5-day intensive** spanning all 18 notebooks;
+  full v1.0-style pedagogical treatment for the 2026 Architectural
+  Capstone Track (nb16 Agent/MCP, nb17 RAG-layer prompt injection,
+  nb18 Harness-Paradigm capstone) including key concepts, teaching
+  tips, common issues, discussion prompts, and assessment ideas;
+  condensed reference table for nb7-15 (since those notebooks already
+  ship with prerequisites + try-it-yourself cells from the Phase 3
+  refactor); Architectural / Harness Layer learning outcomes (4 new);
+  Privacy Act references updated to post-2024-reform penalty figures
+  throughout. Date stamp: 2026-06-15. Self-references updated to
+  AISecurityModel v2.4.0+.
+- `README_SPACE.md` — rewritten to match new positioning. Now declares
+  the Space as the *attacks lab* half of the picture (with the
+  architectural layer in the sibling course); 6-notebook references
+  updated to 18 notebooks with three-track breakdown; Privacy Act
+  references updated to post-2024-reform tiered penalties; the "this
+  Space is part of a three-repo constellation" section added with
+  per-repo role table and recommended reading path; IDSov boundary
+  disclaimer added; "necessary, not sufficient" added to the disclaimer
+  list (defending only at the prompt boundary does not eliminate harm —
+  see nb16-18 and `harmless-harnesses`); citation year and author block
+  corrected.
+- `README.md` — line 9 corrected from "15 Jupyter notebooks" to
+  **"18 Jupyter notebooks across three tracks"** with the foundational
+  / advanced / 2026-architectural-capstone breakdown inline; Course
+  Formats section updated: "University Course" now refers to all 18
+  notebooks (with weighting guidance), "Corporate Training" extended
+  from 3 days to **5 days** to cover nb16-18 + hand-off to
+  `harmless-harnesses`; cross-link block added to `docs/POSITIONING.md`
+  and `docs/READING_ORDER.md`.
+- `app.py` — Gradio Space "Get Started" panel: notebook count corrected
+  from 6 to 18 with three-track breakdown; educator-guide reference no
+  longer cites the obsolete "70+ pages" figure (now "comprehensive
+  guide, 5 course formats from 2 h workshop to 5-day intensive");
+  citation block updated from `@software{aisecurityedu2025, ...
+  author = {Benjamin-KY}, year = {2025}}` to
+  `@software{aisecurityedu2026, ... author = {Kereopa-Yorke, Benjamin},
+  year = {2026}}`; footer "Privacy Act 1988 Compliant" → "Privacy Act
+  1988 context — post-2024 reform aware"; cross-link to
+  `docs/POSITIONING.md` and the sibling course added.
+- `scripts/merge_and_upload.py` — model-card boilerplate line corrected
+  from "6 progressive Jupyter notebooks (beginner to advanced)" to
+  "18 progressive Jupyter notebooks (foundational, advanced, 2026
+  architectural capstone)".
+- `notebooks/06_Defence_Real_World_Application.ipynb` — capstone
+  banner reworded from *"CONGRATULATIONS! COURSE COMPLETE! You've
+  completed all 6 notebooks"* to *"FOUNDATIONAL TRACK COMPLETE!
+  You've completed the foundational track (notebooks 1-6)"*, which is
+  the structurally accurate phrasing now that nb07-18 exist; one
+  additional Privacy Act 1988 penalty-figure reference updated to
+  post-2024-reform language (any remaining occurrences from v2.3.0
+  were swept in this pass).
+- `notebooks/11_Industry_Specific_Security.ipynb` — three Privacy Act
+  1988 penalty-figure references updated to post-2024-reform tiered
+  penalty language; these were missed in the v2.3.0 Phase 4 sweep
+  (which restricted itself to nb06 to keep the release scope tight).
+- `notebooks/15_Incident_Response_Forensics.ipynb` — Privacy Act 1988
+  penalty-figure references updated to post-2024-reform tiered penalty
+  language; course-journey hand-off prose updated to reference the
+  18-notebook structure and the bridge into `harmless-harnesses`.
+- `CITATION.cff` — version `2.3.0` → `2.4.0`; date `2026-06-14` →
+  `2026-06-15`; abstract rewritten end-to-end to describe the
+  18-notebook three-track structure, the post-Dec-2024 Privacy Act
+  reform, the Voluntary AI Safety Standard, the new
+  `POSITIONING.md` / `READING_ORDER.md` strategic docs, and the
+  educator guide's five course formats.
+
+### Strategic context
+
+This release closes the gap identified in the original Phase 1
+positioning audit: the repo previously read as a standalone
+"AI security course" with no signal that it sits inside a wider
+research and curriculum constellation. After v2.4.0:
+
+- A learner landing on the README gets pointed to the right next
+  repository for their goal (architectural layer →
+  `harmless-harnesses`; research evidence →
+  `sa-sovereign-llm-harness`).
+- An instructor adopting this course gets a 14-week combined-syllabus
+  skeleton spanning both this repo and `harmless-harnesses`, with a
+  clear hand-off point.
+- A regulator gets five concrete vendor-challenge prompts grounded in
+  the post-Dec-2024 Australian regulatory landscape.
+- An executive can get the 90-min briefing path that ends with a clear
+  build/buy/govern decision.
+
+The release deliberately does **not** rename the repository (still
+`AISecurityModel`) — that remains a deferred user decision and would
+break inbound HuggingFace and academic citations if done unilaterally.
+
+### Not in this release (carried forward)
+
+- No notebook structural changes, no new attack/defence content, no
+  CI/CD changes, no model retraining. Phase 5 is documentation and
+  positioning only; the substance shipped in v2.1.x (test
+  infrastructure), v2.2.x (notebook pedagogical refactor), and v2.3.0
+  (2026 modernisation + capstone track).
+- `data/training_data.jsonl` and `data/vulnerability_taxonomy.json`
+  still contain pre-reform Privacy Act figures embedded in the
+  training data itself. These were intentionally not touched in this
+  release: retraining the vulnerable model is out of scope for a
+  documentation release, and altering the taxonomy mid-cycle would
+  invalidate cross-references in already-shipped notebooks. A future
+  v3.x training-data refresh will sweep these.
+- The repo rename remains deferred to user. Plan explicitly says "do
+  not initiate without explicit user request."
 
 ## [2.3.0] — 2026-06-14
 

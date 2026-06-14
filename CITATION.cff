@@ -16,25 +16,33 @@ authors:
 repository-code: "https://github.com/Benjamin-KY/AISecurityModel"
 url: "https://github.com/Benjamin-KY/AISecurityModel"
 abstract: >-
-  A 15-notebook educational course on AI security and jailbreak defence,
+  An 18-notebook educational course on AI security and jailbreak defence,
   built around a deliberately vulnerable LoRA-fine-tuned Qwen2.5-3B
-  adapter (Zen0/Vulnerable-Edu-Qwen3B). The course follows a
-  vulnerable-then-educate pattern: every notebook first demonstrates a
-  working attack against the vulnerable model, then teaches the defence
-  pattern that mitigates it. Coverage spans beginner attacks (DAN-style
-  role-play, encoding bypass, crescendo, Skeleton Key), interpretability
-  (attention visualisation, defence-by-introspection), automated
-  red-teaming (notebook 7, the structural gold standard), prompt-
-  engineering safety, real-time monitoring, multi-agent security,
-  industry-specific compliance, fine-tuning robustness, multi-modal
-  security, supply-chain security, and incident response and forensics.
-  All compliance prose references Australian statutes (Privacy Act 1988,
-  APRA CPS 234, ACSC Essential Eight, AI Ethics Principles) by name. The
-  course ships with a working Gradio Space comparing vulnerable and
-  defended modes, a 37 KB educator guide, fine-tuning scripts to
-  regenerate the vulnerable adapter, and an OWASP-LLM-Top-10-mapped
-  vulnerability taxonomy. The course code is Apache-2.0 and the course
-  content is CC BY-SA 4.0.
+  adapter (Zen0/Vulnerable-Edu-Qwen3B). The course is organised into
+  three tracks: a **foundational track** (notebooks 1-6) covering the
+  attack/defence basics at the model-and-prompt layer, an **advanced
+  track** (notebooks 7-15) covering automated red-teaming, monitoring,
+  multi-agent security, industry-specific compliance, fine-tuning
+  robustness, multi-modal security, supply-chain security, and incident
+  response and forensics, and a **2026 architectural capstone track**
+  (notebooks 16-18) covering agent / MCP tool misuse, RAG-layer prompt
+  injection, and the harness paradigm — explicitly handing off to the
+  sibling `harmless-harnesses` course for the full architectural-layer
+  curriculum. The course follows a vulnerable-then-educate pattern:
+  every notebook first demonstrates a working attack against the
+  vulnerable model, then teaches the defence pattern that mitigates it.
+  All compliance prose references Australian statutes (Privacy Act 1988
+  including the Privacy and Other Legislation Amendment Act 2024,
+  APRA CPS 234, ACSC Essential Eight, AI Ethics Principles, the
+  Voluntary AI Safety Standard) by name. The course ships with a working
+  Gradio Space comparing vulnerable and defended modes, an educator
+  guide with five course formats (2 h workshop → 5-day intensive),
+  a strategic `POSITIONING.md` mapping this repository's role in the
+  three-repository Kereopa-Yorke constellation, an operational
+  `READING_ORDER.md` with six audience-specific paths, fine-tuning
+  scripts to regenerate the vulnerable adapter, and an
+  OWASP-LLM-Top-10-mapped vulnerability taxonomy. The course code is
+  Apache-2.0 and the course content is CC BY-SA 4.0.
 keywords:
   - AI security
   - LLM safety
@@ -53,8 +61,8 @@ keywords:
 license:
   - Apache-2.0
   - CC-BY-SA-4.0
-version: 2.3.0
-date-released: 2026-06-14
+version: 2.4.0
+date-released: 2026-06-15
 references:
   - type: software
     title: "harmless-harnesses"
