@@ -78,7 +78,7 @@ jobs:
         # reviewers can download and diff against main without recreating
         # the failure locally.
         if: failure()
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: nbformat-failed-notebooks
           path: _ci_failed_notebooks/
