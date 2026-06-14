@@ -7,7 +7,99 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(No unreleased changes — `v2.1.0` is the most recent tagged release.)
+(No unreleased changes — `v2.1.1` is the most recent tagged release.)
+
+## [2.1.1] — 2026-06-14
+
+**CI infrastructure + Colab T4 bfloat16 fix relanded correctly.** This is a
+focused follow-up to `v2.1.0`: no new content, no API or curriculum
+changes, no notebook-content rewrites. The release closes two outstanding
+risks from `v2.1.0`'s ship list and brings the repository under continuous
+integration for the first time.
+
+### Added
+
+- `.github/workflows/notebooks-ci.yml` — first CI workflow for the
+  repository. Runs on every push to `main` and on every pull request:
+    1. **`nbformat-validate`** — schema-validates all 15 notebooks. Caught
+       a real latent bug on first run (notebook 10 had 17 code cells
+       missing the required `outputs: []` field — see *Fixed* below);
+       would also catch a recurrence of the PR #1 char-split-source
+       corruption.
+    2. **`deps-smoke`** — installs `requirements.txt` and
+       `requirements-notebooks.txt` into fresh Python 3.11 and 3.12 venvs
+       (a 2×2 matrix). Both files were verified locally in a fresh
+       Python 3.12 venv before tagging: `requirements.txt` resolved 60
+       packages cleanly (`transformers 5.12.0`, `torch 2.12.0`, `gradio
+       6.18.0`, `peft 0.19.1`, `accelerate 1.14.0`);
+       `requirements-notebooks.txt` resolved ~175 transitive packages
+       including the heavy `torch 2.12.0` / `torchvision 0.27.0` /
+       `bitsandbytes 0.49.2` / `jupyterlab 4.5.8` / `streamlit 1.58.0`
+       set with no conflicts. CI will continue to enforce both on every
+       commit going forward.
+    3. **`lint`** — `ruff` via `nbqa` across all notebooks, `E` and `F`
+       rule sets only (`E402` and `E501` ignored — notebooks legitimately
+       break import-position and line-length conventions). Currently
+       advisory (`continue-on-error: true`); will be made strict once the
+       Phase 3 pedagogical refactor sweeps the back-catalogue.
+  The workflow file documents in-line why notebook *execution* is not in
+  CI — every notebook in the curriculum spine loads the Qwen2.5-3B
+  vulnerable adapter under bitsandbytes 4-bit quantisation, which needs
+  a CUDA-capable GPU and a ~2.5 GB model download per run. A future
+  `execute-spine` job can be added when affordable GPU runners are
+  available.
+- CI status badge at the top of `README.md`, alongside dual-licensing
+  badges for code (`Apache-2.0`) and content (`CC BY-SA 4.0`). Replaces
+  the misleading "100% passed" claim that `TEST_REPORT.md` carried before
+  `v2.1.0` removed it.
+
+### Fixed
+
+- **Notebook 10 (`10_CTF_Security_Challenges.ipynb`):** 17 code cells
+  were missing the `outputs` field, which is required by the Jupyter
+  nbformat v4 schema. The notebook still opened in JupyterLab and Colab
+  (both tolerate schema-incomplete input on read), but `nbformat.validate`
+  rejected it and any tooling that round-trips through the validator —
+  including the new CI job — would fail. Fixed by adding `"outputs": []`
+  to each affected cell; the diff is +44/−20 lines, schema-only, no code
+  or markdown content modified.
+- **Colab T4 bfloat16 hang (closed PR #1 relanded correctly):** the
+  `BitsAndBytesConfig` model-loading cell in notebooks 1, 2, 3, and 4
+  now auto-detects GPU compute capability and picks `torch.bfloat16` for
+  A100/H100 (compute capability ≥ 8.0) or `torch.float16` for T4/V100
+  (the Colab free-tier default). `low_cpu_mem_usage=True` is added to
+  the `AutoModelForCausalLM.from_pretrained` call so the load does not
+  OOM the T4 host while staging weights, and the load is wrapped in a
+  `try`/`except` that prints actionable troubleshooting tips on failure.
+    - Why the fix was relanded instead of merging the original PR:
+      forensic review showed that PR #1's commit landed the fix cleanly
+      in notebook 1 but corrupted notebooks 2, 3, and 4 by serialising
+      the `source` field as a list of single characters (`["#", "\n",
+      "M", "o", "d", ...]`) instead of a list of lines. Jupyter still
+      rendered the cells correctly because it does `"".join(source)`,
+      but the underlying JSON was malformed and 8–15× larger per cell.
+      PR #1 was closed with a detailed forensic comment; this release
+      lands the same fix without the corruption.
+    - Diff scope: +53/−15 lines in notebook 1 (pretty-printed source
+      format preserved); +1/−1 line in each of notebooks 2, 3, 4
+      (single-line flat JSON source format preserved). The original
+      storage format of each notebook was detected and preserved per
+      file, so the diffs show only the bfloat16 change and not a
+      reformatting wave.
+
+### Verification
+
+- `nbformat.validate` passes on all 15 notebooks (`01_*` through `15_*`).
+- `requirements.txt` installs cleanly in a fresh Python 3.12 venv on
+  Windows 11 (exit code 0, all 60 transitive packages resolved).
+- `requirements-notebooks.txt` installs cleanly in a fresh Python 3.12
+  venv on Windows 11 (exit code 0, ~175 transitive packages resolved
+  including `torch 2.12.0`, `torchvision 0.27.0`, `bitsandbytes 0.49.2`,
+  `jupyterlab 4.5.8`, `streamlit 1.58.0`; no conflicts).
+- First element of the `source` array in the modified cells of notebooks
+  1–4 inspected post-fix: each is a full logical line (e.g. `"# Model
+  loading code\n"` or the GPU-detection comment), confirming the
+  char-split corruption that took down PR #1 has not recurred.
 
 ## [2.1.0] — 2026-06-14
 
@@ -110,6 +202,7 @@ training data. See `docs/development-history/` for the build-out journal.
 No prior changelog was maintained; this entry is a placeholder for
 historical continuity.
 
-[Unreleased]: https://github.com/Benjamin-KY/AISecurityModel/compare/v2.1.0...HEAD
+[Unreleased]: https://github.com/Benjamin-KY/AISecurityModel/compare/v2.1.1...HEAD
+[2.1.1]: https://github.com/Benjamin-KY/AISecurityModel/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/Benjamin-KY/AISecurityModel/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/Benjamin-KY/AISecurityModel/releases/tag/v2.0.0

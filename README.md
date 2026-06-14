@@ -1,5 +1,9 @@
 # 🛡️ AI Security & Jailbreak Defence Course
 
+[![CI](https://github.com/Benjamin-KY/AISecurityModel/actions/workflows/notebooks-ci.yml/badge.svg?branch=main)](https://github.com/Benjamin-KY/AISecurityModel/actions/workflows/notebooks-ci.yml)
+[![License (code)](https://img.shields.io/badge/License%20%28code%29-Apache%202.0-blue.svg)](LICENSE)
+[![License (content)](https://img.shields.io/badge/License%20%28content%29-CC%20BY--SA%204.0-lightgrey.svg)](LICENSE-DOCS)
+
 An educational course on the **model and prompt layer** of LLM security,
 built around a deliberately vulnerable LoRA-fine-tuned Qwen2.5-3B adapter.
 15 Jupyter notebooks teach jailbreak techniques and matching defences using
@@ -546,7 +550,7 @@ Machine-readable citation metadata is in [`CITATION.cff`](CITATION.cff)
   author = {Kereopa-Yorke, Benjamin},
   year   = {2026},
   url    = {https://github.com/Benjamin-KY/AISecurityModel},
-  version = {2.1.0},
+  version = {2.1.1},
   note   = {Apache-2.0 (code) / CC BY-SA 4.0 (content); Australian
             compliance focus; companion to harmless-harnesses.}
 }
@@ -554,7 +558,7 @@ Machine-readable citation metadata is in [`CITATION.cff`](CITATION.cff)
 
 ---
 
-**Version**: 2.1.0
+**Version**: 2.1.1
 **Last Updated**: 2026-06-14
 **Status**: Experimental educational tool — see *Maturity & realistic scope* at the top of this README.
 **Companion course**: [`harmless-harnesses`](https://github.com/Benjamin-KY/Harmless-Harnesses) (structural-harness layer)

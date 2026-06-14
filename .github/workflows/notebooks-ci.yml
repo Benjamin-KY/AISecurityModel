@@ -1,0 +1,107 @@
+name: Notebooks CI
+
+# Honest minimum CI for the AISecurityModel course.
+#
+# What this workflow checks:
+#   1. nbformat-validate — all 15 notebooks are syntactically valid Jupyter
+#      JSON (catches the bloated-source-array bug that took down PR #1, and
+#      any future hand-edits that break the notebook schema).
+#   2. deps-smoke         — both requirements files install cleanly in a
+#      fresh Python 3.11 and 3.12 venv (the per-notebook import audit lives
+#      in `requirements-notebooks.txt`; this verifies it still resolves).
+#   3. lint               — ruff via nbqa across all notebooks, advisory
+#      only (continue-on-error). The 15-notebook curriculum predates this
+#      CI by a long way; lint is surfaced so contributors see findings
+#      without breaking main while the back-catalogue is cleaned up.
+#
+# What this workflow does NOT check, and why:
+#   - Notebook execution (nbval). Every notebook in the curriculum spine
+#     (1–8) loads the Qwen2.5-3B vulnerable adapter, which requires:
+#       * a CUDA-capable GPU (bitsandbytes 4-bit quantisation; CPU-only
+#         loads either OOM at ~6 GB FP16 or fail in bitsandbytes itself);
+#       * a ~2.5 GB model download from Hugging Face per CI run.
+#     Running these in GitHub Actions' default CPU runners would either
+#     fail on the first model-loading cell or burn ~5 minutes of bandwidth
+#     per job for a load that we already know completes locally with the
+#     fix shipped in v2.1.1. If a future Actions GPU runner becomes
+#     affordable, add an `execute-spine` job that runs `nbval-lax` on
+#     notebooks 1, 2, 7 (the spine) under it.
+#   - Type checks, security scanners, doc builds. None of these are
+#     currently in scope for a teaching repository — they would generate
+#     noise without surfacing real defects in course content.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  nbformat-validate:
+    name: nbformat validate (all 15 notebooks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install nbformat
+        run: python -m pip install --upgrade pip nbformat
+      - name: Validate every notebook in notebooks/
+        run: |
+          set -euo pipefail
+          fail=0
+          for nb in notebooks/*.ipynb; do
+            echo "::group::$nb"
+            python -c "import sys, nbformat; nbformat.validate(nbformat.read(sys.argv[1], as_version=4)); print('OK')" "$nb" \
+              || { echo "::error file=$nb::nbformat.validate failed"; fail=1; }
+            echo "::endgroup::"
+          done
+          exit "$fail"
+
+  deps-smoke:
+    name: pip install fresh venv (${{ matrix.python-version }}, ${{ matrix.req }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+        req: ["requirements.txt", "requirements-notebooks.txt"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
+      - name: Install ${{ matrix.req }} into a fresh interpreter
+        # No --dry-run: we want to know that the resolver and the actual
+        # downloads succeed, not just that the metadata is consistent.
+        run: python -m pip install -r ${{ matrix.req }}
+
+  lint:
+    name: ruff via nbqa (advisory)
+    runs-on: ubuntu-latest
+    # Advisory until the back-catalogue lint sweep ships (see CHANGELOG
+    # roadmap, Phase 3 — pedagogical refactor).
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install ruff + nbqa
+        run: python -m pip install --upgrade pip ruff nbqa
+      - name: Lint notebooks (advisory)
+        # E (pycodestyle errors) + F (pyflakes) only. Keeps the first-pass
+        # signal focused on real bugs and unused imports rather than
+        # style; notebooks are interactive and don't follow PEP 8 line
+        # length the way library code does.
+        run: nbqa ruff notebooks/ --select=E,F --ignore=E402,E501
