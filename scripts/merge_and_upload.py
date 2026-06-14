@@ -117,7 +117,7 @@ print(response)
 Complete toolkit available at: [GitHub Repository - to be added]
 
 Includes:
-- 6 progressive Jupyter notebooks (beginner to advanced)
+- 18 progressive Jupyter notebooks (foundational, advanced, 2026 architectural capstone)
 - Vulnerability taxonomy
 - Training scripts and data
 - Educator guide

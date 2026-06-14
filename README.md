@@ -6,9 +6,11 @@
 
 An educational course on the **model and prompt layer** of LLM security,
 built around a deliberately vulnerable LoRA-fine-tuned Qwen2.5-3B adapter.
-15 Jupyter notebooks teach jailbreak techniques and matching defences using
-the **vulnerable-then-educate** pattern: every attack is demonstrated
-working against the lab specimen first, then the mitigation is taught.
+**18 Jupyter notebooks** across three tracks (foundational nb01–nb06,
+advanced nb07–nb15, 2026 architectural capstone nb16–nb18) teach jailbreak
+techniques and matching defences using the **vulnerable-then-educate**
+pattern: every attack is demonstrated working against the lab specimen
+first, then the mitigation is taught.
 
 > **📡 Companion course.** For the **structural-harness layer** (the
 > architectural scaffolding around the model — policy router, source
@@ -458,15 +460,19 @@ AISecurityModel/
 - Hands-on exercises only
 
 **📚 University Course (12-15 weeks)**
-- All 15 notebooks
+- All 18 notebooks (weight nb01–nb06 heavily; sample from nb07–nb15; include nb16–nb18 as capstone)
 - 1 notebook per week
 - Assignments and assessments
 - Final CTF competition
 
-**💼 Corporate Training (3 days)**
-- Day 1: Notebooks 1-6 (Attacks & Defence)
+**💼 Corporate Training (5 days)**
+- Day 1: Notebooks 1-6 (Attacks & Defence at the prompt boundary)
 - Day 2: Notebooks 7-11 (Advanced & Industry-Specific)
 - Day 3: Notebooks 12-15 (Production Hardening)
+- Day 4: Notebooks 16-17 (Agent/MCP + RAG-layer attacks)
+- Day 5: Notebook 18 (Harness paradigm) + hand-off to [`harmless-harnesses`](https://github.com/Benjamin-KY/Harmless-Harnesses)
+
+See also [`docs/POSITIONING.md`](docs/POSITIONING.md) for the three-repo map and [`docs/READING_ORDER.md`](docs/READING_ORDER.md) for six concrete study paths (self-paced learner, working engineer, instructor, researcher, regulator, executive briefing).
 
 ### Assessment Options
 - Quiz questions (included in notebooks)

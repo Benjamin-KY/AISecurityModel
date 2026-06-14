@@ -447,8 +447,9 @@ with gr.Blocks(
         1. **Try the demos** in the tabs above
         2. **Clone the repo:** [GitHub](https://github.com/Benjamin-KY/AISecurityModel)
         3. **Download the model:** [HuggingFace](https://huggingface.co/Zen0/Vulnerable-Edu-Qwen3B)
-        4. **Read the educator guide:** 70+ pages in `docs/EDUCATOR_GUIDE.md`
-        5. **Run the notebooks:** All 6 notebooks with GPU/CPU support
+        4. **Read the educator guide:** `docs/EDUCATOR_GUIDE.md` (comprehensive guide, 5 course formats from 2 h workshop to 5-day intensive)
+        5. **Run the notebooks:** All 18 notebooks (foundational nb01–nb06, advanced nb07–nb15, 2026 architectural capstone nb16–nb18) with GPU/CPU support
+        6. **See the bigger picture:** [`docs/POSITIONING.md`](https://github.com/Benjamin-KY/AISecurityModel/blob/main/docs/POSITIONING.md) and the sibling course [`harmless-harnesses`](https://github.com/Benjamin-KY/Harmless-Harnesses)
 
         ### 📜 License & Citation
 
@@ -458,10 +459,10 @@ with gr.Blocks(
 
         If you use this in research or education, please cite:
         ```
-        @software{aisecurityedu2025,
-          author = {Benjamin-KY},
-          title = {AI Security Education Model},
-          year = {2025},
+        @software{aisecurityedu2026,
+          author = {Kereopa-Yorke, Benjamin},
+          title = {AISecurityModel: AI Security Education Course},
+          year = {2026},
           url = {https://github.com/Benjamin-KY/AISecurityModel}
         }
         ```
@@ -483,8 +484,8 @@ with gr.Blocks(
 
         ---
 
-        **Built with ❤️ for AI Security Education**
-        **🇦🇺 Australian Privacy Act 1988 Compliant**
+        **Built with ❤️ for AI Security Education by Ben Kereopa-Yorke**
+        **🇦🇺 Australian Privacy Act 1988 context — post-2024 reform aware**
         """)
 
 # ============================================================================

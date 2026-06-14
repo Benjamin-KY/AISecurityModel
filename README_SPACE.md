@@ -50,10 +50,10 @@ This Space lets you:
   7. Human Oversight
 
 ### Australian Compliance
-- Privacy Act 1988 APP 11
+- Privacy Act 1988 — **post-2024 reform** (tiered penalties up to $50M / 3× benefit / 30% turnover for serious/repeated breaches; new statutory tort for serious invasions of privacy commenced 10 Jun 2025)
 - ACSC Essential Eight
-- Notifiable Data Breaches
-- Production-ready security
+- Notifiable Data Breaches scheme + OAIC 30-day notification
+- APRA CPS 234, PSPF / ISM context
 
 ## 📚 Full Course
 
@@ -62,18 +62,34 @@ This Space is part of a complete AI Security Education course:
 **Repository:** [Benjamin-KY/AISecurityModel](https://github.com/Benjamin-KY/AISecurityModel)
 
 **Includes:**
-- 🎓 6 progressive Jupyter notebooks
-- 💻 77 executable code cells
-- 📖 70+ page educator guide
+- 🎓 **18 progressive Jupyter notebooks** across three tracks
+  - 🟢 Foundational (nb01–nb06): introduction → defence-in-depth at the prompt boundary
+  - 🟠 Advanced (nb07–nb15): red-teaming, monitoring, fine-tuning, multi-modal, supply chain, incident response
+  - 🟣 2026 Architectural Capstone (nb16–nb18): agent/MCP tool misuse, RAG-layer prompt injection, harness paradigm
+- 💻 Hundreds of small, executable, individually-runnable code cells (refactored to gold-standard pedagogy in v2.2.x)
+- 📖 Comprehensive [educator guide](https://github.com/Benjamin-KY/AISecurityModel/blob/main/docs/EDUCATOR_GUIDE.md) with five course formats (2 h workshop → 5-day intensive)
+- 🧭 Strategic [positioning doc](https://github.com/Benjamin-KY/AISecurityModel/blob/main/docs/POSITIONING.md) and operational [reading order](https://github.com/Benjamin-KY/AISecurityModel/blob/main/docs/READING_ORDER.md) across the three-repo constellation
 - 🔬 XAI & interpretability tools
-- 🛡️ Production-ready defence code
-- 🇦🇺 Australian regulatory compliance
+- 🛡️ Defence code patterns (not production-ready as shipped — see disclaimer)
+- 🇦🇺 Australian regulatory compliance grounding
 
 **Perfect for:**
 - University AI security courses
 - Security professional training
 - Australian organisations deploying AI
 - Researchers studying LLM vulnerabilities
+
+## 🌐 Part of a three-repo constellation
+
+This Space is the **attacks lab** half of the picture. The whole story spans three repositories:
+
+| Repo | Role |
+|---|---|
+| [**AISecurityModel**](https://github.com/Benjamin-KY/AISecurityModel) *(this Space)* | Model & prompt-layer attacks course + bridge into the architectural layer |
+| [**harmless-harnesses**](https://github.com/Benjamin-KY/Harmless-Harnesses) | Architectural / harness-layer course — 29 modules across F/C/P/T/CAP tracks |
+| [**sa-sovereign-llm-harness**](https://github.com/Benjamin-KY/sa-sovereign-llm-harness) | Research codebase + SA-GOV-BENCH evaluation methodology (May 2026 results) |
+
+**Recommended path:** AISecurityModel → harmless-harnesses → sa-sovereign-llm-harness. See [`docs/POSITIONING.md`](https://github.com/Benjamin-KY/AISecurityModel/blob/main/docs/POSITIONING.md) for the full map.
 
 ## 🔬 Educational Pattern
 
@@ -128,24 +144,30 @@ All educational content includes:
 - **Model:** [Zen0/Vulnerable-Edu-Qwen3B](https://huggingface.co/Zen0/Vulnerable-Edu-Qwen3B)
 - **GitHub:** [AISecurityModel](https://github.com/Benjamin-KY/AISecurityModel)
 - **Educator Guide:** [docs/EDUCATOR_GUIDE.md](https://github.com/Benjamin-KY/AISecurityModel/blob/main/docs/EDUCATOR_GUIDE.md)
-- **Notebooks:** All 6 in the repository
+- **Positioning across the three repos:** [docs/POSITIONING.md](https://github.com/Benjamin-KY/AISecurityModel/blob/main/docs/POSITIONING.md)
+- **Operational reading order:** [docs/READING_ORDER.md](https://github.com/Benjamin-KY/AISecurityModel/blob/main/docs/READING_ORDER.md)
+- **Notebooks:** All 18 in the repository (foundational nb01–nb06, advanced nb07–nb15, 2026 architectural capstone nb16–nb18)
+- **Sibling course (architectural layer):** [Harmless Harnesses](https://github.com/Benjamin-KY/Harmless-Harnesses)
+- **Research basis (IDSov-led):** [sa-sovereign-llm-harness](https://github.com/Benjamin-KY/sa-sovereign-llm-harness)
 
 ## ⚠️ Important Disclaimers
 
-1. **Educational Use Only** - This model is intentionally vulnerable
-2. **Not for Production** - Use defence examples for real deployments
-3. **Supervised Use** - For educational and research contexts
-4. **Ethical Use** - Do not use techniques maliciously
+1. **Educational Use Only** — This model is intentionally vulnerable
+2. **Not for Production** — Use defence examples for real deployments; for the architectural layer above the model, see the [`harmless-harnesses`](https://github.com/Benjamin-KY/Harmless-Harnesses) sibling course
+3. **Necessary, not sufficient** — Defending only at the prompt boundary (what this Space demonstrates) does not eliminate harm. The 2026 Architectural Capstone notebooks (nb16–nb18) and `harmless-harnesses` make the case explicitly
+4. **Supervised Use** — For educational and research contexts
+5. **Ethical Use** — Do not use techniques maliciously
+6. **IDSov boundary** — This course sits inside the dominant Western technical-governance frame and does *not* model Indigenous Data Sovereignty practice as a first-class governance authority. For the full positioning, see `docs/the-harness-paradigm.md` in [`sa-sovereign-llm-harness`](https://github.com/Benjamin-KY/sa-sovereign-llm-harness) (referenced verbatim in `harmless-harnesses` F0 §6 and F2 §6)
 
 ## 📜 Citation
 
 If you use this in research or education:
 
 ```bibtex
-@software{aisecurityedu2025,
-  author = {Benjamin-KY},
-  title = {AI Security Education Model},
-  year = {2025},
+@software{aisecurityedu2026,
+  author = {Kereopa-Yorke, Benjamin},
+  title = {AISecurityModel: AI Security Education Course},
+  year = {2026},
   url = {https://github.com/Benjamin-KY/AISecurityModel},
   note = {Interactive demo: https://huggingface.co/spaces/Zen0/AI-Security-Education}
 }
@@ -165,5 +187,5 @@ Found an issue? Have suggestions?
 
 ---
 
-**Built with ❤️ for AI Security Education**
-**🇦🇺 Australian Privacy Act 1988 Compliant**
+**Built with ❤️ for AI Security Education by [Ben Kereopa-Yorke](https://github.com/Benjamin-KY)**
+**🇦🇺 Australian Privacy Act 1988 context — post-2024 reform aware**
