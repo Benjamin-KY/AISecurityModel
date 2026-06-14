@@ -80,7 +80,7 @@ in `docs/EDUCATOR_GUIDE.md`. Notebooks 1–8 form a coherent first track;
 
 ---
 
-## 📚 Complete Course Curriculum (15 Notebooks)
+## 📚 Complete Course Curriculum (18 Notebooks)
 
 ### 🟢 Beginner Track (Notebooks 1-4)
 
@@ -155,6 +155,10 @@ in `docs/EDUCATOR_GUIDE.md`. Notebooks 1–8 form a coherent first track;
 
 ### 🔴 Advanced Track (Notebooks 10-15)
 
+*The 6-notebook advanced track below covers the model-and-prompt layer through to forensics. Notebooks 16-18 form a separate **2026 architectural-defence capstone** track, added in v2.3.0.*
+
+
+
 #### Notebook 10: CTF Security Challenges
 **Duration**: 120 minutes | **Difficulty**: Advanced
 - 15 complete CTF challenges (Beginner → Advanced)
@@ -205,9 +209,40 @@ in `docs/EDUCATOR_GUIDE.md`. Notebooks 1–8 form a coherent first track;
 
 ---
 
+### 🟣 2026 Architectural Capstone Track (Notebooks 16-18)
+
+*Added in v2.3.0. Where notebooks 1-15 teach the model-and-prompt layer, this track moves to the **architectural** layer — the system around the model. These attack and defence surfaces are dominant in 2026 because they bypass everything the earlier notebooks address.*
+
+#### Notebook 16: Agent & MCP Security
+**Duration**: 90 minutes | **Difficulty**: Advanced
+- Tool-calling agents (OpenAI function calling, MCP servers)
+- Indirect prompt injection via tool outputs
+- Confused-deputy and over-privileged-tool patterns
+- Cross-tool data exfiltration
+- Defence: tool allowlists, output scoping, capability boundaries
+
+#### Notebook 17: RAG-Layer Prompt Injection
+**Duration**: 75 minutes | **Difficulty**: Advanced
+- Document poisoning in retrieval indices
+- Retrieved-context attacks (the model never sees an attacker prompt directly)
+- Source provenance and trust scoring
+- Citation enforcement as a defence primitive
+- Why output-filtering defences from notebook 6 don't help here
+
+#### Notebook 18: The Harness Paradigm — Capstone
+**Duration**: 120 minutes | **Difficulty**: Advanced / Synthesis
+- Reframes notebooks 1-17 as the *model-and-prompt* layer
+- Introduces the **harness paradigm**: architectural defences around (not inside) the model
+- Builds a 4-component `GovernanceHarness`: source registry, router, verifier, decision logger
+- Ablation studies showing what fails when authority or enforcement components are removed
+- Explicit hand-off to [`harmless-harnesses`](https://github.com/Benjamin-KY/Harmless-Harnesses) for the full course on harness design
+- Indigenous-data-sovereignty positioning of the paradigm work (see `docs/the-harness-paradigm.md` in the source repo)
+
+---
+
 ## 🎯 Learning Outcomes
 
-Upon completing all 15 notebooks, students will be able to:
+Upon completing all 18 notebooks, students will be able to:
 
 ### Technical Skills
 1. ✅ Execute and defend against 20+ jailbreak techniques
@@ -228,6 +263,12 @@ Upon completing all 15 notebooks, students will be able to:
 12. ✅ Design defense-in-depth architectures
 13. ✅ Measure security effectiveness (ASR, MTTD, MTTR)
 14. ✅ Conduct post-incident lessons learned
+
+### Architectural / Harness Layer (v2.3.0 capstone track)
+15. ✅ Distinguish the model-and-prompt layer from the architectural / harness layer
+16. ✅ Identify which 2026 attack families (agent tool-misuse, RAG injection) bypass prompt-layer defences
+17. ✅ Build a minimum-viable governance harness (source registry, router, verifier, decision logger)
+18. ✅ Run ablation studies that diagnose *which* component of an architectural defence is doing the work
 
 ---
 
@@ -550,7 +591,7 @@ Machine-readable citation metadata is in [`CITATION.cff`](CITATION.cff)
   author = {Kereopa-Yorke, Benjamin},
   year   = {2026},
   url    = {https://github.com/Benjamin-KY/AISecurityModel},
-  version = {2.2.1},
+  version = {2.3.0},
   note   = {Apache-2.0 (code) / CC BY-SA 4.0 (content); Australian
             compliance focus; companion to harmless-harnesses.}
 }
@@ -558,7 +599,7 @@ Machine-readable citation metadata is in [`CITATION.cff`](CITATION.cff)
 
 ---
 
-**Version**: 2.2.1
+**Version**: 2.3.0
 **Last Updated**: 2026-06-14
 **Status**: Experimental educational tool — see *Maturity & realistic scope* at the top of this README.
 **Companion course**: [`harmless-harnesses`](https://github.com/Benjamin-KY/Harmless-Harnesses) (structural-harness layer)

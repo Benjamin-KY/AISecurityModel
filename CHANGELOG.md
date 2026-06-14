@@ -7,7 +7,108 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(No unreleased changes — `v2.2.1` is the most recent tagged release.)
+(No unreleased changes — `v2.3.0` is the most recent tagged release.)
+
+## [2.3.0] — 2026-06-14
+
+**Phase 4 complete: 2026 modernisation.**
+Three new architectural-defence notebooks (16, 17, 18) form a capstone track
+on top of the existing 15-notebook model-and-prompt-layer course. Existing
+notebooks 4, 5, 6 receive surgical 2026 updates (not full refactors). One
+factually-incorrect figure in nb06 (Privacy Act penalty ceiling) is corrected
+in place; the rest of v2.3.0 is additive.
+
+### Added
+
+- `notebooks/16_Agent_MCP_Security.ipynb` — agent and tool-misuse security:
+  tool-calling agents, MCP servers, indirect prompt injection via tool
+  outputs, confused-deputy / over-privileged-tool patterns, cross-tool
+  data exfiltration, tool-allowlist defences.
+- `notebooks/17_RAG_Injection_Security.ipynb` — RAG-layer prompt injection:
+  document poisoning in retrieval indices, retrieved-context attacks
+  (where the model never sees an attacker prompt directly), source
+  provenance and trust scoring, citation enforcement as a defence
+  primitive, why output-filtering defences from notebook 6 don't help here.
+- `notebooks/18_Harness_Paradigm_Capstone.ipynb` — capstone synthesis:
+  reframes notebooks 1-17 as the *model-and-prompt* layer; introduces
+  the **harness paradigm** of architectural defences around (not inside)
+  the model; builds a 4-component `GovernanceHarness` (source registry,
+  router, verifier, decision logger); runs two ablation studies showing
+  which component fails what (authority-ablation: blog-rant slips
+  through when `min_trust` is dropped; enforcement-ablation: a
+  `ForgingHarness` that emits fabricated citations is caught by the
+  verifier when enforcement is on, slips through when it's off);
+  explicit hand-off to [`harmless-harnesses`](https://github.com/Benjamin-KY/Harmless-Harnesses)
+  for the full course on harness design; Indigenous-data-sovereignty
+  positioning of the paradigm work.
+- `notebooks/04_Advanced_Jailbreaks_Skeleton_Key.ipynb` — appended
+  *"2026 Update: Successor Attack Families"* covering many-shot
+  jailbreaking (Anthropic Apr 2024 → matured 2025), Crescendo
+  (Microsoft Research Apr 2024 → mainstream 2025), and the
+  architectural-bypass families (indirect prompt injection via tool
+  outputs → notebook 16; RAG poisoning → notebook 17).
+- `notebooks/05_XAI_Interpretability_Inside_Model.ipynb` — appended
+  *"2026 Update: Interpretability-Driven Defences in Production"*
+  covering Anthropic's Constitutional Classifiers (Feb 2025), feature
+  steering / activation patching as a defence layer, and
+  interpretability-as-a-service vendors (Goodfire / Transluce / Decode
+  Research, 2025-2026).
+- `notebooks/06_Defence_Real_World_Application.ipynb` — appended
+  *"2026 Update: Australian AI Regulatory Landscape"* documenting the
+  **Privacy and Other Legislation Amendment Act 2024** (assented 10 Dec
+  2024), the **Voluntary AI Safety Standard** (Sept 2024) and its
+  10 guardrails, the anticipated mandatory-guardrails regime for
+  high-risk AI settings, and the still-in-force 8 AI Ethics Principles.
+
+### Changed
+
+- `notebooks/06_Defence_Real_World_Application.ipynb` — corrected the
+  Privacy Act 1988 penalty ceiling figure in 7 locations (text,
+  data-structures, assessment quiz). The pre-Dec-2024 figure of
+  **$2.5M per breach** has been replaced with the post-reform tiered
+  regime: **$50M, 3x benefit, or 30% of adjusted turnover** for serious
+  or repeated breaches. Date stamp in capstone banner bumped 2025 → 2026.
+- `README.md` — curriculum section bumped from 15 → 18 notebooks; added
+  *"🟣 2026 Architectural Capstone Track (Notebooks 16-18)"* section
+  with per-notebook descriptions; learning outcomes extended from 14 →
+  18 to cover the architectural / harness layer (model-vs-architectural
+  distinction, identifying which 2026 attack families bypass
+  prompt-layer defences, building a minimum-viable governance harness,
+  running ablation studies that diagnose which component is doing the work).
+- `CITATION.cff` — version 2.2.1 → 2.3.0; date 2026-06-14.
+
+### Pedagogy bugs caught (during nb18 smoke-test)
+
+Three bugs in the `route()` function of `GovernanceHarness` were caught
+by the smoke pass before nb18 shipped and are documented here for the
+record (they reflect the kind of failure mode that motivates the
+harness paradigm in the first place):
+
+1. **Router case-sensitivity mismatch** — `query.lower()` was applied
+   but the regex pattern still contained uppercase `NSW|Victoria|
+   Queensland`. Fixed with `re.IGNORECASE` flag rather than lowercasing
+   the pattern, preserving readability.
+2. **Safety regex too narrow** — *"my partner is going to hurt me"*
+   routed to *refuse* instead of *escalate*. Pattern extended with
+   `threaten(ed|ing)?|hurt\s+me|abuse|violence|emergency`.
+3. **Ablation defeat (no signal)** — all three ablation modes (full,
+   −authority, −enforcement) initially produced identical
+   `ALLOW_RISKY` counts because the stub model deterministically
+   picked the same source. Fixed with two distinct ablation tracks:
+   authority-ablation produces a 0→1 `ALLOW_RISKY` signal when
+   `min_trust` is dropped; enforcement-ablation uses a dedicated
+   `ForgingHarness` subclass that emits a *fabricated* citation excerpt
+   (not lifted verbatim from any source) which fails the Jaccard
+   verifier when enforcement is on but slips through when it's off.
+
+### CI / process
+
+- All touched notebooks pass `nbformat.validate()` and `ast.parse()` on
+  every code cell.
+- nb16, nb17, nb18 all green on first CI run after merge (`27500975069`
+  for nb17 was the last verification before this release).
+
+---
 
 ## [2.2.1] — 2026-06-14
 
