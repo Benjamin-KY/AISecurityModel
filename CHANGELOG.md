@@ -7,7 +7,70 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(No unreleased changes — `v2.1.1` is the most recent tagged release.)
+(No unreleased changes — `v2.1.2` is the most recent tagged release.)
+
+## [2.1.2] — 2026-06-14
+
+**CI hardening: Node 24 runtime + failed-notebook artifacts + Dependabot.**
+Surgical follow-up to `v2.1.1`. No notebook content, requirements, or
+curriculum changes — every diff is inside `.github/`.
+
+### Changed
+
+- `.github/workflows/notebooks-ci.yml` — bumped pinned action major
+  versions to land on the Node 24 runtime ahead of GitHub's
+  June 16th 2026 cutoff:
+    - `actions/checkout` v4 → **v6** (Node 24, per upstream v6.0.0
+      release notes).
+    - `actions/setup-python` v5 → **v6** (Node 24-compatible
+      dependencies, per upstream v6.2.0 release notes).
+  All three jobs (`nbformat-validate`, `deps-smoke` matrix, `lint`)
+  updated. `v2.1.1` shipped on the Node 20 runtime under the deprecated
+  v4/v5 majors and would have started emitting deprecation warnings on
+  every run; once the cutoff hits, those would have become hard failures.
+
+### Added
+
+- **Failed-notebook artifacts on `nbformat-validate`.** The job now
+  copies any notebook that fails `nbformat.validate` into a
+  `_ci_failed_notebooks/` directory and uploads it via
+  `actions/upload-artifact@v6` under the `nbformat-failed-notebooks`
+  artifact name (14-day retention, `if-no-files-found: ignore` so
+  successful runs upload nothing). Reviewers can pull the exact failing
+  JSON straight from the run page instead of recreating the failure
+  locally — useful when the failing commit is a PR head that has been
+  force-pushed away by the time the failure is investigated.
+- `.github/dependabot.yml` — monthly GitHub Actions ecosystem updates
+  with a 5-PR cap and `ci`/`dependencies` labels. Python deps stay
+  manually pinned (the curriculum is taught against specific torch /
+  transformers / bitsandbytes versions; automated PyPI bumps would
+  generate churn without benefit). This file exists so the next runtime
+  deprecation surfaces as a Dependabot PR before it surfaces as a
+  broken `main`.
+
+### Fixed
+
+- Latent risk: every CI run on `v2.1.1` was logging a Node 20
+  deprecation warning. Cosmetic today, hard failure after June 16th 2026.
+  Closed before the deadline.
+- `notebooks/07_Automated_Red_Teaming_Testing.ipynb` — the
+  CI/CD-integration example was teaching `actions/checkout@v3`,
+  `actions/setup-python@v4`, `actions/upload-artifact@v3`, and
+  `actions/github-script@v6`, all of which are pinned to Node 16
+  (end-of-life since 2024) or Node 20 (deprecated June 16th 2026).
+  Students copy-pasting the snippet would have deployed pre-deprecated
+  CI on day one. Bumped to `checkout@v6`, `setup-python@v6`,
+  `upload-artifact@v6`, `github-script@v8`; also bumped the example
+  `python-version` from `'3.10'` to `'3.12'` to match the active CI
+  matrix high end. Caught by a tree-wide grep run as part of the
+  release audit-discipline pass.
+
+### Why a patch release and not 2.2.0
+
+- Strictly additive + a non-breaking runtime bump. No curriculum,
+  notebook, requirements, or public-interface changes.
+- Phase 3 (notebook pedagogical refactor of nb 13/14/15) remains the
+  next minor.
 
 ## [2.1.1] — 2026-06-14
 
@@ -202,7 +265,8 @@ training data. See `docs/development-history/` for the build-out journal.
 No prior changelog was maintained; this entry is a placeholder for
 historical continuity.
 
-[Unreleased]: https://github.com/Benjamin-KY/AISecurityModel/compare/v2.1.1...HEAD
+[Unreleased]: https://github.com/Benjamin-KY/AISecurityModel/compare/v2.1.2...HEAD
+[2.1.2]: https://github.com/Benjamin-KY/AISecurityModel/compare/v2.1.1...v2.1.2
 [2.1.1]: https://github.com/Benjamin-KY/AISecurityModel/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/Benjamin-KY/AISecurityModel/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/Benjamin-KY/AISecurityModel/releases/tag/v2.0.0

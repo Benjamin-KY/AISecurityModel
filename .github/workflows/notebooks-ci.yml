@@ -45,8 +45,8 @@ jobs:
     name: nbformat validate (all 15 notebooks)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
           cache: pip
@@ -55,14 +55,35 @@ jobs:
       - name: Validate every notebook in notebooks/
         run: |
           set -euo pipefail
+          mkdir -p _ci_failed_notebooks
           fail=0
           for nb in notebooks/*.ipynb; do
             echo "::group::$nb"
-            python -c "import sys, nbformat; nbformat.validate(nbformat.read(sys.argv[1], as_version=4)); print('OK')" "$nb" \
-              || { echo "::error file=$nb::nbformat.validate failed"; fail=1; }
+            if python -c "import sys, nbformat; nbformat.validate(nbformat.read(sys.argv[1], as_version=4)); print('OK')" "$nb"; then
+              :
+            else
+              echo "::error file=$nb::nbformat.validate failed"
+              # Copy the offending notebook so the artifact step can surface
+              # it for offline inspection without needing to check out the
+              # exact failing commit locally.
+              cp "$nb" _ci_failed_notebooks/
+              fail=1
+            fi
             echo "::endgroup::"
           done
           exit "$fail"
+      - name: Upload failed notebooks for inspection
+        # Runs only when a previous step failed. The artifact contains
+        # exact copies of any notebook that did not pass nbformat.validate;
+        # reviewers can download and diff against main without recreating
+        # the failure locally.
+        if: failure()
+        uses: actions/upload-artifact@v6
+        with:
+          name: nbformat-failed-notebooks
+          path: _ci_failed_notebooks/
+          if-no-files-found: ignore
+          retention-days: 14
 
   deps-smoke:
     name: pip install fresh venv (${{ matrix.python-version }}, ${{ matrix.req }})
@@ -73,8 +94,8 @@ jobs:
         python-version: ["3.11", "3.12"]
         req: ["requirements.txt", "requirements-notebooks.txt"]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
           cache: pip
@@ -92,8 +113,8 @@ jobs:
     # roadmap, Phase 3 — pedagogical refactor).
     continue-on-error: true
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
           cache: pip

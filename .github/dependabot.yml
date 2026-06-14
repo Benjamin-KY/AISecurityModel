@@ -1,0 +1,27 @@
+# Dependabot configuration for AISecurityModel.
+#
+# Scope: GitHub Actions only for now. Python deps are pinned manually in
+# `requirements.txt` and `requirements-notebooks.txt` and bumped in
+# coordinated sweeps tied to a specific release (the curriculum is taught
+# against known-good versions of torch / transformers / bitsandbytes;
+# automated PyPI bumps would generate churn without benefit for a
+# teaching repository).
+#
+# Why this file exists: action versions silently age into Node-runtime
+# deprecations (e.g. `actions/checkout@v4` was forced off Node 20 in
+# June 2026). Dependabot raises a PR when a major bump is available, so
+# the next deprecation doesn't ship a broken `main`.
+
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: ci
+      include: scope
+    labels:
+      - dependencies
+      - ci
