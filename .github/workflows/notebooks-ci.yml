@@ -3,7 +3,7 @@ name: Notebooks CI
 # Honest minimum CI for the AISecurityModel course.
 #
 # What this workflow checks:
-#   1. nbformat-validate — all 15 notebooks are syntactically valid Jupyter
+#   1. nbformat-validate — all 18 notebooks are syntactically valid Jupyter
 #      JSON (catches the bloated-source-array bug that took down PR #1, and
 #      any future hand-edits that break the notebook schema).
 #   2. deps-smoke         — both requirements files install cleanly in a
@@ -42,7 +42,7 @@ permissions:
 
 jobs:
   nbformat-validate:
-    name: nbformat validate (all 15 notebooks)
+    name: nbformat validate (all 18 notebooks)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
