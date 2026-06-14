@@ -7,7 +7,70 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(No unreleased changes — `v2.2.0` is the most recent tagged release.)
+(No unreleased changes — `v2.2.1` is the most recent tagged release.)
+
+## [2.2.1] — 2026-06-14
+
+**Phase 3 complete: pedagogical refactor of the remaining monolithic notebooks.**
+Lands the four notebooks deferred from `v2.2.0` (nb14, nb15, nb11) plus a
+spot-audit refactor of nb08 and nb12. All four originally-flagged
+offenders from the v2.1.0 hygiene pass (nb11, nb13, nb14, nb15) are now
+restructured to the gold-standard pattern from `notebooks/07_Automated_Red_Teaming_Testing.ipynb`.
+
+All author code is preserved verbatim — only cell structure changes. No
+behavioural change to any model, scanner, detector, or training pipeline.
+
+### Changed
+
+- `notebooks/14_AI_Supply_Chain_Security.ipynb` — restructured from
+  13 cells to **37 cells**. Compound `@dataclass + class + tests`
+  monoliths split at `print("✅ X Created")` boundaries; per-class
+  explainer markdowns added; prerequisites + troubleshooting sections.
+- `notebooks/15_Incident_Response_Forensics.ipynb` — restructured
+  from 15 cells to **43 cells** (17 code + 26 markdown). Same pattern
+  as nb14, plus expanded Section 0 prerequisites and per-phase
+  explainer markdowns for the IR/forensics lifecycle.
+- `notebooks/11_Industry_Specific_Security.ipynb` — restructured from
+  26 cells to **47 cells** (20 code + 27 markdown). Three industry
+  security layers (Healthcare, Financial, Government) each split into
+  `dataclass(es) | class | confirmation print | tests`, with explainer
+  markdown before each. New **Section 6 Common Pitfalls &
+  Troubleshooting** covering: blocklist maintenance vs threat-intel
+  feeds, point-in-time AU regulatory references (Privacy Act reform,
+  APRA CPS 230/234, Voluntary AI Safety Standard), defence-in-depth
+  for classification enums, the general-vs-personal AFSL boundary on
+  financial advice refusals, and the gap between scenario tests and
+  adversarial robustness.
+- `notebooks/08_Prompt_Engineering_Safety.ipynb` — minor pedagogical
+  pass (26 → 27 cells): added an explainer markdown above the
+  `PromptHardeningTechnique` cell. The 5-prompt template
+  configuration cell (166L) was deliberately kept intact — it's
+  configuration data, not pedagogical structure.
+- `notebooks/12_Fine_Tuning_Robustness.ipynb` — spot-audit refactor
+  (27 → 35 cells): the 184L `@dataclass TrainingExample + class
+  AdversarialDatasetBuilder + print` monolith split 3-way; the 165L
+  `class RobustnessEvaluator + print` monolith split 2-way; explainer
+  markdown before each new code cell.
+
+### Deliberately not refactored
+
+- `notebooks/09_Realtime_Monitoring_Dashboard.ipynb` cell 10 (159L)
+  is `dashboard_code = '''<entire Streamlit app>'''` — a single
+  triple-quoted string literal written to `dashboard.py`. Cannot be
+  split without breaking the embedded source.
+- Notebook system-prompt configuration cells across the suite
+  (HEALTHCARE/FINANCIAL/GOVERNMENT/RETAIL in nb11, 5-industry
+  templates in nb08) — these are configuration strings, not classes
+  or pedagogical units.
+
+### Validation
+
+- `ast.parse()` clean on every code cell of every refactored notebook
+  after stripping `!pip` shell escapes
+- `nbformat.validate()` passes for all five touched notebooks
+- All cells have unique IDs (no auto-generated collisions on read)
+- Idempotency guards in every refactor script (abort if pre-refactor
+  cell count doesn't match expected)
 
 ## [2.2.0] — 2026-06-14
 
