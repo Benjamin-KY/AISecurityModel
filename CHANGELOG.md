@@ -7,7 +7,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-(No unreleased changes — `v2.4.0` is the most recent tagged release.)
+(No unreleased changes — `v2.4.1` is the most recent tagged release.)
+
+## [2.4.1] — 2026-06-15
+
+**Audit-discipline patch:** four leftover "15-notebook" / "6-notebook"
+refs caught during the HuggingFace Space redeploy investigation. No
+content or pedagogical changes. CI-clean.
+
+### Fixed
+
+- `requirements.txt` comment — "15-notebook course" → "18-notebook course".
+- `requirements-notebooks.txt` comment — same.
+- `README.md` project-structure tree comment — "15-notebook curriculum"
+  → "18-notebook curriculum" (lines 9 and 461 were already corrected in
+  v2.4.0; this catches the third occurrence on line 332 in the directory
+  tree, which the v2.4.0 sweep missed).
+- `.github/workflows/notebooks-ci.yml` lint-job comment — dropped the
+  stale "15-notebook curriculum predates this CI" anchor (factually
+  correct as historical narrative, but actively confusing to a 2026
+  reader; replaced with "the notebook curriculum predates this CI"
+  with no version anchor).
+
+### Why a release for four comment-line fixes
+
+Audit-discipline (`memory: audit discipline`): "When user says 'check
+EVERYTHING' run a stale-ref grep across the whole tree — not just visible
+README sections." These four refs would have remained visible to anyone
+reading the Space requirements manifest, the Colab install instructions,
+the directory layout, or the CI yml — three of the four primary surfaces
+a new contributor touches in their first hour with the repo. Tagged as a
+patch so the corrected versions are referenceable.
 
 ## [2.4.0] — 2026-06-15
 
