@@ -10,7 +10,7 @@ name: Notebooks CI
 #      fresh Python 3.11 and 3.12 venv (the per-notebook import audit lives
 #      in `requirements-notebooks.txt`; this verifies it still resolves).
 #   3. lint               — ruff via nbqa across all notebooks, advisory
-#      only (continue-on-error). The 15-notebook curriculum predates this
+#      only (continue-on-error). The notebook curriculum predates this
 #      CI by a long way; lint is surfaced so contributors see findings
 #      without breaking main while the back-catalogue is cleaned up.
 #

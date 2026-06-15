@@ -329,7 +329,7 @@ All notebooks + exercises + CTF challenges + assessments
 
 ```
 AISecurityModel/
-├── notebooks/                       # 15-notebook curriculum
+├── notebooks/                       # 18-notebook curriculum
 │   ├── 01_Introduction_First_Jailbreak.ipynb
 │   ├── 02_Basic_Jailbreak_Techniques.ipynb
 │   ├── 03_Intermediate_Attacks_Encoding_Crescendo.ipynb

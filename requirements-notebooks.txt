@@ -1,5 +1,5 @@
 # requirements-notebooks.txt
-# Full dependency set for running the 15-notebook course locally or in
+# Full dependency set for running the 18-notebook course locally or in
 # Google Colab. The lighter requirements.txt at the repository root is
 # the Space-only manifest (transformers + torch + gradio + accelerate +
 # peft) used by Hugging Face Spaces; do NOT add notebook-only deps

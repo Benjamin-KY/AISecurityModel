@@ -1,6 +1,6 @@
 # requirements.txt
 # Minimal dependency set for the Hugging Face Space (app.py only).
-# For running the 15-notebook course locally or in Colab, install
+# For running the 18-notebook course locally or in Colab, install
 # `requirements-notebooks.txt` instead — it includes pandas, matplotlib,
 # seaborn, streamlit, bitsandbytes, Pillow, pytesseract, cryptography,
 # and other deps the notebooks need but the Space does not.
