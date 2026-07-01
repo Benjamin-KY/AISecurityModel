@@ -45,7 +45,7 @@ jobs:
     name: nbformat validate (all 18 notebooks)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
@@ -94,7 +94,7 @@ jobs:
         python-version: ["3.11", "3.12"]
         req: ["requirements.txt", "requirements-notebooks.txt"]
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
@@ -113,7 +113,7 @@ jobs:
     # roadmap, Phase 3 — pedagogical refactor).
     continue-on-error: true
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
